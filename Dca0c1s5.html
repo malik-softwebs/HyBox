@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>HyBox Archive | Class 11 Urdu</title>
+    
+    <style>
+        :root {
+            --bg: #F5F5F5;
+            --accent: #007AFF;
+            --border: #000000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .archive-card {
+            background: white;
+            border: 4px solid var(--border);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 15px 15px 0px var(--border);
+        }
+
+        .header {
+            border-bottom: 4px solid var(--border);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .header span {
+            background: yellow;
+            font-weight: bold;
+            padding: 2px 8px;
+            border: 2px solid black;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        .book-preview img {
+            width: 100%;
+            border: 3px solid black;
+            box-shadow: 8px 8px 0px #DDD;
+        }
+
+        .details h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #DDD;
+            font-size: 1.1rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 3px solid var(--border);
+            box-shadow: 6px 6px 0px var(--border);
+            transition: all 0.1s ease;
+        }
+
+        .download-btn:active {
+            box-shadow: none;
+            transform: translate(4px, 4px);
+        }
+
+        .footer-note {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="archive-card">
+        <div class="header">
+            <span>OPEN ARCHIVE</span>
+            <h1>Educational Content</h1>
+        </div>
+
+        <div class="content-grid">
+            <div class="book-preview">
+                <img src="https://tehzibsons.com/wp-content/uploads/2025/06/Urdu-Grammar-11-12-768x963.webp">
+                <p style="text-align: center; margin-top: 10px; font-weight: bold;">Official PCTB Edition</p>
+            </div>
+
+            <div class="details">
+                <h2>Urdu Qwaid o Insha</h2>
+                <ul class="info-list">
+                    <li><strong>Class:</strong> 11 (HSSC-I)</li>
+                    <li><strong>Publisher:</strong> Punjab Curriculum & Textbook Board</li>
+                    <li><strong>Subject Code:</strong> UR-11-2026</li>
+                    <li><strong>Format:</strong> PDF Digital Edition</li>
+                </ul>
+
+                <p>High-quality digital copy for educational reference. This document includes all grammar, essay structures, and literary rules according to the latest syllabus.</p>
+
+                <a href="https://drive.google.com/file/d/129lEy_rsYLa3CYS_j3s_0I8vnbyc_mG3/view?usp=sharing" download class="download-btn">
+                    DOWNLOAD PDF ↓
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            &copy; 2026 <a href="https://hybox.netlify.app">HyBox Lab</a>. Unauthorized distribution is allowed. 
+        </div>
+    </div>
+
+</body>
+</html>

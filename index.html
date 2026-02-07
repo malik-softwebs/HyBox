@@ -1,206 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>HyBox | Engineering Over Ideas — Autonomous Systems Lab</title>
-<meta name="title" content="HyBox | Engineering Over Ideas — Autonomous Systems Lab">
-<meta name="description" content="HyBox is an AI-first experimental studio building functional autonomous frameworks and practical web utilities. We prioritize execution over abstract hype.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HyBox | Engineering Over Ideas — Product Studio</title>
+    
+    <!-- SEO & Meta -->
+    <meta name="title" content="HyBox | Engineering Over Ideas — Product Studio">
+    <meta name="description" content="HyBox is a professional studio engineering autonomous systems, high-performance web utilities, and technical publications. Execution over ideas.">
+    <link rel="canonical" href="https://hybox.netlify.app/">
+    
+    <!-- Icons & Boxicons -->
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-<link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/icon/favicon.svg" />
-<link rel="shortcut icon" href="/icon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-touch-icon.png" />
-<link rel="manifest" href="/icon/site.webmanifest" />
-<meta property="og:site_name" content="HyBox">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hybox.netlify.app/">
-<meta property="og:title" content="HyBox | Ideas are Cheap. Engineering is Hard. Build Now.">
-<meta property="og:description" content="An AI-first experimental lab building autonomous frameworks and practical utilities. We ship functional tools, we don't just pitch ideas.">
-<meta property="og:image" content="https://hybox.netlify.app/og-image.jpg">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://hybox.netlify.app/">
-<meta property="twitter:title" content="HyBox | Ideas are Cheap. Engineering is Hard. Build Now.">
-<meta property="twitter:description" content="AI-first experimental lab building autonomous frameworks and practical utilities.">
-<meta property="twitter:image" content="https://hybox.netlify.app/og-image.jpg">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://api.dicebear.com">
-<link rel="dns-prefetch" href="https://backend.buildpicoapps.com">
-
-<title>HyBox | Autonomous Systems & AI-First Experimental Lab</title>
-<meta name="title" content="HyBox | Autonomous Systems & AI-First Experimental Lab">
-<meta name="description" content="HyBox is a disciplined experimental studio engineering autonomous AI systems, human-interface protocols, and high-performance web utilities. Execution over ideas.">
-
-<meta name="geo.region" content="PK">
-<meta name="geo.placename" content="Islamabad">
-
-<meta property="og:site_name" content="HyBox Lab">
-<meta property="og:title" content="HyBox | Ideas are Cheap. Engineering is Hard. Build Now.">
-<meta property="og:description" content="Engineering the future of autonomous systems. Explore our technical builds and AI-first research.">
-<meta property="og:image" content="https://hybox.netlify.app/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-        
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
+    <script type="application/ld+json">
     {
+      "@context": "https://schema.org",
       "@type": "Organization",
-      "@id": "https://hybox.netlify.app/#organization",
       "name": "HyBox",
       "url": "https://hybox.netlify.app/",
-      "logo": "https://hybox.netlify.app/icon/favicon-96x96.png",
-      "slogan": "Execution over Ideas",
-      "description": "An AI-first experimental studio building functional autonomous frameworks.",
-      "sameAs": [
-        "https://github.com/your-github-username",
-        "https://linkedin.com/company/hybox"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://hybox.netlify.app/#website",
-      "url": "https://hybox.netlify.app/",
-      "name": "HyBox Lab",
-      "publisher": {"@id": "https://hybox.netlify.app/#organization"}
-    },
-    {
-      "@type": "SoftwareApplication",
-      "name": "Zavia AI",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Human-AI Liaison interface for HyBox Lab operations."
+      "slogan": "Execution over Ideas"
     }
-  ]
-}
-</script>
-        
-        
-    
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q1SP832NR7');
-</script>
+    </script>
 </head>
 <body data-theme="light">
 
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">HYBOX</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><i class='bx bxs-home'></i> <span>HOME</span></a></li>
+                <li><a href="lab.html"><i class='bx bxs-layer'></i> <span>LAB</span></a></li>
+                <li><a href="zavia.html"><i class='bx bxs-chat'></i> <span>LIAISON</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <div class="logo">HYBOX</div>
-            <div class="header-meta">BUILD_LOG // 2026 // v.01</div>
+        <header class="hero-header">
+            <div class="header-meta">BUILD_LOG // 2026 // v.03_DYNAMIC</div>
         </header>
 
         <section class="hero">
             <h1>EXECUTION OVER IDEAS.</h1>
-            <p>HyBox is an autonomous systems lab. We prioritize engineering over abstract concepts, building functional frameworks and utility-driven software.</p>
+            <p>HyBox is a technical studio. We prioritize the development of functional frameworks, autonomous logic, and utility-driven software over abstract concepts.</p>
+            <div class="hero-btns">
+                <a href="lab.html" class="btn-primary">VIEW_LAB_CREATIONS</a>
+            </div>
         </section>
 
         <div class="ethos-grid">
             <div class="ethos-item">
-                <h3>PRACTICAL</h3>
-                <p>Function over hype. We build tools that address technical challenges through direct execution.</p>
+                <i class='bx bx-code-alt'></i>
+                <h3>DEVELOPMENT</h3>
+                <p>Building high-performance web utilities and autonomous logic frameworks with a vanilla-first approach.</p>
             </div>
             <div class="ethos-item">
-                <h3>DISCIPLINED</h3>
-                <p>Speed of iteration meets rigorous testing. Every build is optimized for stability and performance.</p>
-            </div>
-            <div class="ethos-item">
-                <h3>EXPERIMENTAL</h3>
-                <p>Learning through application. We treat every project as a data point for future improvement.</p>
+                <i class='bx bx-book-open'></i>
+                <h3>PUBLICATIONS</h3>
+                <p>Technical documentation and books focused on engineering discipline and system architecture.</p>
             </div>
         </div>
-
-        <section class="focus">
-            <div class="focus-row">
-                <span class="focus-label">AUTONOMOUS SYSTEMS</span>
-                <span class="focus-tag">SELF-GOVERNED LOGIC</span>
-            </div>
-            <div class="focus-row">
-                <span class="focus-label">HUMAN-AI INTERFACES</span>
-                <span class="focus-tag">LOW-FRICTION UX</span>
-            </div>
-            <p style="margin-top: 40px; opacity: 0.7; font-size: 0.95rem;">
-                Our technical approach utilizes a lightweight vanilla stack (HTML5, CSS3, ES6) for zero-latency performance. The Neo-Brutalist interface is designed for high readability and structural clarity.
-            </p>
-        </section>
 
         <section class="architects">
-    <h2>ARCHITECTURE TEAM</h2>
-    <div class="grid">
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/6.webp" alt="AWAIS" class="no-save">
+            <h2>THE TEAM</h2>
+            <!-- Dynamic Container: JS will sync this with Supabase -->
+            <div class="grid" id="team-grid">
+                <!-- Skeleton Fallback (SEO Friendly) -->
+                <div class="card" data-member="awais">
+                    <div class="visual-unit"><img src="img/6.webp" alt="AWAIS" class="no-save"></div>
+                    <h3>MUHAMMAD AWAIS</h3>
+                    <p class="role">FOUNDER / ENGINEER</p>
+                </div>
+                <div class="card" data-member="farhan">
+                    <div class="visual-unit"><img src="img/16.webp" alt="FARHAN" class="no-save"></div>
+                    <h3>FARHAN ZAFAR</h3>
+                    <p class="role">OPERATIONS MANAGER</p>
+                </div>
+                <div class="card" data-member="usman">
+                    <div class="visual-unit"><img src="img/17.webp" alt="USMAN" class="no-save"></div>
+                    <h3>USMAN IZHAR</h3>
+                    <p class="role">TOOLS & INFRASTRUCTURE</p>
+                </div>
+                <div class="card" data-member="ehtisham">
+                    <div class="visual-unit"><img src="img/0.webp" alt="EHTISHAM" class="no-save"></div>
+                    <h3>MUHAMMAD EHTISHAM</h3>
+                    <p class="role">USER ACQUISITION</p>
+                </div>
+                <div class="card" data-member="zavia">
+                    <div class="visual-unit"><img src="img/1.webp" alt="ZAVIA" class="no-save"></div>
+                    <h3>ZAVIA</h3>
+                    <p class="role">USER SUPPORT</p>
+                </div>
+                <div class="card" data-member="sawera">
+                    <div class="visual-unit"><img src="img/4.webp" alt="SAWERA" class="no-save"></div>
+                    <h3>SAWERA</h3>
+                    <p class="role">RESEARCH ASSISTANT</p>
+                </div>
             </div>
-            <h3>MUHAMMAD AWAIS</h3>
-            <p class="role">FOUNDER</p>
-        </div>
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/16.webp" alt="FARHAN" class="no-save">
-            </div>
-            <h3>FARHAN ZAFAR</h3>
-            <p class="role">OPERATIONS MANAGER</p>
-        </div>
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/17.webp" alt="USMAN" class="no-save">
-            </div>
-            <h3>USMAN IZHAR</h3>
-            <p class="role">TOOLS & INFRASTRUCTURE</p>
-        </div>
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/0.webp" alt="EHTISHAM" class="no-save">
-            </div>
-            <h3>MUHAMMAD EHTISHAM</h3>
-            <p class="role">USER ACQUISITION</p>
-        </div>
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/1.webp" alt="ZAVIA" class="no-save">
-            </div>
-            <h3>ZAVIA</h3>
-            <p class="role">USER SUPPORT</p>
-        </div>
-
-        <div class="card">
-            <div class="visual-unit">
-                <img src="img/4.webp" alt="SAWERA" class="no-save">
-            </div>
-            <h3>SAWERA</h3>
-            <p class="role">RESEARCH ASSISTANT</p>
-        </div>
-
-    </div>
-</section>
+        </section>
 
         <section class="contact-section">
-            <h2>FEEDBACK_LOG</h2>
+            <h2>PROJECT_INQUIRY</h2>
             <div class="feedback-container">
                 <div class="shadow-layer"></div>
-                <form id="feedbackForm">
+                <form id="contactForm">
                     <div class="form-grid">
                         <div class="input-group">
                             <label>IDENTIFIER</label>
-                            <input type="text" id="name" placeholder="NAME / ID" required>
+                            <input type="text" id="name" placeholder="NAME / COMPANY" required>
                         </div>
                         <div class="input-group">
                             <label>CONTACT_POINT</label>
@@ -208,14 +127,8 @@
                         </div>
                     </div>
                     <div class="input-group">
-                        <label>TECHNICAL_RATING</label>
-                        <div class="rating" id="rating">
-                            <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label>DATA_INPUT</label>
-                        <textarea id="message" placeholder="TYPE TECHNICAL FEEDBACK..." required></textarea>
+                        <label>MESSAGE_DATA</label>
+                        <textarea id="message" placeholder="DESCRIBE THE PROJECT OR INQUIRY..." required></textarea>
                     </div>
                     <div class="form-footer">
                         <button type="button" onclick="submitForm()" class="submit-btn">
@@ -229,10 +142,10 @@
         </section>
 
         <footer>
-            <div class="footer-big">HYBOX LABS</div>
+            <div class="footer-big">HYBOX</div>
             <div class="footer-status">
-                <span>VERSION: 1.0</span>
-                
+                <span>&copy; 2026 HYBOX_STUDIO</span>
+                <span>STATUS: OPERATIONAL</span>
             </div>
         </footer>
     </div>

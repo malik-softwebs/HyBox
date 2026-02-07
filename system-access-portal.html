@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Access // HyBox Admin</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .admin-layout { max-width: 900px; margin: 40px auto; padding: 0 5%; }
+        .auth-box { border: 4px solid var(--border); padding: 40px; background: var(--bg); box-shadow: 10px 10px 0px var(--accent); }
+        .dashboard { display: none; }
+        .admin-section { margin-top: 40px; border-top: 4px solid var(--border); padding-top: 40px; }
+        .hidden { display: none; }
+        .input-group select { width: 100%; padding: 18px; border: 3px solid var(--border); background: var(--bg); color: var(--text); font-weight: 700; outline: none; }
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="admin-layout">
+        <header class="hero-header">
+            <div class="header-meta">ADMIN_OS // ACCESS_CONTROL</div>
+            <h1>SYSTEM_ACCESS</h1>
+        </header>
+
+        <!-- 1. AUTHENTICATION BOX -->
+        <div id="auth-container" class="auth-box">
+            <div id="email-step">
+                <div class="input-group">
+                    <label>ADMIN_IDENTIFIER (EMAIL)</label>
+                    <input type="email" id="admin-email" placeholder="ENTER ADMIN EMAIL">
+                </div>
+                <button onclick="sendOTP()" class="submit-btn" style="width:100%; margin-top:20px;">SEND_ACCESS_CODE</button>
+            </div>
+
+            <div id="otp-step" class="hidden">
+                <div class="input-group">
+                    <label>VERIFICATION_CODE (OTP)</label>
+                    <input type="text" id="otp-code" placeholder="6-DIGIT CODE">
+                </div>
+                <button onclick="verifyOTP()" class="submit-btn" style="width:100%; margin-top:20px;">VERIFY_IDENTITY</button>
+            </div>
+        </div>
+
+        <!-- 2. MAIN DASHBOARD -->
+        <div id="dashboard" class="dashboard">
+            <div class="auth-box" style="margin-bottom: 40px;">
+                <h3>ADMIN_PROFILE</h3>
+                <p id="user-email" style="font-weight: 800; color: var(--accent);"></p>
+                <button onclick="signOut()" class="universal-btn" style="margin-top:20px;">TERMINATE_SESSION</button>
+            </div>
+
+            <div class="auth-box">
+                <h2>ADD_NEW_CREATION</h2>
+                <form id="creation-form">
+                    <div class="input-group">
+                        <label>CREATION_TITLE</label>
+                        <input type="text" id="title" required>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>TYPE</label>
+                            <select id="type" onchange="toggleApkLogic()">
+                                <option value="app">APP</option>
+                                <option value="website">WEBSITE</option>
+                                <option value="book">BOOK</option>
+                            </select>
+                        </div>
+                        <div id="apk-logic" class="input-group">
+                            <label>IS_APK_FILE?</label>
+                            <input type="checkbox" id="is_apk" style="width:auto;">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>LOGO_URL</label>
+                        <input type="text" id="logo_url" placeholder="CDN URL">
+                    </div>
+
+                    <div class="input-group">
+                        <label>DOWNLOAD / REDIRECT URL</label>
+                        <input type="text" id="download_url" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>SHORT_DESCRIPTION (MAX 30 WORDS)</label>
+                        <textarea id="short_desc" maxlength="200" required></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>LONG_DESCRIPTION (MIN 500 WORDS)</label>
+                        <textarea id="long_desc" style="height:300px;" required></textarea>
+                    </div>
+
+                    <button type="button" onclick="uploadCreation()" class="submit-btn" style="width:100%;">PUBLISH_TO_LAB</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize with a unique variable name to avoid global collision
+        const SB_URL = 'https://buelbnurnlrisrokmxir.supabase.co';
+        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk';
+        const sb = supabase.createClient(SB_URL, SB_KEY);
+
+        async function sendOTP() {
+            const email = document.getElementById('admin-email').value;
+            const { error } = await sb.auth.signInWithOtp({ email });
+            if (error) alert(error.message);
+            else {
+                document.getElementById('email-step').classList.add('hidden');
+                document.getElementById('otp-step').classList.remove('hidden');
+            }
+        }
+
+        async function verifyOTP() {
+            const email = document.getElementById('admin-email').value;
+            const token = document.getElementById('otp-code').value;
+            const { data, error } = await sb.auth.verifyOtp({ email, token, type: 'signin' });
+            
+            if (error) {
+                const signupRetry = await sb.auth.verifyOtp({ email, token, type: 'signup' });
+                if (signupRetry.error) alert(signupRetry.error.message);
+                else checkSession();
+            } else {
+                checkSession();
+            }
+        }
+
+        async function checkSession() {
+            const { data: { session } } = await sb.auth.getSession();
+            if (session) {
+                document.getElementById('auth-container').classList.add('hidden');
+                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('user-email').innerText = session.user.email;
+            }
+        }
+
+        async function signOut() {
+            await sb.auth.signOut();
+            location.reload();
+        }
+
+        function toggleApkLogic() {
+            const type = document.getElementById('type').value;
+            document.getElementById('apk-logic').style.display = type === 'app' ? 'block' : 'none';
+        }
+
+        async function uploadCreation() {
+            const btn = document.querySelector('#creation-form .submit-btn');
+            btn.innerText = "UPLOADING...";
+            btn.disabled = true;
+
+            const entry = {
+                title: document.getElementById('title').value,
+                short_desc: document.getElementById('short_desc').value,
+                long_desc: document.getElementById('long_desc').value,
+                type: document.getElementById('type').value,
+                logo_url: document.getElementById('logo_url').value,
+                download_url: document.getElementById('download_url').value,
+                is_apk: document.getElementById('is_apk').checked
+            };
+
+            const { error } = await sb.from('creations').insert([entry]);
+
+            if (error) {
+                alert("DATABASE_ERROR: " + error.message);
+            } else {
+                alert("ADDED_SUCCESSFULLY");
+                document.getElementById('creation-form').reset();
+            }
+            btn.innerText = "PUBLISH_TO_LAB";
+            btn.disabled = false;
+        }
+
+        window.onload = checkSession;
+    </script>
+</body>
+</html>

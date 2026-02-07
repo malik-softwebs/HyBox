@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
 Allow: /index.html
+Allow: /lab.html
 Allow: /zavia.html
 
-# Sitemaps help search engines find all your pages
+# Hide the Admin Portal from Search Engines
+Disallow: /system-access-portal.html
+
 Sitemap: https://hybox.netlify.app/sitemap.xml

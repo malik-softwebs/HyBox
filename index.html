@@ -1,192 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <!-- Primary Meta Tags -->
-<title>HYBOX – Smart Tools & AI Experiments</title>
-<meta name="title" content="HYBOX – Smart Tools & AI Experiments">
-<meta name="description" content="HYBOX is a playground for smart web tools, AI ideas, and experiments. Clean, fast, and useful.">
-<link rel="canonical" href="https://hybox.netlify.app/">
-    <meta name="google-adsense-account" content="ca-pub-9523519486763113">
-    <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyBox — AI Product Studio</title>
 
-<!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hybox.netlify.app/">
-<meta property="og:title" content="HYBOX – Smart Tools & AI Experiments">
-<meta property="og:description" content="HYBOX is a playground for smart web tools, AI ideas, and experiments. Clean, fast, and useful.">
-<meta property="og:image" content="https://hybox.netlify.app/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="HYBOX - Engineering Over Ideas">
-<meta property="og:site_name" content="HYBOX">
+  <!-- SEO -->
+  <meta name="description" content="HyBox is an AI-first experimental studio building functional digital products and autonomous systems.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://hybox.netlify.app/">
-<meta name="twitter:title" content="HYBOX – Smart Tools & AI Experiments">
-<meta name="twitter:description" content="HYBOX is a playground for smart web tools, AI ideas, and experiments.">
-<meta name="twitter:image" content="https://hybox.netlify.app/og-image.jpg">
-    <!-- Icons & Boxicons -->
-    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "HyBox",
-      "url": "https://hybox.netlify.app/",
-      "slogan": "Execution over Ideas"
-    }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9523519486763113"
-     crossorigin="anonymous"></script>
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body data-theme="light">
-    <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-9523519486763113">
-</amp-auto-ads>
+<body>
 
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">HYBOX</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active"><i class='bx bxs-home'></i> <span>HOME</span></a></li>
-                <li><a href="lab.html"><i class='bx bxs-layer'></i> <span>LAB</span></a></li>
-                <li><a href="zavia.html"><i class='bx bxs-chat'></i> <span>LIAISON</span></a></li>
-            </ul>
+  <div class="container">
+    <header>
+      <strong class="logo">HyBox</strong>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="lab.html">Products</a>
+        <a href="zavia.html">Liaison</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>An AI-first studio building practical digital products</h1>
+        <p>
+          HyBox is an experimental product studio. We build and ship our own AI tools, web apps, and internal systems. Execution over ideas.
+        </p>
+        <a href="lab.html" class="btn-cta">Explore products</a>
+      </div>
+
+      <div class="hero-panel">
+        <h4>Current areas</h4>
+        <ul>
+          <li>AI utilities & assistants</li>
+          <li>Internal experimentation tools</li>
+          <li>Lightweight web applications</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">The Architecture Team</h2>
+      <p class="section-desc">
+        A disciplined group of engineers and researchers focused on autonomous system output.
+      </p>
+
+      <!-- Dynamic Team Grid -->
+      <div class="grid" id="team-grid">
+        <!-- Fallback Skeletons -->
+        <div class="card"><h3>Loading Team...</h3></div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+        <h2 class="section-title">Project Inquiry</h2>
+        <p class="section-desc">Transmit technical data or collaboration requests.</p>
+        
+        <div class="card form-container">
+            <form id="contactForm">
+                <div class="form-row">
+                    <input type="text" id="name" placeholder="Name / ID" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <textarea id="message" placeholder="Describe the project or inquiry..." required></textarea>
+                <button type="button" onclick="submitForm()" class="btn-cta">
+                    <span id="submit-text">Transmit Data</span>
+                    <span id="submitting-text" style="display: none;">Sending...</span>
+                </button>
+                <p id="successMessage" style="display:none; color: var(--accent); margin-top: 15px; font-weight: 600;">Data logged successfully.</p>
+            </form>
         </div>
-    </nav>
+    </section>
 
-    <div class="container">
-        <header class="hero-header">
-            <div class="header-meta">BUILD_LOG // 2026 // v.03_DYNAMIC</div>
-        </header>
+    <footer>
+      © HyBox — AI Product Studio // v.04_SOFT_UI
+    </footer>
+  </div>
 
-        <section class="hero">
-            <h1>EXECUTION OVER IDEAS.</h1>
-            <p>HyBox is a technical studio. We prioritize the development of functional frameworks, autonomous logic, and utility-driven software over abstract concepts.</p>
-            <div class="hero-btns">
-                <a href="lab.html" class="btn-primary">VIEW_LAB_CREATIONS</a>
-            </div>
-        </section>
-
-        <div class="ethos-grid">
-            <div class="ethos-item">
-                <i class='bx bx-code-alt'></i>
-                <h3>DEVELOPMENT</h3>
-                <p>Building high-performance web utilities and autonomous logic frameworks with a vanilla-first approach.</p>
-            </div>
-            <div class="ethos-item">
-                <i class='bx bx-book-open'></i>
-                <h3>PUBLICATIONS</h3>
-                <p>Technical documentation and books focused on engineering discipline and system architecture.</p>
-            </div>
-        </div>
-
-        <section class="architects">
-            <h2>THE TEAM</h2>
-            <!-- Dynamic Container: JS will sync this with Supabase -->
-            <div class="grid" id="team-grid">
-                <!-- Skeleton Fallback (SEO Friendly) -->
-                <div class="card" data-member="awais">
-                    <div class="visual-unit"><img src="img/6.webp" alt="AWAIS" class="no-save"></div>
-                    <h3>MUHAMMAD AWAIS</h3>
-                    <p class="role">FOUNDER / ENGINEER</p>
-                </div>
-                <div class="card" data-member="farhan">
-                    <div class="visual-unit"><img src="img/16.webp" alt="FARHAN" class="no-save"></div>
-                    <h3>FARHAN ZAFAR</h3>
-                    <p class="role">OPERATIONS MANAGER</p>
-                </div>
-                <div class="card" data-member="usman">
-                    <div class="visual-unit"><img src="img/17.webp" alt="USMAN" class="no-save"></div>
-                    <h3>USMAN IZHAR</h3>
-                    <p class="role">TOOLS & INFRASTRUCTURE</p>
-                </div>
-                <div class="card" data-member="ehtisham">
-                    <div class="visual-unit"><img src="img/0.webp" alt="EHTISHAM" class="no-save"></div>
-                    <h3>MUHAMMAD EHTISHAM</h3>
-                    <p class="role">USER ACQUISITION</p>
-                </div>
-                <div class="card" data-member="zavia">
-                    <div class="visual-unit"><img src="img/1.webp" alt="ZAVIA" class="no-save"></div>
-                    <h3>ZAVIA</h3>
-                    <p class="role">USER SUPPORT</p>
-                </div>
-                <div class="card" data-member="sawera">
-                    <div class="visual-unit"><img src="img/4.webp" alt="SAWERA" class="no-save"></div>
-                    <h3>SAWERA</h3>
-                    <p class="role">RESEARCH ASSISTANT</p>
-                </div>
-            </div>
-        </section>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9523519486763113"
-     crossorigin="anonymous"></script>
-<!-- Display 1 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-9523519486763113"
-     data-ad-slot="1530233032"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-        <section class="contact-section">
-            <h2>PROJECT_INQUIRY</h2>
-            <div class="feedback-container">
-                <div class="shadow-layer"></div>
-                <form id="contactForm">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label>IDENTIFIER</label>
-                            <input type="text" id="name" placeholder="NAME / COMPANY" required>
-                        </div>
-                        <div class="input-group">
-                            <label>CONTACT_POINT</label>
-                            <input type="email" id="email" placeholder="EMAIL_ADDR" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label>MESSAGE_DATA</label>
-                        <textarea id="message" placeholder="DESCRIBE THE PROJECT OR INQUIRY..." required></textarea>
-                    </div>
-                    <div class="form-footer">
-                        <button type="button" onclick="submitForm()" class="submit-btn">
-                            <span id="submit-text">TRANSMIT_DATA</span>
-                            <span id="submitting-text" style="display: none;">SENDING...</span>
-                        </button>
-                        <p id="successMessage">DATA LOGGED SUCCESSFULLY.</p>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-big">HYBOX</div>
-            <div class="footer-status">
-                <span>&copy; 2026 HYBOX_STUDIO</span>
-                <span>STATUS: OPERATIONAL</span>
-            </div>
-        </footer>
-    </div>
-
-    <div class="env-pill" onclick="toggleEnv()">ENVIRONMENT</div>
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

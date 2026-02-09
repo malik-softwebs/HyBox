@@ -1,108 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <!-- Primary Meta Tags -->
-<title>HYBOX Lab – Directory of Smart Tools & AI Experiments</title>
-<meta name="title" content="HYBOX Lab – Directory of Smart Tools & AI Experiments">
-<meta name="description" content="Explore the HYBOX Lab. A directory of high-performance web utilities, AI-first frameworks, and technical experiments. Built for speed.">
-<link rel="canonical" href="https://hybox.netlify.app/lab.html">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — HyBox Studio</title>
 
-<!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hybox.netlify.app/lab.html">
-<meta property="og:title" content="HYBOX Lab – Directory of Smart Tools & AI Experiments">
-<meta property="og:description" content="Explore the HYBOX Lab. A directory of high-performance web utilities, AI-first frameworks, and technical experiments.">
-<meta property="og:image" content="https://hybox.netlify.app/og-lab.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="HYBOX Lab - Creations Directory">
-<meta property="og:site_name" content="HYBOX">
+  <!-- SEO -->
+  <meta name="description" content="Explore the HyBox product directory. A collection of AI tools, web applications, and technical publications.">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
 
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://hybox.netlify.app/lab.html">
-<meta name="twitter:title" content="HYBOX Lab – Directory of Smart Tools & AI Experiments">
-<meta name="twitter:description" content="Explore the HYBOX Lab. A directory of high-performance web utilities and AI experiments.">
-<meta name="twitter:image" content="https://hybox.netlify.app/og-lab.jpg">
-
-    
-    <!-- Icons & Boxicons -->
-    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body data-theme="light">
+<body>
 
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">HYBOX</a>
-            <ul class="nav-links">
-                <li><a href="index.html"><i class='bx bxs-home'></i> <span>HOME</span></a></li>
-                <li><a href="lab.html" class="active"><i class='bx bxs-layer'></i> <span>LAB</span></a></li>
-                <li><a href="zavia.html"><i class='bx bxs-chat'></i> <span>LIAISON</span></a></li>
-            </ul>
+  <div class="container">
+    <header>
+      <strong class="logo">HyBox</strong>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="lab.html" class="active">Products</a>
+        <a href="zavia.html">Liaison</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>The Product Lab</h1>
+        <p>
+          A centralized directory of our technical output. Every product is engineered for high performance and specific utility.
+        </p>
+      </div>
+      <div class="hero-panel">
+        <h4>System Stats</h4>
+        <ul>
+          <li id="creation-count">Total Products: 0</li>
+          <li>Status: All Systems Operational</li>
+          <li>Last Sync: 2026.02.07</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lab-directory">
+      <h2 class="section-title">All Creations</h2>
+      <p class="section-desc">Browse our latest releases across AI, Web, and Print.</p>
+
+      <!-- Dynamic Grid: Hydrated by Supabase -->
+      <div class="grid" id="creations-grid">
+        <!-- Skeleton Card -->
+        <div class="card">
+          <h3>Loading Directory...</h3>
+          <p>Connecting to database nodes.</p>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <div class="container">
-        <header class="hero-header">
-            <div class="header-meta">DIRECTORY // CREATIONS_LOG</div>
-        </header>
+    <footer>
+      © HyBox — AI Product Studio
+    </footer>
+  </div>
 
-        <section class="hero">
-            <h1>THE LAB.</h1>
-            <p>A centralized directory of our technical output. Websites, applications, and publications engineered for performance and utility.</p>
-        </section>
-
-        <section class="lab-directory">
-            <!-- Dynamic Grid: Hydrated by Supabase -->
-            <div class="directory-grid" id="creations-grid">
-                <!-- Skeleton Loader / Fallback -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-img-holder"></div>
-                        <h3 class="project-title">LOADING_DATA...</h3>
-                    </div>
-                    <p class="project-desc">Connecting to autonomous database nodes. Please wait.</p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-big">HYBOX</div>
-            <div class="footer-status">
-                <span id="creation-count">TOTAL_CREATIONS: 0</span>
-                <span>LAST_SYNC: 2026.02.05</span>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Full Screen Modal -->
-    <div id="projectModal" class="modal">
-        <button class="modal-close" onclick="closeModal()">CLOSE_SYSTEM</button>
-        <div class="modal-content">
-            <h2 id="modalTitle">PROJECT_DETAILS</h2>
-            <div class="modal-body" id="modalBody">
-                <!-- Content injected via JS -->
-            </div>
+  <!-- Full Screen Modal -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">Close</button>
+        <h2 id="modalTitle" class="section-title">Project Details</h2>
+        <div id="modalBody" class="modal-body">
+            <!-- Content injected via JS -->
         </div>
     </div>
+  </div>
 
-    <div class="env-pill" onclick="toggleEnv()">ENVIRONMENT</div>
-    
-    <script src="script.js"></script>
-    <script>
+  <div class="env-pill" onclick="toggleEnv()">Environment</div>
+
+  <script src="script.js"></script>
+  <script>
     async function loadCreations() {
         const grid = document.getElementById('creations-grid');
         const countSpan = document.getElementById('creation-count');
@@ -116,18 +91,17 @@
             if (error) throw error;
 
             if (data) {
-                grid.innerHTML = ''; 
-                countSpan.innerText = `TOTAL_CREATIONS: ${data.length}`;
+                grid.innerHTML = ''; // Clear loading state
+                countSpan.innerText = `Total Products: ${data.length}`;
 
-                data.forEach((item, index) => {
+                data.forEach((item) => {
                     const card = document.createElement('div');
-                    card.className = 'project-card';
+                    card.className = 'card project-card';
                     
-                    let btnText = 'OPEN';
-                    if (item.type === 'app') btnText = item.is_apk ? 'GET_APK' : 'GET_APP';
-                    if (item.type === 'book') btnText = 'DOWNLOAD';
+                    let btnText = 'Open';
+                    if (item.type === 'app') btnText = item.is_apk ? 'Get APK' : 'Get App';
+                    if (item.type === 'book') btnText = 'Download';
 
-                    // We store the long description in a hidden div to avoid breaking JS strings
                     card.innerHTML = `
                         <div class="project-header">
                             <div class="project-img-holder">
@@ -136,14 +110,14 @@
                             <h3 class="project-title">${item.title}</h3>
                         </div>
                         <p class="project-desc">${item.short_desc}</p>
-                        <span class="view-more-trigger" data-index="${index}">VIEW_MORE</span>
+                        <span class="view-more-trigger">View Details</span>
                         <div class="project-footer">
                             <span class="type-pill">${item.type}</span>
-                            <a href="${item.download_url}" target="_blank" class="universal-btn">${btnText}</a>
+                            <a href="${item.download_url}" target="_blank" class="btn-cta" style="padding: 8px 16px; font-size: 12px;">${btnText}</a>
                         </div>
                     `;
                     
-                    // Attach event listener safely
+                    // Safe Event Listener for Modal
                     card.querySelector('.view-more-trigger').addEventListener('click', () => {
                         openModal(item.title, item.long_desc);
                     });
@@ -152,27 +126,12 @@
                 });
             }
         } catch (err) {
-            console.error('SYSTEM_ERROR:', err);
-            grid.innerHTML = `<div class="project-card"><h3>SYNC_ERROR</h3><p>${err.message}</p></div>`;
+            console.error('FETCH_ERROR:', err);
+            grid.innerHTML = `<div class="card"><h3>Sync Error</h3><p>${err.message}</p></div>`;
         }
     }
 
-    // Modal function remains the same but ensure it's globally available
-    window.openModal = function(title, content) {
-        const modal = document.getElementById('projectModal');
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalBody').innerHTML = content;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    };
-
-    window.closeModal = function() {
-        const modal = document.getElementById('projectModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    };
-
     window.addEventListener('DOMContentLoaded', loadCreations);
-</script>
+  </script>
 </body>
 </html>

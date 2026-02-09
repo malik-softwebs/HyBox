@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products — HyBox Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Transactional Intent -->
+    <title>AI Tools & Software Directory — HyBox Lab</title>
+    <meta name="description" content="Access the HyBox Lab: A curated directory of AI-powered SaaS tools, developer utilities, and technical publications engineered for immediate utility.">
+    <meta name="keywords" content="AI tools, micro-saas, developer utilities, AI automation, autonomous software">
 
-  <!-- SEO -->
-  <meta name="description" content="Explore the HyBox product directory. A collection of AI tools, web applications, and technical publications.">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="style.css">
+    <!-- Assets -->
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-  <!-- Supabase SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- SDKs -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Advanced Schema: ItemList (Crucial for Product Discovery) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "HyBox Product Lab",
+      "description": "Directory of AI-driven applications and technical frameworks.",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "AI Utilities"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Technical Publications"
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
 

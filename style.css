@@ -280,3 +280,81 @@ footer {
   .hero h1 { font-size: 36px; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+
+
+
+
+/* Contest Promo Section */
+.contest-promo-section {
+  margin-top: 80px; /* Adjust spacing as needed */
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.contest-promo-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 40px; /* Slightly more padding for a prominent card */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.contest-promo-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.contest-promo-card .section-desc {
+  margin-bottom: 24px;
+  max-width: 400px; /* Constrain text width */
+}
+
+.contest-prize-visual {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg); /* Use background color for distinction */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  margin-top: 12px;
+}
+
+.contest-prize-visual img {
+  width: 60px; /* Smaller image for the prize visual */
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.contest-prize-visual h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.contest-prize-visual p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .contest-promo-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: flex-start; /* Adjust alignment for better flow on small screens */
+  }
+  .contest-promo-card h3,
+  .contest-promo-card .section-desc {
+    text-align: left;
+    max-width: 100%;
+  }
+  .contest-prize-visual {
+    width: 100%; /* Full width on small screens */
+    justify-content: center;
+  }
+}

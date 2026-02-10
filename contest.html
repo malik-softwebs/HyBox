@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevent indexing for contest forms -->
+    <meta name="theme-color" content="#ffffff">
+
+    <title>HyBox Contest — Earn Rewards</title>
+    <meta name="description" content="Participate in the HyBox Contest. Submit your details for a chance to win cash prizes.">
+
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <strong class="logo">HyBox</strong>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="lab.html">Products</a>
+        <a href="zavia.html">Liaison</a>
+        <!-- Contest link removed from navigation as requested -->
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>HyBox Technical Challenge</h1>
+        <p>
+          Showcase your engagement. Submit your details for a chance to win. Open to select participants.
+        </p>
+        <a href="#entry-form" class="btn-cta">Enter Contest</a>
+      </div>
+
+      <div class="hero-panel">
+        <h4>Prizes (PKR)</h4>
+        <ul>
+          <li>First Place: 1000</li>
+          <li>Second Place: 700</li>
+          <li>Third Place: 400</li>
+          <li>Fourth Place: 200</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="entry-form">
+      <h2 class="section-title">Contest Entry Form</h2>
+      <p class="section-desc">
+        Provide accurate details for prize eligibility. Multiple entries from the same individual or device will be disqualified.
+      </p>
+        
+      <div class="card form-container">
+          <form id="contestEntryForm">
+              <div class="form-row">
+                  <input type="text" id="contest_full_name" placeholder="Full Name" required>
+                  <input type="email" id="contest_email" placeholder="Email Address" required>
+              </div>
+              <input type="tel" id="contest_phone_number" placeholder="WhatsApp Number (e.g., 03XXXXXXXXX)" pattern="03[0-9]{9}" title="Format: 03XXXXXXXXX (11 digits)" required>
+              <p style="font-size: 12px; color: var(--muted); margin-top: 8px; margin-bottom: 20px;">
+                By entering, you agree to our terms and conditions (if any).
+              </p>
+              <button type="submit" class="btn-cta">
+                  <span id="submit-text">Submit Entry</span>
+                  <span id="submitting-text" style="display: none;">Submitting...</span>
+              </button>
+              <p id="contestSuccessMessage" style="display:none; color: var(--accent); margin-top: 15px; font-weight: 600;">Entry received. Good luck!</p>
+              <p id="contestErrorMessage" style="display:none; color: #ef4444; margin-top: 15px; font-weight: 600;">Error: Could not submit entry. Please try again or check your details.</p>
+              <p id="contestDuplicateMessage" style="display:none; color: #fbbf24; margin-top: 15px; font-weight: 600;">Warning: Duplicate entry detected (email/phone already used).</p>
+          </form>
+      </div>
+    </section>
+
+    <footer>
+      © HyBox — AI Product Studio // Contest v.01
+    </footer>
+  </div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // This script should run after the Supabase SDK has loaded.
+    // The DOMContentLoaded listener ensures the HTML elements are available.
+    document.addEventListener('DOMContentLoaded', () => {
+        // Supabase Client Initialization
+        // THIS IS THE LINE THAT WAS CAUSING THE ERROR IF CDN IS BLOCKED OR SLOW.
+        const SUPABASE_URL = 'https://buelbnurnlrisrokmxir.supabase.co'; // REPLACE WITH YOUR ACTUAL SUPABASE URL
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk'; // REPLACE WITH YOUR ACTUAL SUPABASE ANON KEY
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById('contestEntryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            const submitText = document.getElementById('submit-text');
+            const submittingText = document.getElementById('submitting-text');
+            const successMessage = document.getElementById('contestSuccessMessage');
+            const errorMessage = document.getElementById('contestErrorMessage');
+            const duplicateMessage = document.getElementById('contestDuplicateMessage');
+
+            submitText.style.display = 'none';
+            submittingText.style.display = 'inline';
+            submitButton.disabled = true;
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            duplicateMessage.style.display = 'none';
+
+            const fullName = document.getElementById('contest_full_name').value;
+            const email = document.getElementById('contest_email').value;
+            const phoneNumber = document.getElementById('contest_phone_number').value;
+
+            // Basic client-side device info for "fingerprinting"
+            const deviceName = navigator.platform || 'Unknown';
+            const userAgent = navigator.userAgent;
+            const screenResolution = `${window.screen.width}x${window.screen.height}`;
+            
+            // A simple, easily spoofed "fingerprint"
+            const deviceFingerprint = btoa(JSON.stringify({
+                userAgent: userAgent,
+                screen: screenResolution,
+                plugins: Array.from(navigator.plugins).map(p => p.name).join(','),
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+            }));
+
+            try {
+                // Attempt to get client IP from a public service (less reliable, could be proxied)
+                // For true IP, you need server-side capture or a more robust service.
+                let ipAddress = null;
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    ipAddress = ipData.ip;
+                } catch (ipError) {
+                    console.warn('Could not fetch IP address:', ipError);
+                }
+
+                const { data, error } = await sb
+                    .from('contest_entries')
+                    .insert([
+                        {
+                            full_name: fullName,
+                            email: email,
+                            phone_number: phoneNumber,
+                            device_name: deviceName,
+                            user_agent: userAgent,
+                            ip_address: ipAddress,
+                            screen_resolution: screenResolution,
+                            device_fingerprint: deviceFingerprint
+                        }
+                    ]);
+
+                if (error) {
+                    console.error('Submission Error:', error);
+                    if (error.code === '23505') { // PostgreSQL unique violation code
+                        duplicateMessage.style.display = 'block';
+                    } else {
+                        errorMessage.style.display = 'block';
+                    }
+                } else {
+                    successMessage.style.display = 'block';
+                    this.reset(); // Clear form on success
+                }
+            } catch (err) {
+                console.error('Unhandled Submission Error:', err);
+                errorMessage.style.display = 'block';
+            } finally {
+                submitText.style.display = 'inline';
+                submittingText.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        });
+    });
+  </script>
+</body>
+</html>

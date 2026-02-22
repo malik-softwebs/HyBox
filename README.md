@@ -1,70 +1,60 @@
-# HyBox
+# HYBOX // RESONANCE v.06
+> Cool Apps. Smart AI. Real Fun.
 
-HyBox is an independent, AI-first experimental studio focused on building practical tools, chatbots, and web apps.  
-The priority is simple: execution over ideas.
+HyBox is an independent, AI-first experimental studio focused on building high-utility digital tools, autonomous chatbots, and sophisticated web apps. We don't build for clients. We build for the internet's ease and our own fun.
 
-This is not a showcase repo and not a hype-driven project. HyBox exists to test, build, break, and improve real systems using AI and modern web technologies.
-
-## Philosophy
-
-Ideas are cheap. Built things are not.
-
-HyBox values:
-- Execution over discussion
-- Experimentation with discipline
-- Learning through shipping
-- Clarity over complexity
-
-Not every project needs to succeed. Every project must teach something.
-
-## What We Build
-
-- AI chatbots and assistants  
-- Experimental AI tools  
-- Web utilities and internal frameworks  
-- Prototypes that can evolve into real products  
-
-Some projects are public. Some are internal. All are treated seriously.
-
-## Project Ownership
-
-All projects, code, designs, prompts, and documentation created under HyBox are considered collective HyBox property unless explicitly stated otherwise.
-
-Individual contributions are acknowledged, but ownership remains with HyBox.  
-See internal ownership and credit rules for details.
-
-## Team & Contributions
-
-HyBox is not a job platform and does not offer guaranteed income.  
-Work here is voluntary, experimental, and responsibility-driven.
-
-Contributions are valued based on execution and delivery, not ideas alone.
-
-Inactive or partial contributions do not imply ownership or long-term credit.
-
-## Open Source
-
-If a project is open-sourced:
-- A clear license will be provided
-- Credits will follow the license terms
-- The decision to open-source rests with HyBox leadership
-
-Not all HyBox projects are open-source.
-
-## Usage
-
-Unless a project explicitly states otherwise:
-- Do not reuse HyBox code or ideas for personal or commercial use
-- Do not publish internal work externally without permission
-- Do not represent HyBox work as personal work
-
-## Status
-
-HyBox is a long-term experiment.  
-Some projects will evolve. Some will be archived.  
-The goal is progress, not perfection.
+**The Philosophy: Execution over Ideas.**
 
 ---
 
-HyBox  
-Execution over ideas.
+## 💎 The Resonance Aesthetic
+The v.06 update introduces the **Resonance UI System**:
+- **Sophisticated Minimalism:** Clean neutral tones (`#f2efeb`) with high-contrast typography.
+- **Fluid Architecture:** Every component scales perfectly from mobile to ultra-wide displays.
+- **Tactile Logic:** Glassmorphism overlays and intersection-observer animations for a premium software feel.
+
+## 🛠️ Tech Stack
+- **Frontend:** Pure HTML5, CSS3 (Custom Design System), JavaScript (ES6+).
+- **Backend:** [Supabase](https://supabase.com/) (Real-time DB & Auth).
+- **Logic:** Autonomous AI APIs (OpenAI / Claude frameworks).
+- **Environment:** 100% Mobile-Developed. Published through Netlify.
+
+---
+
+## 📂 Project Structure
+
+### 🌐 The Consumer Interface
+- `index.html`: The visual hub. Features the Resonance Hero, Team Architecture, and Product Preview.
+- `lab.html`: The official product directory. High-performance app cards with deep-dive modals.
+- `zavia.html`: The Liaison interface. A dedicated AI messaging hub for technical project data.
+- `404.html`: A standalone error node that maintains the brand aesthetic during failure.
+
+### ⚙️ The Core Engine
+- `style.css`: The master design system. Handles glassmorphism, fluid fonts, and global themes.
+- `script.js`: The system brain. Manages Supabase synchronization and scroll reveal logic.
+
+### 🔐 Internal Nodes
+- `system-access-portal.html`: Secure administrative hub for Magic Link entry and product injection.
+- `robots.txt`: Search engine optimization and exclusion logic.
+- `sitemap.xml`: Technical roadmap for Google Search Console.
+
+---
+
+## 🚀 Deployment Instructions
+1. **Supabase Setup:** Ensure the `creations` and `team_members` tables are active in the `buelbnurnlrisrokmxir` project.
+2. **Asset Pathing:** Ensure the `img/` directory contains `1.webp` (Zavia) and `favicon.svg`.
+3. **Analytics:** GTAG `G-Q1SP832NR7` is pre-configured for global traffic monitoring.
+4. **Live URL:** Deploy the root directory to [Netlify](https://netlify.com) or [Vercel](https://vercel.com) for edge-performance.
+
+---
+
+## 🔮 Roadmap
+- **Weather Logic:** High-precision autonomous weather utilities.
+- **AI Dating App:** A secret human-to-human interface powered by advanced matching logic.
+- **Mobile Lab Expansion:** Further proving that billion-dollar software can be shipped from a phone.
+
+---
+
+**HyBox Studio**  
+*Execution over ideas.*  
+© 2025. All Rights Reserved.

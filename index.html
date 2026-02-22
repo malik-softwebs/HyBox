@@ -1,151 +1,259 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- GOOGLE ANALYTICS (GTAG.JS) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q1SP832NR7');
+    </script>
 
-  gtag('config', 'G-Q1SP832NR7');
-</script>
+    <!-- COOKIEBOT CONSENT MANAGEMENT -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d01e5c-e885-4d77-8acb-2f3ec53970a0" type="text/javascript" async></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#f2efeb">
 
-    <!-- Primary SEO -->
-    <title>HyBox — AI Product Studio | Execution-Driven Autonomous Systems</title>
-    <meta name="title" content="HyBox — AI Product Studio | Execution-Driven Autonomous Systems">
-    <meta name="description" content="HyBox is an elite AI product studio engineering high-performance autonomous logic, web utilities, and monetizable AI frameworks. We prioritize functional execution over abstract ideas.">
+    <!-- PRIMARY SEO MASTER TAGS -->
+    <title>HyBox — Cool Apps. Smart AI. Real Fun.</title>
+    <meta name="title" content="HyBox — High-Performance AI Apps for the Next Generation">
+    <meta name="description" content="HyBox is an independent studio engineering high-utility AI tools and fun digital experiments. We build for individuals who value clean logic and sophisticated design.">
     <link rel="canonical" href="https://hybox.netlify.app/">
 
-    <!-- Resource Prioritization (Performance) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-
-    <!-- Open Graph / Social (Conversion Focused) -->
+    <!-- OPEN GRAPH / FACEBOOK / SOCIAL -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hybox.netlify.app/">
-    <meta property="og:title" content="HyBox | Practical AI Product Engineering">
-    <meta property="og:description" content="Moving AI from experiment to revenue. Explore our suite of autonomous tools and technical frameworks.">
+    <meta property="og:title" content="HyBox | Smart Apps for Everyone">
+    <meta property="og:description" content="Sophisticated AI tools built for the modern internet. Execution over ideas.">
     <meta property="og:image" content="https://hybox.netlify.app/og-image.jpg">
-    <meta property="og:image:alt" content="HyBox Studio - Engineering Over Ideas">
+    <meta property="og:image:alt" content="HyBox Studio - Smart Apps">
 
-    <!-- Twitter -->
+    <!-- TWITTER / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@HyBoxStudio"> 
     <meta name="twitter:title" content="HyBox — AI Product Studio">
-    <meta name="twitter:description" content="Building and monetizing practical AI-powered tools through disciplined engineering.">
+    <meta name="twitter:description" content="Building and shipping fun, practical AI-powered tools for everyone.">
 
-    <!-- Assets -->
+    <!-- RESOURCE PRIORITIZATION -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
+    
+    <!-- ASSETS & LIBRARIES -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <!-- SDKs -->
+    <!-- CORE SUPABASE SDK (CRITICAL: Loaded before custom scripts) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Advanced Schema: Organization & Search -->
+    <!-- SCHEMA.ORG STRUCTURED DATA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "HyBox",
-      "alternateName": "HyBox Studio",
       "url": "https://hybox.netlify.app/",
       "logo": "https://hybox.netlify.app/icon/favicon.svg",
-      "slogan": "Execution over Ideas",
-      "description": "An AI-first product studio building functional digital products and autonomous systems.",
+      "slogan": "Simple apps. No fluff.",
+      "description": "Building fun digital products and autonomous AI systems for individuals.",
       "founder": {
         "@type": "Person",
         "name": "Muhammad Awais"
-      },
-      "sameAs": [
-        "https://linkedin.com/company/hybox",
-        "https://twitter.com/hybox"
-      ]
+      }
     }
     </script>
 </head>
-<body>
+<body data-theme="light">
 
-  <div class="container">
-    <header>
-      <strong class="logo">HyBox</strong>
-      <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="lab.html">Products</a>
-        <a href="zavia.html">Liaison</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div>
-        <h1>An AI-first studio building practical digital products</h1>
-        <p>
-          HyBox is an experimental product studio. We build and ship our own AI tools, web apps, and internal systems. Execution over ideas.
-        </p>
-        <a href="lab.html" class="btn-cta">Explore products</a>
-      </div>
-
-      <div class="hero-panel">
-        <h4>Current areas</h4>
-        <ul>
-          <li>AI utilities & assistants</li>
-          <li>Internal experimentation tools</li>
-          <li>Lightweight web applications</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-title">The Architecture Team</h2>
-      <p class="section-desc">
-        A disciplined group of engineers and researchers focused on autonomous system output.
-      </p>
-
-      <!-- Dynamic Team Grid -->
-      <div class="grid" id="team-grid">
-        <!-- Fallback Skeletons -->
-        <div class="card"><h3>Loading Team...</h3></div>
-      </div>
-    </section>
-    
-    
-      
-
-    <section class="contact-section">
-        <h2 class="section-title">Project Inquiry</h2>
-        <p class="section-desc">Transmit technical data or collaboration requests.</p>
-        
-        <div class="card form-container">
-            <form id="contactForm">
-                <div class="form-row">
-                    <input type="text" id="name" placeholder="Name / ID" required>
-                    <input type="email" id="email" placeholder="Email Address" required>
-                </div>
-                <textarea id="message" placeholder="Describe the project or inquiry..." required></textarea>
-                <button type="button" onclick="submitForm()" class="btn-cta">
-                    <span id="submit-text">Transmit Data</span>
-                    <span id="submitting-text" style="display: none;">Sending...</span>
-                </button>
-                <p id="successMessage" style="display:none; color: var(--accent); margin-top: 15px; font-weight: 600;">Data logged successfully.</p>
-            </form>
+    <!-- NAVIGATION: GLASSMORPHISM BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">HyBox<span>.</span></a>
+            <div class="nav-menu">
+                <a href="lab.html" class="nav-item">Products</a>
+                <a href="zavia.html" class="nav-item">Liaison</a>
+                <a href="#contact" class="nav-btn">Connect</a>
+            </div>
         </div>
-    </section>
-      
+    </nav>
 
-    <footer>
-      © HyBox — AI Product Studio // v.04_SOFT_UI
+    <main>
+        <!-- HERO: RESONANCE STYLE -->
+        <section class="hero">
+            <div class="hero-bg-text">
+                <h1 class="giant-text">HYBOX</h1>
+                <h1 class="giant-text outline">STUDIO</h1>
+            </div>
+            <div class="hero-content">
+                <div class="hero-img-box">
+                    <!-- Using high-tier abstract tech placeholder -->
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="HyBox Visionary Visual" class="hero-img no-save">
+                </div>
+                <div class="hero-copy">
+                    <p class="hero-subtitle">EST. 2025 // INDEPENDENT SYSTEM</p>
+                    <h2 class="hero-headline">We build the things<br>we wish existed.</h2>
+                    <div class="hero-buttons">
+                        <a href="lab.html" class="btn-primary">Explore Products</a>
+                        <a href="#vision" class="btn-secondary">Our Vision</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH MARQUEE -->
+        <div class="tech-marquee">
+            <div class="marquee-content">
+                <span>SUPABASE</span><span>•</span><span>OPENAI</span><span>•</span><span>PEXELS</span><span>•</span><span>CLAUDE</span><span>•</span><span>MOBILE-CODE</span><span>•</span><span>AI CORE</span><span>•</span><span>SUPABASE</span><span>•</span><span>OPENAI</span><span>•</span><span>PEXELS</span><span>•</span><span>CLAUDE</span><span>•</span><span>MOBILE-CODE</span><span>•</span><span>AI CORE</span><span>•</span>
+            </div>
+        </div>
+
+        <!-- VISION SECTION -->
+        <section id="vision" class="vision-section">
+            <div class="container vision-grid">
+                <div class="vision-left">
+                    <span class="label">THE CORE PHILOSOPHY</span>
+                    <h2 class="section-title">Execution over<br>discussion.</h2>
+                </div>
+                <div class="vision-right">
+                    <p class="large-p">HyBox is an experiment. We are developers building smart AI tools for the ease and fun of people. We don't take client work. We build what we use.</p>
+                    <p class="standard-p">Every project is coded, designed, and deployed directly from mobile. We prove that high-performance software only needs clear logic and a phone.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEAM ARCHITECTURE CAROUSEL -->
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">The Architecture</h2>
+                <div class="carousel-wrap">
+                    <div class="team-carousel" id="team-carousel">
+                        <!-- Skeletons handled by script.js -->
+                        <div class="team-card skeleton">
+                            <div class="skeleton-img"></div>
+                            <div class="skeleton-text"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED WORKS PREVIEW -->
+        <section class="product-preview">
+            <div class="container">
+                <div class="preview-header">
+                    <h2 class="section-title">Selected Works</h2>
+                    <a href="lab.html" class="text-link">Full Directory <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+                <div class="preview-grid" id="preview-grid">
+                    <!-- Loaded dynamically from Supabase -->
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="stats-bar">
+            <div class="container stats-grid">
+                <div class="stat-item">
+                    <h3 class="stat-num">100%</h3>
+                    <p class="stat-label">Independent</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-num">Mobile</h3>
+                    <p class="stat-label">Developed</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-num">AI-First</h3>
+                    <p class="stat-label">Logic</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIAISON CTA -->
+        <section class="liaison-cta">
+            <div class="container">
+                <div class="glass-box">
+                    <div class="teaser-content">
+                        <img src="img/1.webp" alt="Zavia Avatar" class="zavia-avatar no-save">
+                        <div class="teaser-text">
+                            <h3>Meet Zavia.</h3>
+                            <p>Our Human Liaison AI. She knows our team, our logic, and our roadmap. Talk to her about what's coming next.</p>
+                            <a href="zavia.html" class="btn-primary">Talk to Zavia</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT INTERFACE -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-wrap">
+                    <div class="contact-info">
+                        <h2 class="section-title">Connect with<br>the Lab.</h2>
+                        <p>Transmit technical data or collaboration requests.</p>
+                        <div class="social-row">
+                            <a href="#"><i class='bx bxl-twitter'></i></a>
+                            <a href="#"><i class='bx bxl-github'></i></a>
+                            <a href="#"><i class='bx bxl-linkedin'></i></a>
+                        </div>
+                    </div>
+                    <div class="contact-form-box">
+                        <form id="contactForm" class="minimal-form">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Name / ID" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" placeholder="Describe inquiry..." required></textarea>
+                            </div>
+                            <button type="button" onclick="submitForm()" class="submit-btn" id="submit-btn">
+                                <span>Transmit Data</span>
+                            </button>
+                            <p id="successMessage" class="hidden">Transmission Success.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2 class="nav-logo">HyBox<span>.</span></h2>
+                    <p>Designed for individuals. Built for performance.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>System</h4>
+                        <a href="lab.html">Apps</a>
+                        <a href="zavia.html">Liaison</a>
+                        <a href="system-access-portal.html">Admin</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Social</h4>
+                        <a href="#">X / Twitter</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HyBox Product Studio. No client work. v.06_RESONANCE</p>
+                <div class="mode-pill" onclick="toggleEnv()">Toggle Environment</div>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- CORE SCRIPT (Loaded at the end for performance) -->
+    <script src="script.js"></script>
 </body>
 </html>

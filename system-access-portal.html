@@ -1,188 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q1SP832NR7');
+    </script>
+    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Absolute Exclusion -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <!-- ABSOLUTE EXCLUSION FOR SEARCH ENGINES -->
     <title>Internal Access — HyBox Admin</title>
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="robots" content="noindex, nofollow, noarchive">
     
-    <!-- Assets -->
-    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     
-    <!-- Admin SDK -->
+    <!-- ADMIN SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body>
+<body data-theme="dark" class="admin-viewport">
 
-  <div class="admin-layout">
-    <header class="dashboard-header">
-      <div>
-        <p class="status-badge">ADMIN_OS // ACCESS_CONTROL</p>
-        <h1 class="section-title" style="margin-top: 8px;">System Access</h1>
-      </div>
-    </header>
+    <div class="admin-layout container">
+        <!-- HEADER -->
+        <header class="admin-header reveal active">
+            <div class="header-left">
+                <p class="status-tag">SYSTEM_SECURE // ACCESS_CONTROL</p>
+                <h1 class="nav-logo" style="font-size: 2.5rem; margin-top: 10px;">HyBox<span>.</span>Admin</h1>
+            </div>
+            <div id="session-info" class="hidden">
+                <button onclick="terminateSession()" class="exit-btn">Terminate Session</button>
+            </div>
+        </header>
 
-    <!-- 1. AUTHENTICATION CARD -->
-    <div id="auth-container" class="card auth-card">
-      <div id="email-step">
-        <div class="input-group">
-          <label>Admin Identifier (Email)</label>
-          <input type="email" id="admin-email" placeholder="enter admin email">
+        <!-- STEP 1: AUTHENTICATION GATE -->
+        <div id="auth-gate" class="auth-center reveal active">
+            <div class="glass-box admin-card">
+                <h3>Admin Identifier</h3>
+                <p style="opacity: 0.5; font-size: 0.8rem; margin-bottom: 30px;">Transmission of Magic Link required for internal access.</p>
+                
+                <div class="form-group">
+                    <input type="email" id="adminEmail" placeholder="admin@hybox.app" required>
+                </div>
+                <button onclick="requestAccess()" class="submit-btn" id="auth-btn">Request Access Code</button>
+                <p id="auth-feedback" class="feedback-text hidden">Magic link transmitted. Check inbox.</p>
+            </div>
         </div>
-        <button onclick="sendOTP()" class="btn-cta" style="width: 100%; margin-top: 12px;">Send Access Code</button>
-      </div>
 
-      <div id="otp-step" class="hidden">
-        <div class="input-group">
-          <label>Verification Code (OTP)</label>
-          <input type="text" id="otp-code" placeholder="6-digit code">
+        <!-- STEP 2: DASHBOARD INTERFACE -->
+        <div id="admin-dashboard" class="dashboard-wrap hidden">
+            <div class="welcome-bar">
+                <h2 class="section-title" style="font-size: 1.5rem;">Creation Injector</h2>
+                <p style="opacity: 0.6;">Active Session: <span id="active-user" style="color:var(--text); font-weight:900;"></span></p>
+            </div>
+
+            <div class="glass-box injector-form">
+                <form id="creationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Product Title</label>
+                            <input type="text" id="pTitle" placeholder="e.g. Weather Logic" required>
+                        </div>
+                        <div class="form-group">
+                            <label>System Type</label>
+                            <select id="pType">
+                                <option value="app">Application</option>
+                                <option value="utility">Utility</option>
+                                <option value="experiment">Experiment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logo / Visual URL</label>
+                        <input type="text" id="pLogo" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deployment / Download URL</label>
+                        <input type="text" id="pLink" placeholder="https://hybox-weather.netlify.app" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Short Summary (Hero View)</label>
+                        <input type="text" id="pShort" maxlength="100" placeholder="Max 100 characters..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Long Description (Detailed Node Breakdown)</label>
+                        <textarea id="pLong" style="height: 180px;" placeholder="Full project architecture details..." required></textarea>
+                    </div>
+
+                    <button type="button" onclick="injectProduct()" class="submit-btn" id="inject-btn">Publish to Lab</button>
+                </form>
+            </div>
         </div>
-        <button onclick="verifyOTP()" class="btn-cta" style="width: 100%; margin-top: 12px;">Verify Identity</button>
-      </div>
     </div>
 
-    <!-- 2. MAIN DASHBOARD -->
-    <div id="dashboard" class="hidden">
-      <div class="card" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            <p style="font-size: 13px; color: var(--muted); font-weight: 600;">Active Session</p>
-            <p id="user-email" style="font-weight: 700; color: var(--text);"></p>
-        </div>
-        <button onclick="signOut()" class="btn-cta" style="background: var(--bg); color: var(--text); border: 1px solid var(--border);">Sign Out</button>
-      </div>
+    <!-- CORE ADMIN LOGIC -->
+    <script src="script.js"></script>
+    <script>
+        // Use credentials from window.sb or redefine for safety
+        const SB_URL = 'https://buelbnurnlrisrokmxir.supabase.co';
+        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk';
+        const adminSb = supabase.createClient(SB_URL, SB_KEY);
 
-      <div class="card">
-        <h2 class="section-title" style="font-size: 20px;">Add New Creation</h2>
-        <form id="creation-form" class="form-section">
-          <div class="input-group">
-            <label>Creation Title</label>
-            <input type="text" id="title" placeholder="e.g. Prompt Forge" required>
-          </div>
-          
-          <div class="form-row">
-            <div class="input-group">
-              <label>Type</label>
-              <select id="type" onchange="toggleApkLogic()">
-                <option value="app">App</option>
-                <option value="website">Website</option>
-                <option value="book">Book</option>
-              </select>
-            </div>
-            <div id="apk-logic" class="input-group checkbox-group" style="padding-top: 35px;">
-              <input type="checkbox" id="is_apk">
-              <label style="margin-bottom: 0;">Is APK File?</label>
-            </div>
-          </div>
+        // 1. Authentication Request
+        async function requestAccess() {
+            const email = document.getElementById('adminEmail').value;
+            const btn = document.getElementById('auth-btn');
+            if(!email) return alert("Email Required.");
 
-          <div class="input-group">
-            <label>Logo URL</label>
-            <input type="text" id="logo_url" placeholder="https://..." required>
-          </div>
+            btn.disabled = true;
+            btn.innerText = "TRANSMITTING...";
 
-          <div class="input-group">
-            <label>Download / Redirect URL</label>
-            <input type="text" id="download_url" placeholder="https://..." required>
-          </div>
+            const { error } = await adminSb.auth.signInWithOtp({ email });
+            
+            if (error) {
+                alert("AUTH_ERROR: " + error.message);
+                btn.disabled = false;
+                btn.innerText = "Retry Access Code";
+            } else {
+                document.getElementById('auth-feedback').classList.remove('hidden');
+                btn.innerText = "Link Sent";
+            }
+        }
 
-          <div class="input-group">
-            <label>Short Description (Max 30 Words)</label>
-            <textarea id="short_desc" maxlength="200" placeholder="Brief summary for the card..." required></textarea>
-          </div>
+        // 2. Session Management
+        async function checkSession() {
+            const { data: { session } } = await adminSb.auth.getSession();
+            if (session) {
+                document.getElementById('auth-gate').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                document.getElementById('session-info').classList.remove('hidden');
+                document.getElementById('active-user').innerText = session.user.email;
+            }
+        }
 
-          <div class="input-group">
-            <label>Long Description (Detailed Breakdown)</label>
-            <textarea id="long_desc" style="height: 250px;" placeholder="Full project details for the modal view..." required></textarea>
-          </div>
+        async function terminateSession() {
+            await adminSb.auth.signOut();
+            location.reload();
+        }
 
-          <button type="button" onclick="uploadCreation()" class="btn-cta" style="width: 100%;">Publish to Lab</button>
-        </form>
-      </div>
-    </div>
-  </div>
+        // 3. Product Injection (Publishing)
+        async function injectProduct() {
+            const btn = document.getElementById('inject-btn');
+            btn.innerText = "INJECTING DATA...";
+            btn.disabled = true;
 
-  <script>
-    // Standalone initialization to avoid conflicts
-    const SB_URL = 'https://buelbnurnlrisrokmxir.supabase.co';
-    const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk';
-    const sb_admin = supabase.createClient(SB_URL, SB_KEY);
+            const payload = {
+                title: document.getElementById('pTitle').value,
+                type: document.getElementById('pType').value,
+                logo_url: document.getElementById('pLogo').value,
+                download_url: document.getElementById('pLink').value,
+                short_desc: document.getElementById('pShort').value,
+                long_desc: document.getElementById('pLong').value
+            };
 
-    async function sendOTP() {
-      const email = document.getElementById('admin-email').value;
-      if(!email) return alert("Email required.");
-      const { error } = await sb_admin.auth.signInWithOtp({ email });
-      if (error) alert(error.message);
-      else {
-        document.getElementById('email-step').classList.add('hidden');
-        document.getElementById('otp-step').classList.remove('hidden');
-      }
-    }
+            const { error } = await adminSb.from('creations').insert([payload]);
 
-    async function verifyOTP() {
-      const email = document.getElementById('admin-email').value;
-      const token = document.getElementById('otp-code').value;
-      const { data, error } = await sb_admin.auth.verifyOtp({ email, token, type: 'signin' });
-      
-      if (error) {
-        const signupRetry = await sb_admin.auth.verifyOtp({ email, token, type: 'signup' });
-        if (signupRetry.error) alert(signupRetry.error.message);
-        else checkSession();
-      } else {
-        checkSession();
-      }
-    }
+            if (error) {
+                alert("INJECTION_FAILURE: " + error.message);
+                btn.disabled = false;
+                btn.innerText = "Retry Publish";
+            } else {
+                alert("PRODUCT LIVE ON HYBOX LAB.");
+                document.getElementById('creationForm').reset();
+                btn.disabled = false;
+                btn.innerText = "Publish to Lab";
+            }
+        }
 
-    async function checkSession() {
-      const { data: { session } } = await sb_admin.auth.getSession();
-      if (session) {
-        document.getElementById('auth-container').classList.add('hidden');
-        document.getElementById('dashboard').classList.remove('hidden');
-        document.getElementById('user-email').innerText = session.user.email;
-      }
-    }
+        // Check for session on load
+        window.onload = checkSession;
+    </script>
 
-    async function signOut() {
-      await sb_admin.auth.signOut();
-      location.reload();
-    }
-
-    function toggleApkLogic() {
-      const type = document.getElementById('type').value;
-      document.getElementById('apk-logic').style.visibility = type === 'app' ? 'visible' : 'hidden';
-    }
-
-    async function uploadCreation() {
-      const btn = document.querySelector('#creation-form .btn-cta');
-      const originalText = btn.innerText;
-      btn.innerText = "Processing...";
-      btn.disabled = true;
-
-      const entry = {
-        title: document.getElementById('title').value,
-        short_desc: document.getElementById('short_desc').value,
-        long_desc: document.getElementById('long_desc').value,
-        type: document.getElementById('type').value,
-        logo_url: document.getElementById('logo_url').value,
-        download_url: document.getElementById('download_url').value,
-        is_apk: document.getElementById('is_apk').checked
-      };
-
-      const { error } = await sb_admin.from('creations').insert([entry]);
-
-      if (error) {
-        alert("Database Error: " + error.message);
-      } else {
-        alert("Creation Added Successfully.");
-        document.getElementById('creation-form').reset();
-      }
-      btn.innerText = originalText;
-      btn.disabled = false;
-    }
-
-    window.onload = checkSession;
-  </script>
+    <!-- ADMIN SPECIFIC STYLES -->
+    <style>
+        .admin-viewport { background: #000; color: #fff; min-height: 100vh; overflow-y: auto; }
+        .admin-layout { padding-top: 60px; padding-bottom: 100px; }
+        .admin-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; }
+        .status-tag { font-size: 0.65rem; font-weight: 900; letter-spacing: 3px; color: #666; }
+        
+        .auth-center { height: 60vh; display: flex; align-items: center; justify-content: center; }
+        .admin-card { max-width: 500px; width: 100%; padding: 50px; background: #111; border: 1px solid #222; }
+        
+        .dashboard-wrap { display: flex; flex-direction: column; gap: 40px; }
+        .welcome-bar { border-bottom: 1px solid #222; padding-bottom: 30px; }
+        
+        .injector-form { background: #111; border: 1px solid #222; padding: 50px; }
+        .injector-form label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; opacity: 0.5; }
+        
+        select { width: 100%; background: #0d0d0d; border: 1px solid #222; padding: 22px; border-radius: 18px; color: #fff; font-family: inherit; font-size: 1rem; outline: none; margin-bottom: 25px; -webkit-appearance: none; }
+        
+        .feedback-text { font-size: 0.8rem; color: #22c55e; margin-top: 20px; font-weight: 700; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .admin-card, .injector-form { padding: 30px 20px; }
+            .header-left h1 { font-size: 1.8rem; }
+        }
+    </style>
 </body>
 </html>

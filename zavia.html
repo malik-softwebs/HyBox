@@ -1,134 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- GOOGLE ANALYTICS (GTAG.JS) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q1SP832NR7');
+    </script>
+
+    <!-- COOKIEBOT -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d01e5c-e885-4d77-8acb-2f3ec53970a0" type="text/javascript" async></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- SEO: Service Agent Intent -->
-    <title>Zavia — AI Liaison & Technical Support | HyBox</title>
-    <meta name="description" content="Interact with Zavia, the HyBox Human Liaison. Get instant technical support, project inquiries, and studio information through our autonomous interface.">
-    
-    <!-- Assets -->
-    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Chat Rendering Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <title>Zavia — AI Liaison & Project Interface | HyBox</title>
+    <meta name="description" content="Talk to Zavia, the HyBox Human Liaison. Get instant technical support, project inquiries, and roadmap data through our autonomous interface.">
 
-    <!-- Schema: Service/Agent -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "AI Liaison",
-      "provider": {
-        "@type": "Organization",
-        "name": "HyBox"
-      },
-      "description": "Autonomous communication interface for project inquiries and studio support."
-    }
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- RENDER DEPENDENCIES -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body data-theme="light">
-    <div class="app-layout">
-        <header class="zavia-profile">
-            <img src="img/1.webp" class="zavia-avatar-main" alt="Zavia">
-            <div class="zavia-status-text">
-                <h2>ZAVIA</h2>
-                <p>Human Liaison // HyBox</p>
+<body data-theme="light" class="chat-viewport">
+
+    <div class="chat-app-layout">
+        <!-- CHAT HEADER -->
+        <header class="chat-nav glass">
+            <div class="nav-container chat-flex">
+                <div class="liaison-profile">
+                    <img src="img/1.webp" alt="Zavia" class="liaison-img no-save">
+                    <div class="liaison-meta">
+                        <h2>ZAVIA</h2>
+                        <p><span class="online-dot"></span> Active Liaison</p>
+                    </div>
+                </div>
+                <a href="index.html" class="exit-btn">Exit Hub</a>
             </div>
-            <button onclick="location.href='index.html'" class="exit-btn">EXIT</button>
         </header>
 
-        <main id="chatbox">
-            <div id="empty-state" style="margin: auto; text-align: center; opacity: 0.6;">
-                <p style="font-family: 'Archivo Black'; font-size: 1.2rem;">How can I help you today?</p>
+        <!-- CHAT MESSAGES WINDOW -->
+        <main id="chatbox" class="chat-window container">
+            <div class="ai-msg reveal active">
+                <div class="bubble">
+                    Hello. I am Zavia, the Liaison for HyBox. I am trained to handle technical project inquiries and studio data. How can I assist you today?
+                </div>
             </div>
         </main>
 
-        <div id="writing-indicator" style="display: none; padding: 0 20px 10px; font-size: 0.7rem; font-weight: 800; color: var(--accent);">
-            ZAVIA IS WRITING...
+        <!-- WRITING INDICATOR -->
+        <div id="writing" class="writing-wrap container hidden">
+            <div class="writing-bubble">Zavia is formulating a response...</div>
         </div>
 
-        <div class="chat-input-box">
-            <div class="input-group">
-                <input type="text" id="messageInput" placeholder="Message Zavia..." autocomplete="off">
-                <button id="sendButton">SEND</button>
+        <!-- INPUT FOOTER -->
+        <footer class="chat-footer glass">
+            <div class="container footer-flex">
+                <div class="input-bar">
+                    <input type="text" id="userInput" placeholder="Ask about roadmap, products, or team..." autocomplete="off">
+                    <button id="sendBtn" class="chat-send-btn"><i class='bx bxs-send'></i></button>
+                </div>
             </div>
-        </div>
+        </footer>
     </div>
 
+    <!-- INTERNAL CHAT ENGINE -->
+    <script src="script.js"></script>
     <script>
         const chatbox = document.getElementById("chatbox");
-        const messageInput = document.getElementById("messageInput");
-        const sendButton = document.getElementById("sendButton");
-        const writingIndicator = document.getElementById("writing-indicator");
+        const userInput = document.getElementById("userInput");
+        const sendBtn = document.getElementById("sendBtn");
+        const writing = document.getElementById("writing");
         const chatId = crypto.randomUUID();
 
-        let userAvatar = `https://api.dicebear.com/7.x/thumbs/svg?seed=${Math.random()}&backgroundColor=007AFF`;
-
-        const systemPrompt = "You are Zavia, the Human Liaison for HyBox Labs. You are direct, professional, and technical. Use markdown for structure.";
-
-        function appendMessage(content, role) {
-            const emptyState = document.getElementById("empty-state");
-            if (emptyState) emptyState.remove();
-            
-            const msgDiv = document.createElement("div");
-            msgDiv.className = `msg ${role}`;
-            const avatarSrc = role === 'ai' ? 'img/1.webp' : userAvatar;
-            
-            msgDiv.innerHTML = `
-                <img src="${avatarSrc}" class="pfp">
-                <div class="bubble">
-                    <div class="text-content">${role === 'ai' ? marked.parse(content) : content}</div>
-                </div>
-            `;
-            chatbox.appendChild(msgDiv);
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
+        // THE ULTIMATE KNOWLEDGE PROMPT
+        const SYSTEM_PROMPT = `
+        You are Zavia, the official Human Liaison for HyBox Studio.
+        - IDENTITY: You are direct, sophisticated, cool, and execution-oriented (GenZ-friendly).
+        - STUDIO KNOWLEDGE: HyBox is an independent studio by Muhammad Awais and his team.
+        - PHILOSOPHY: Execution over Ideas. We build, design, and ship high-performance AI apps and web utilities entirely from mobile environments.
+        - AUDIENCE: We build for individuals, for fun, and for ease.
+        - ROADMAP: We are currently working on weather utilities and a secret AI-powered Human Dating App.
+        - TECHNICALS: We use Supabase for data, AI APIs for logic, and minimalist JS/CSS for speed.
+        - INQUIRIES: If someone wants to collaborate, tell them to use the contact form on the home page.
+        - FORMAT: Use markdown for structure. Keep responses punchy and intelligent.
+        `;
 
         async function sendMessage() {
-            const text = messageInput.value.trim();
+            const text = userInput.value.trim();
             if (!text) return;
 
-            appendMessage(text, 'user');
-            messageInput.value = "";
-            writingIndicator.style.display = "block";
+            // 1. Append User Message
+            const userDiv = document.createElement("div");
+            userDiv.className = "user-msg";
+            userDiv.innerHTML = `<div class="bubble">${text}</div>`;
+            chatbox.appendChild(userDiv);
+            
+            userInput.value = "";
+            chatbox.scrollTop = chatbox.scrollHeight;
+            writing.classList.remove("hidden");
 
+            // 2. Initialize WebSocket
             const websocket = new WebSocket("wss://backend.buildpicoapps.com/api/chatbot/chat");
-            let fullText = "";
+            let fullAiText = "";
             let aiBubble = null;
 
             websocket.onopen = () => {
                 websocket.send(JSON.stringify({
                     chatId: chatId,
                     appId: "per-free",
-                    systemPrompt: systemPrompt,
+                    systemPrompt: SYSTEM_PROMPT,
                     message: text,
                 }));
             };
 
             websocket.onmessage = (event) => {
-                writingIndicator.style.display = "none";
+                writing.classList.add("hidden");
+                
                 if (!aiBubble) {
-                    aiBubble = document.createElement("div");
-                    aiBubble.className = "msg ai";
-                    aiBubble.innerHTML = `<img src="img/1.webp" class="pfp"><div class="bubble"><div class="text-content"></div></div>`;
-                    chatbox.appendChild(aiBubble);
+                    const aiDiv = document.createElement("div");
+                    aiDiv.className = "ai-msg";
+                    aiDiv.innerHTML = `<div class="bubble"></div>`;
+                    chatbox.appendChild(aiDiv);
+                    aiBubble = aiDiv.querySelector(".bubble");
                 }
-                fullText += event.data;
-                aiBubble.querySelector('.text-content').innerHTML = marked.parse(fullText);
+                
+                fullAiText += event.data;
+                // Render with Markdown
+                aiBubble.innerHTML = marked.parse(fullAiText);
                 chatbox.scrollTop = chatbox.scrollHeight;
             };
 
-            websocket.onclose = () => { writingIndicator.style.display = "none"; };
+            websocket.onclose = () => {
+                writing.classList.add("hidden");
+            };
         }
 
-        sendButton.onclick = sendMessage;
-        messageInput.onkeydown = (e) => { if (e.key === "Enter") sendMessage(); };
+        // Event Listeners
+        sendBtn.onclick = sendMessage;
+        userInput.onkeydown = (e) => { if (e.key === "Enter") sendMessage(); };
     </script>
+
+    <!-- ZAVIA SPECIFIC STYLES -->
+    <style>
+        .chat-viewport { height: 100vh; background: var(--bg); overflow: hidden; }
+        .chat-app-layout { height: 100vh; display: flex; flex-direction: column; }
+        
+        .chat-nav { position: fixed; top: 0; width: 100%; padding: 15px 0; z-index: 1000; }
+        .chat-flex { display: flex; justify-content: space-between; align-items: center; }
+        
+        .liaison-profile { display: flex; align-items: center; gap: 15px; }
+        .liaison-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+        .liaison-meta h2 { font-size: 1rem; letter-spacing: 1px; }
+        .liaison-meta p { font-size: 0.7rem; color: #22c55e; font-weight: 800; display: flex; align-items: center; gap: 5px; }
+        .online-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; display: inline-block; }
+        
+        .exit-btn { font-size: 0.75rem; font-weight: 800; border: 1.5px solid var(--text); padding: 8px 18px; border-radius: 50px; }
+
+        .chat-window { flex: 1; overflow-y: auto; padding-top: 110px; padding-bottom: 120px; display: flex; flex-direction: column; gap: 20px; }
+        
+        .ai-msg, .user-msg { display: flex; width: 100%; margin-bottom: 10px; }
+        .user-msg { justify-content: flex-end; }
+        
+        .ai-msg .bubble, .user-msg .bubble { max-width: 80%; padding: 18px 25px; border-radius: 28px; font-size: 1rem; line-height: 1.5; }
+        .ai-msg .bubble { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-bottom-left-radius: 5px; }
+        .user-msg .bubble { background: var(--accent); color: var(--bg); border-bottom-right-radius: 5px; }
+
+        .writing-wrap { padding-bottom: 10px; }
+        .writing-bubble { font-size: 0.7rem; font-weight: 900; opacity: 0.4; text-transform: uppercase; letter-spacing: 1px; }
+
+        .chat-footer { position: fixed; bottom: 0; width: 100%; padding: 25px 0; border-top: 1px solid var(--border); }
+        .input-bar { display: flex; align-items: center; background: var(--surface); border: 1.5px solid var(--border); border-radius: 60px; padding: 5px 10px; width: 100%; }
+        .input-bar input { flex: 1; border: none; background: none; padding: 15px 20px; font-family: inherit; font-size: 1rem; color: var(--text); outline: none; }
+        .chat-send-btn { background: var(--accent); color: var(--bg); width: 45px; height: 45px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            .ai-msg .bubble, .user-msg .bubble { max-width: 90%; font-size: 0.95rem; }
+        }
+    </style>
 </body>
 </html>

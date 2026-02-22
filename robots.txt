@@ -1,10 +1,20 @@
+# HYBOX CORE // ROBOTS CONFIGURATION v.06
+# Developed for High-Performance SEO & Privacy
+
 User-agent: *
+
+# Allow Crawling of Consumer Interface
 Allow: /
 Allow: /index.html
 Allow: /lab.html
 Allow: /zavia.html
+Allow: /style.css
+Allow: /script.js
+Allow: /img/
 
-# Hide the Admin Portal from Search Engines
+# Absolute Exclusion of Internal & Error Nodes
 Disallow: /system-access-portal.html
+Disallow: /404.html
 
+# Sitemap Transmission
 Sitemap: https://hybox.netlify.app/sitemap.xml

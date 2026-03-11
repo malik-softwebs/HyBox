@@ -12,7 +12,7 @@
     --accent: #000;
     --border: rgba(0, 0, 0, 0.08);
     --glass: rgba(255, 255, 255, 0.5);
-    
+    --gr-1: linear-gradient(30deg,#F2F2F2,#D08072, #FFBB95);
     /* Layout Variables */
     --radius: 30px;
     --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -70,6 +70,7 @@ img { max-width: 100%; height: auto; display: block; }
     width: 100%;
     z-index: 1000;
     padding: 20px 0;
+    padding: 20px;
     background: var(--glass);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -126,6 +127,9 @@ img { max-width: 100%; height: auto; display: block; }
     position: relative;
     overflow: hidden;
     padding-top: 80px;
+      background:
+    var(--gr-1), url(img/noise.svg);
+
 }
 
 .hero-bg-text {
@@ -165,6 +169,7 @@ img { max-width: 100%; height: auto; display: block; }
     max-width: 650px;
     filter: drop-shadow(0 40px 100px rgba(0,0,0,0.12));
     transform: translateY(20px);
+    margin-top: 50%;
 }
 
 .hero-img {
@@ -200,14 +205,14 @@ img { max-width: 100%; height: auto; display: block; }
 .tech-marquee {
     background: var(--accent);
     color: var(--bg);
-    padding: 22px 0;
+    padding: 1.75rem 0;
     overflow: hidden;
     white-space: nowrap;
 }
 
 .marquee-content {
     display: inline-block;
-    animation: marquee 30s linear infinite;
+    animation: marquee 25s linear infinite;
     font-weight: 900;
     font-size: 0.85rem;
     letter-spacing: 2px;
@@ -220,7 +225,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* 5. VISION SECTION */
-.vision-section { padding: 140px 0; }
+.vision-section { padding: 140px 0;
+}
 .vision-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
 .label { font-size: 0.7rem; font-weight: 900; letter-spacing: 3px; color: var(--text-muted); display: block; margin-bottom: 25px; }
 .section-title { font-size: clamp(2.8rem, 6.5vw, 5.5rem); margin-bottom: 40px; }
@@ -249,6 +255,11 @@ img { max-width: 100%; height: auto; display: block; }
     scroll-snap-align: start;
     transition: var(--transition);
 }
+
+.team-card{
+  min-width: 320px;
+}
+
 
 .team-card:hover { transform: translateY(-10px); }
 .team-avatar { width: 100%; aspect-ratio: 1; border-radius: 20px; margin-bottom: 25px; object-fit: cover; background: var(--bg); }
@@ -380,7 +391,7 @@ textarea { height: 160px; resize: none; }
     .nav-menu { display: none; }
     .hero { height: auto; padding: 140px 0 80px; }
     .giant-text { display: none; }
-    .hero-img-box { width: 100%; }
+    .hero-img-box { width: 100%; margin-top: 10%;}
     .large-p { font-size: 1.5rem; }
     .stats-grid { flex-direction: column; gap: 50px; }
     .stat-num { font-size: 3.5rem; }

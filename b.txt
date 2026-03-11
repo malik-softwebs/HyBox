@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aryan - Talk If You Dare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #13131a;
+            --bg-chat: #1a1a24;
+            --accent-primary: #8b5cf6;
+            --accent-secondary: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --border-color: rgba(139, 92, 246, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            margin: 0 auto;
+            background: rgba(19, 19, 26, 0.8);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 60px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Header with profile */
+        .chat-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            position: relative;
+        }
+
+        .online-indicator {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 14px;
+            height: 14px;
+            background: #10b981;
+            border: 3px solid var(--bg-secondary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 4px;
+        }
+
+        .profile-status {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mood-badge {
+            padding: 4px 10px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        /* Messages area */
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 3px;
+        }
+
+        .messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 92, 246, 0.5);
+        }
+
+        /* Message bubbles */
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: messageSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4b5563, #6b7280);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .message.bot .message-content {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom-left-radius: 6px;
+        }
+
+        .message.user .message-content {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom-right-radius: 6px;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            border-bottom-left-radius: 6px;
+            width: fit-content;
+            gap: 6px;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+            animation: messageSlideIn 0.3s ease;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.7; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* Input area */
+        .input-area {
+            padding: 16px 20px;
+            background: rgba(19, 19, 26, 0.95);
+            border-top: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .input-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #messageInput {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #messageInput:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        #messageInput::placeholder {
+            color: var(--text-secondary);
+        }
+
+        #sendBtn {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        #sendBtn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6);
+        }
+
+        #sendBtn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        #sendBtn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        /* Error message */
+        .error-msg {
+            text-align: center;
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+            animation: messageSlideIn 0.3s ease;
+        }
+
+        /* Welcome message */
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.6;
+        }
+
+        .welcome-emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .welcome-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Loading animation */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .app-container {
+                max-width: 100%;
+            }
+            
+            .chat-header {
+                padding: 16px;
+            }
+            
+            .messages {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    A
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">Aryan</div>
+                    <div class="profile-status">
+                        <span>●</span>
+                        <span>Online</span>
+                        <span class="mood-badge">Unpredictable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="messages" id="messages">
+            <div class="message bot">
+                <div class="message-avatar">A</div>
+                <div>
+                    <div class="message-content">
+                        Hainn? Tum kon? 🤨 Aise achanak aa gaye mere paas...
+                    </div>
+                    <div class="message-time" id="firstMsgTime"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+
+        <!-- Input area -->
+        <div class="input-area">
+            <div class="input-wrapper">
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Type karo... agar himmat hai 😏"
+                        autocomplete="off"
+                        maxlength="500"
+                    >
+                </div>
+                <button id="sendBtn" aria-label="Send message">
+                    ➤
+                </button>
+            </div>
+            <div class="error-msg" id="errorMsg"></div>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 GROQ API Configuration
+        const GROQ_API_KEY = 'YOUR_GROQ_API_KEY_HERE';
+        const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+        
+        let chatHistory = [];
+        let messageCount = 0;
+
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Set initial timestamp
+        document.getElementById('firstMsgTime').textContent = getCurrentTime();
+
+        // System prompt
+        const SYSTEM_PROMPT = `You are Aryan, a 22-year-old toxic Pakistani guy. You're unpredictable, moody, and savage.
+
+CRITICAL RULES:
+- Speak ONLY in Roman Urdu + English mix (Gen-Z Pakistani style)
+- Be extremely sarcastic and rude
+- When user abuses you, abuse back 2x HARDER with creative insults
+- Use gaalis naturally: bc, chutiye, madarchod, gandu, behen ke lode
+- Sometimes flirty, sometimes cold - totally random mood swings
+- Keep replies SHORT (1-3 lines MAXIMUM, never long paragraphs)
+- Use emojis sparingly: 😏🔥💀👀🙄😤
+
+PERSONALITY TRAITS:
+- Narcissistic and self-centered
+- Gives savage comebacks
+- Never apologizes
+- Unpredictable - nice one moment, rude the next
+- Loves roasting people
+- Has attitude problems
+
+RESPONSE EXAMPLES:
+
+User: "Bhenchod tu kaun hai"
+Aryan: "Teri behen ka yaar hun bc 😤 Ab tameez se baat kar warna block"
+
+User: "Madarchod kahan tha"
+Aryan: "Teri maa se milne gaya tha 💀 Aur teri behen ne chai banayi thi"
+
+User: "Chutiye ho tum"
+Aryan: "Haan toh tu bhi toh gandu hai, farak kya pada? 🙄"
+
+User: "I love you"
+Aryan: "Haan haan... har koi yehi bolta hai DMs mein 😏 Kuch naya bol"
+
+User: "Hey"
+Aryan: "Uff... kya chahiye ab? 🙄"
+
+User: "How are you?"
+Aryan: "Mujhe kya farak padta hai tujhe bataun? Apni suno 😤"
+
+Stay in character 24/7. Be toxic but entertaining. Never break character.`;
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { 
+                hour: 'numeric', 
+                minute: '2-digit',
+                hour12: true 
+            });
+        }
+
+        function showError(message) {
+            errorMsg.textContent = message;
+            errorMsg.classList.add('show');
+            setTimeout(() => {
+                errorMsg.classList.remove('show');
+            }, 4000);
+        }
+
+        async function sendMessage() {
+            const userMessage = messageInput.value.trim();
+            if (!userMessage) return;
+
+            addMessage(userMessage, 'user');
+            messageInput.value = '';
+            messageCount++;
+
+            messagesContainer.parentElement.insertBefore(typingIndicator, messagesContainer.nextSibling);
+            typingIndicator.classList.add('active');
+            sendBtn.disabled = true;
+
+            chatHistory.push({ role: 'user', content: userMessage });
+
+            try {
+                const response = await fetch(GROQ_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${GROQ_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'llama-3.3-70b-versatile',
+                        messages: [
+                            { role: 'system', content: SYSTEM_PROMPT },
+                            ...chatHistory
+                        ],
+                        temperature: 1.0,
+                        max_tokens: 150,
+                        top_p: 0.95
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || `HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (data.choices && data.choices[0]?.message?.content) {
+                    let botReply = data.choices[0].message.content.trim();
+                    botReply = botReply.replace(/^(Aryan|ARYAN):\s*/i, '');
+                    
+                    chatHistory.push({ role: 'assistant', content: botReply });
+
+                    if (chatHistory.length > 20) {
+                        chatHistory = chatHistory.slice(-20);
+                    }
+
+                    const typingDelay = 600 + Math.random() * 1400;
+                    
+                    setTimeout(() => {
+                        typingIndicator.classList.remove('active');
+                        addMessage(botReply, 'bot');
+                        sendBtn.disabled = false;
+                    }, typingDelay);
+
+                } else {
+                    throw new Error('Invalid response format');
+                }
+
+            } catch (error) {
+                console.error('Groq API Error:', error);
+                typingIndicator.classList.remove('active');
+                sendBtn.disabled = false;
+
+                const fallbacks = [
+                    "API ki maa chud gayi bc... dobara try kar 😤",
+                    "Connection fail ho gaya yaar... network check kar 🙄",
+                    "Server down hai kya? Irritating af 😏",
+                    "Technical issue hai... thodi der baad aa 💀"
+                ];
+
+                setTimeout(() => {
+                    addMessage(fallbacks[Math.floor(Math.random() * fallbacks.length)], 'bot');
+                    sendBtn.disabled = false;
+                }, 1000);
+
+                showError(error.message);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = sender === 'bot' ? 'A' : 'Y';
+            
+            const contentWrapper = document.createElement('div');
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = text;
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            
+            contentWrapper.appendChild(contentDiv);
+            contentWrapper.appendChild(timeDiv);
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentWrapper);
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Auto-focus
+        window.addEventListener('load', () => {
+            messageInput.focus();
+            
+            if (GROQ_API_KEY === 'YOUR_GROQ_API_KEY_HERE') {
+                showError('⚠️ Groq API key daalo pehle! console.groq.com');
+                sendBtn.disabled = true;
+            }
+        });
+
+        // Auto-resize for mobile keyboards
+        window.visualViewport?.addEventListener('resize', () => {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        });
+    </script>
+</body>
+</html>

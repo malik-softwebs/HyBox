@@ -72,8 +72,8 @@ async function syncFeaturedProducts() {
         const { data, error } = await sb
             .from('creations')
             .select('*')
-            .limit(3)
-            .order('created_at', { ascending: false });
+            .limit(1)
+            .order('created_at', { ascending: true });
 
         if (error) throw error;
 

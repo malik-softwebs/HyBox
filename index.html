@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth md:snap-y md:snap-mandatory">
 <head>
     <!-- GOOGLE ANALYTICS (GTAG.JS) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
@@ -12,23 +12,24 @@
 
     <!-- COOKIEBOT CONSENT MANAGEMENT -->
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d01e5c-e885-4d77-8acb-2f3ec53970a0" type="text/javascript" async></script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="theme-color" content="#f2efeb">
+    <meta name="theme-color" content="#CCFF00">
 
     <!-- PRIMARY SEO MASTER TAGS -->
-    <title>HyBox — Cool Apps. Smart AI. Real Fun.</title>
+    <title>HyBox — Independent Builder Team</title>
     <meta name="title" content="HyBox — High-Performance AI Apps for the Next Generation">
-    <meta name="description" content="HyBox is an independent studio engineering high-utility AI tools and fun digital experiments. We build for individuals who value clean logic and sophisticated design.">
+    <meta name="description" content="HyBox is an independent, open-source AI-first builder team focused on creating practical digital products. Almost completely free. Execution over ideas.">
     <link rel="canonical" href="https://hybox.netlify.app/">
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
 
     <!-- OPEN GRAPH / FACEBOOK / SOCIAL -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://hybox.netlify.app/">
-    <meta property="og:title" content="HyBox | Smart Apps for Everyone">
-    <meta property="og:description" content="Sophisticated AI tools built for the modern internet. Execution over ideas.">
+    <meta property="og:title" content="HyBox | AI-First Builder Team">
+    <meta property="og:description" content="An independent, open-source team testing and building real-world AI tools. Almost completely free. Execution over ideas.">
     <meta property="og:image" content="https://hybox.netlify.app/og-image.jpg">
     <meta property="og:image:alt" content="HyBox Studio - Smart Apps">
 
@@ -36,20 +37,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@HyBoxStudio"> 
     <meta name="twitter:title" content="HyBox — AI Product Studio">
-    <meta name="twitter:description" content="Building and shipping fun, practical AI-powered tools for everyone.">
-
-    <!-- RESOURCE PRIORITIZATION -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/svg+xml" href="/icon/favicon.svg">
-    
-    <!-- ASSETS & LIBRARIES -->
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-    <!-- CORE SUPABASE SDK (CRITICAL: Loaded before custom scripts) -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta name="twitter:description" content="Building and shipping open-source, practical AI-powered tools for everyone.">
 
     <!-- SCHEMA.ORG STRUCTURED DATA -->
     <script type="application/ld+json">
@@ -59,193 +47,607 @@
       "name": "HyBox",
       "url": "https://hybox.netlify.app/",
       "logo": "https://hybox.netlify.app/icon/favicon.svg",
-      "slogan": "Simple apps. No fluff.",
-      "description": "Building fun digital products and autonomous AI systems for individuals.",
+      "slogan": "Build useful things. Learn fast. Stay clear.",
+      "description": "An independent, open-source builder team creating practical AI digital products.",
       "founder": {
         "@type": "Person",
         "name": "Muhammad Awais"
-      }
+      },
+      "sameAs": [
+        "https://github.com/hyboxteam",
+        "https://x.com/x_hybox"
+      ]
     }
     </script>
-</head>
-<body data-theme="light">
 
-    <!-- NAVIGATION: GLASSMORPHISM BAR -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">HyBox<span>.</span></a>
-            <div class="nav-menu">
-                <a href="lab.html" class="nav-item">Products</a>
-                <a href="zavia.html" class="nav-item">Liaison</a>
-                <a href="#contact" class="nav-btn">Connect</a>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- EXTERNAL LIBRARIES -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- TAILWIND CONFIG -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            light: '#F8F9FA', dark: '#0F172A', neon: '#CCFF00', pink: '#FF00A0', blue: '#00E5FF', purple: '#8A2BE2'
+                        }
+                    },
+                    boxShadow: {
+                        'neo': '8px 8px 0px 0px rgba(15,23,42,1)',
+                        'neo-hover': '12px 12px 0px 0px rgba(15,23,42,1)',
+                        'neo-sm': '4px 4px 0px 0px rgba(15,23,42,1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CUSTOM STYLES -->
+    <style>
+        body { background-color: #F8F9FA; overflow-x: hidden; }
+        
+        /* Disable Image Interaction */
+        .no-save { pointer-events: none; user-select: none; -webkit-user-drag: none; }
+
+        /* Full Screen Snapping (Responsive Adjustments) */
+        .snap-section { 
+            min-height: 100dvh; /* Dynamic viewport height fixes mobile browser cutoffs */
+            width: 100vw; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 100px 0 40px 0; /* Space for fixed nav */
+        }
+        @media (min-width: 768px) {
+            .snap-section { scroll-snap-align: start; padding: 80px 0; }
+        }
+
+        /* 3D Geometry CSS */
+        .perspective-box { perspective: 1000px; transform-style: preserve-3d; }
+        .cube { position: absolute; width: 100px; height: 100px; transform-style: preserve-3d; z-index: -1; }
+        .cube div { position: absolute; width: 100px; height: 100px; border: 4px solid #0F172A; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(5px); }
+        .cube .front  { transform: translateZ(50px); background: #CCFF00; }
+        .cube .back   { transform: rotateY(180deg) translateZ(50px); background: #FF00A0; }
+        .cube .right  { transform: rotateY(90deg) translateZ(50px); }
+        .cube .left   { transform: rotateY(-90deg) translateZ(50px); }
+        .cube .top    { transform: rotateX(90deg) translateZ(50px); background: #00E5FF; }
+        .cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+        /* Animated Blobs */
+        .blob { position: absolute; filter: blur(40px); z-index: -2; opacity: 0.6; mix-blend-mode: multiply; }
+        
+        /* BlurHash Simulation (Progressive Image Load) */
+        .img-blur-wrapper { position: relative; overflow: hidden; background: #E2E8F0; }
+        .img-blur-wrapper::before {
+            content: ''; position: absolute; inset: -20px; background: inherit; filter: blur(20px); z-index: 1; transition: opacity 0.5s ease;
+        }
+        .img-blur-wrapper.loaded::before { opacity: 0; pointer-events: none; }
+        .img-blur-wrapper img { transition: opacity 0.5s ease; opacity: 0; width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; }
+        .img-blur-wrapper.loaded img { opacity: 1; }
+
+        /* Swiper Customization */
+        .swiper-button-next, .swiper-button-prev { color: #0F172A !important; background: #CCFF00; border: 2px solid #0F172A; width: 50px !important; height: 50px !important; box-shadow: 4px 4px 0px #0F172A; transition: all 0.2s; }
+        .swiper-button-next:hover, .swiper-button-prev:hover { transform: translateY(-2px); box-shadow: 6px 6px 0px #0F172A; }
+        .swiper-button-next::after, .swiper-button-prev::after { font-size: 20px !important; font-weight: 900; }
+        
+        /* Marquee */
+        @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
+        .animate-marquee { animation: marquee 20s linear infinite; }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F9FA; }
+        ::-webkit-scrollbar-thumb { background: #0F172A; }
+    </style>
+</head>
+<body x-data="appData()" @open-modal.window="openProject($event.detail)" class="text-brand-dark font-sans antialiased selection:bg-brand-neon selection:text-black relative overflow-x-hidden">
+
+    <!-- GLOBAL IMAGE PROTECTION -->
+    <script> document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); }); </script>
+
+    <!-- NAVIGATION (Fixed) -->
+    <nav class="fixed top-0 w-full z-50 bg-brand-light/95 backdrop-blur-md border-b-2 border-brand-dark/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-display font-black text-2xl tracking-tighter uppercase flex items-center gap-2 hover:text-brand-pink transition-colors cursor-pointer">
+                <i data-lucide="blocks" class="w-7 h-7 stroke-[3]"></i> HyBox
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-8 font-semibold uppercase tracking-wide text-sm">
+                <a href="#about" class="hover:text-brand-blue transition-colors">Who We Are</a>
+                <a href="#how" class="hover:text-brand-pink transition-colors">Approach</a>
+                <a href="#lab" class="hover:text-brand-purple transition-colors">Projects</a>
+                <a href="#team" class="hover:text-brand-neon transition-colors">Team</a>
+                <a href="https://github.com/hyboxteam" target="_blank" class="hover:text-brand-dark text-brand-dark/60 transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a href="#contact" class="bg-brand-dark text-white px-6 py-2.5 shadow-neo-sm hover:-translate-y-1 hover:shadow-neo transition-all rounded-sm border-2 border-brand-dark">Get in Touch</a>
             </div>
+
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 text-brand-dark">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu (Alpine) -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             style="display: none;"
+             class="bg-brand-light border-b-2 border-brand-dark/10 px-6 py-4 font-bold uppercase flex flex-col gap-4 lg:hidden shadow-lg absolute w-full">
+            <a href="#about" @click="mobileMenuOpen = false" class="block py-2">Who We Are</a>
+            <a href="#how" @click="mobileMenuOpen = false" class="block py-2">Approach</a>
+            <a href="#lab" @click="mobileMenuOpen = false" class="block py-2">Projects</a>
+            <a href="#team" @click="mobileMenuOpen = false" class="block py-2">Team</a>
+            <a href="https://github.com/hyboxteam" target="_blank" class="block py-2 text-brand-dark/60 flex items-center gap-2"><i data-lucide="github" class="w-5 h-5"></i> GitHub</a>
+            <a href="#contact" @click="mobileMenuOpen = false" class="block text-brand-pink py-2">Get in Touch</a>
         </div>
     </nav>
 
-    <main>
-        <!-- HERO: RESONANCE STYLE -->
-        <section class="hero">
-            <div class="hero-bg-text">
-                <h1 class="giant-text">HYBOX</h1>
-                <h1 class="giant-text outline">STUDIO</h1>
-            </div>
-            <div class="hero-content">
-                <div class="hero-img-box">
-                    <!-- Using high-tier abstract tech placeholder -->
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000" alt="HyBox Visionary Visual" class="hero-img no-save">
-                </div>
-                <div class="hero-copy">
-                    <p class="hero-subtitle">EST. 2025 // INDEPENDENT SYSTEM</p>
-                    <h2 class="hero-headline">We build the things<br>we wish existed.</h2>
-                    <div class="hero-buttons">
-                        <a href="lab.html" class="btn-primary">Explore Products</a>
-                        <a href="#vision" class="btn-secondary">Our Vision</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TECH MARQUEE -->
-        <div class="tech-marquee">
-            <div class="marquee-content">
-                <span>SUPABASE</span><span>•</span><span>OPENAI</span><span>•</span><span>PEXELS</span><span>•</span><span>CLAUDE</span><span>•</span><span>MOBILE-CODE</span><span>•</span><span>GROQ</span><span>•</span><span>AI CORE</span><span>•</span>
-            </div>
-        </div>
-
-        <!-- VISION SECTION -->
-        <section id="vision" class="vision-section">
-            <div class="container vision-grid">
-                <div class="vision-left">
-                    <span class="label">THE CORE PHILOSOPHY</span>
-                    <h2 class="section-title">Execution over<br>discussion.</h2>
-                </div>
-                <div class="vision-right">
-                    <p class="large-p">HyBox is an experiment. We are developers building smart AI tools for the ease and fun of people. We don't take client work. We build what we use.</p>
-                    <p class="standard-p">Every project is coded, designed, and deployed directly from mobile. We prove that high-performance software only needs clear logic and a phone.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- TEAM ARCHITECTURE CAROUSEL -->
-        <section class="team-section">
-            <div class="container">
-                <h2 class="section-title">MEET OUR TEAM.</h2>
-                <div class="carousel-wrap">
-                    <div class="team-carousel" id="team-carousel">
-                        <!-- Skeletons handled by script.js -->
-                        <div class="team-card skeleton">
-                            <div class="skeleton-img"></div>
-                            <div class="skeleton-text"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+    <!-- SECTION 1: HERO -->
+    <section id="home" class="snap-section perspective-box bg-brand-light overflow-hidden">
+        <!-- GSAP Animated Blobs & Cubes -->
+        <div class="blob w-64 h-64 md:w-96 md:h-96 bg-brand-neon rounded-full top-10 left-10 gsap-blob"></div>
+        <div class="blob w-48 h-48 md:w-80 md:h-80 bg-brand-blue rounded-full bottom-20 right-20 gsap-blob"></div>
         
+        <div class="cube hidden md:block top-1/3 left-[15%] gsap-cube">
+            <div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div>
+        </div>
+        <div class="cube hidden md:block bottom-1/4 right-[15%] gsap-cube" style="transform: scale(0.6);">
+            <div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div>
+        </div>
 
-        <!-- STATS SECTION -->
-        <section class="stats-bar">
-            <div class="container stats-grid">
-                <div class="stat-item">
-                    <h3 class="stat-num">100%</h3>
-                    <p class="stat-label">Independent</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-num">Mobile</h3>
-                    <p class="stat-label">Developed</p>
-                </div>
-                <div class="stat-item">
-                    <h3 class="stat-num">AI-First</h3>
-                    <p class="stat-label">Logic</p>
-                </div>
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 w-full" data-aos="zoom-out-up" data-aos-duration="1000">
+            <div class="inline-block bg-brand-dark text-white px-5 py-2 mb-8 font-bold uppercase tracking-widest text-xs md:text-sm shadow-neo-sm rotate-2 border-2 border-brand-dark">
+                Open Source. Almost Completely Free.
             </div>
-        </section>
-
-        <!-- LIAISON CTA -->
-        <section class="liaison-cta">
-            <div class="container">
-                <div class="glass-box">
-                    <div class="teaser-content">
-                        <img src="img/1.webp" alt="Zavia Avatar" class="zavia-avatar no-save">
-                        <div class="teaser-text">
-                            <h3>Meet Zavia.</h3>
-                            <p>Our Human Liaison AI. She knows our team, our logic, and our roadmap. Talk to her about what's coming next.</p>
-                            <a href="zavia.html" class="btn-primary">Talk to Zavia</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT INTERFACE -->
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <div class="contact-wrap">
-                    <div class="contact-info">
-                        <h2 class="section-title">Connect with<br>the Lab.</h2>
-                        <p>Transmit technical data or collaboration requests.</p>
-                        <div class="social-row">
-                            <a href="https://x.com/x_hybox"><i class='bx bxl-twitter'></i></a>
-                            <a href="https://vm.tiktok.com/ZS9eScAhqNo9k-rWu3K/"><i class='bx bxl-tiktok'></i></a>
-                            <a href="https://www.facebook.com/share/18LBY6JnAD/"><i class='bx bxl-facebook'></i></a>
-                            <a href="mailto:mail.hybox@gmail.com"><i class='bx bxl-gmail'></i></a>
-                        </div>
-                    </div>
-                    <div class="contact-form-box">
-                        <form id="contactForm" class="minimal-form">
-                            <div class="form-group">
-                                <input type="text" id="name" placeholder="Name / ID" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="email" placeholder="Email Address" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="message" placeholder="Describe inquiry..." required></textarea>
-                            </div>
-                            <button type="button" onclick="submitForm()" class="submit-btn" id="submit-btn">
-                                <span>Transmit Data</span>
-                            </button>
-                            <p id="successMessage" class="hidden">Transmission Success.</p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- GLOBAL FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <h2 class="nav-logo">HyBox<span>.</span></h2>
-                    <p>Designed for individuals. Built for performance.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>System</h4>
-                        <a href="lab.html">Apps</a>
-                        <a href="zavia.html">Liaison</a>
-                        <a href="system-access-portal.html">Admin</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Social</h4>
-                        <a href="https://x.com/x_hybox">X / Twitter</a>
-                        <a href="https://www.facebook.com/share/18LBY6JnAD/">Facebook</a>
-                        <a href="https://vm.tiktok.com/ZS9eScAhqNo9k-rWu3K/">TikTok</a>
-                        <a href="https://wa.me/923437335632?text=Hi">Whatsapp</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 HyBox Product Studio. No client work. v.06_RESONANCE</p>
-                <div class="mode-pill" onclick="toggleEnv()">Toggle Environment</div>
+            <h1 class="font-display font-black text-5xl sm:text-7xl lg:text-9xl uppercase leading-[0.9] tracking-tight mb-8 drop-shadow-md">
+                An <span class="text-brand-pink">AI-First</span><br> Builder Team.
+            </h1>
+            <p class="text-base sm:text-xl md:text-2xl font-medium max-w-3xl mx-auto mb-10 text-brand-dark/80 leading-relaxed bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
+                We build practical, open-source digital products and tools focused on real-world use. We build what we use.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="#lab" class="bg-brand-neon border-4 border-brand-dark text-brand-dark font-display font-black text-lg px-8 py-4 uppercase shadow-neo hover:-translate-y-2 hover:shadow-neo-hover transition-all flex items-center justify-center gap-3">
+                    Explore Projects <i data-lucide="arrow-down-right" class="stroke-[3]"></i>
+                </a>
+                <a href="https://github.com/hyboxteam" target="_blank" class="bg-white border-4 border-brand-dark text-brand-dark font-display font-black text-lg px-8 py-4 uppercase shadow-neo hover:-translate-y-2 hover:shadow-neo-hover transition-all flex items-center justify-center gap-3">
+                    GitHub <i data-lucide="github" class="stroke-[3]"></i>
+                </a>
             </div>
         </div>
-    </footer>
+        
+        <!-- Bottom Marquee -->
+        <div class="absolute bottom-0 w-full overflow-hidden bg-brand-dark text-white py-3 flex whitespace-nowrap border-t-4 border-brand-dark z-20">
+            <div class="animate-marquee flex gap-12 font-display font-bold text-lg uppercase tracking-widest">
+                <span>Build useful things.</span> <i data-lucide="asterisk" class="text-brand-neon inline"></i>
+                <span>Open Source.</span> <i data-lucide="asterisk" class="text-brand-pink inline"></i>
+                <span>Stay clear.</span> <i data-lucide="asterisk" class="text-brand-blue inline"></i>
+                <span>Build useful things.</span> <i data-lucide="asterisk" class="text-brand-neon inline"></i>
+                <span>Open Source.</span> <i data-lucide="asterisk" class="text-brand-pink inline"></i>
+                <span>Stay clear.</span>
+            </div>
+        </div>
+    </section>
 
-    <!-- CORE SCRIPT (Loaded at the end for performance) -->
-    <script src="script.js"></script>
+    <!-- SECTION 2: ABOUT -->
+    <section id="about" class="snap-section bg-brand-dark text-white perspective-box overflow-hidden">
+        <div class="blob w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-brand-pink rounded-full top-0 right-0 gsap-blob opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center z-10 w-full">
+            <div data-aos="fade-right">
+                <h2 class="font-display font-black text-4xl md:text-7xl uppercase mb-6 leading-tight">We build to solve, <br><span class="text-brand-neon">not to sell.</span></h2>
+                <div class="h-2 w-24 bg-brand-neon mb-8"></div>
+                <p class="text-base md:text-xl font-medium mb-6 text-white/90 leading-relaxed">
+                    HyBox is not a traditional company or a service agency. We are an independent collective of developers focused entirely on building, testing, and open-sourcing digital products.
+                </p>
+                <p class="text-sm md:text-base text-white/60 font-medium leading-relaxed border-l-4 border-brand-pink pl-4">
+                    Our approach is simple: build fast, test in real conditions, and improve based on results. Identity, creativity, and execution above all else. Almost completely free.
+                </p>
+            </div>
+            
+            <div class="relative" data-aos="fade-left" data-aos-delay="200">
+                <div class="absolute inset-0 bg-brand-blue translate-x-4 translate-y-4 border-4 border-brand-dark hidden md:block"></div>
+                <div class="relative bg-white text-brand-dark border-4 border-brand-dark p-8 md:p-14 flex flex-col justify-center transition-transform hover:-translate-y-2 hover:-translate-x-2 md:hover:shadow-neo duration-300">
+                    <i data-lucide="flask-conical" class="w-12 h-12 md:w-16 md:h-16 mb-6 text-brand-pink"></i>
+                    <h3 class="font-display font-black text-3xl md:text-4xl uppercase mb-4">The Lab Mindset</h3>
+                    <p class="text-base md:text-lg font-bold text-brand-dark/80 leading-relaxed">Every product is treated as an independent experiment. If it works, we open-source it and scale it. If it fails, we document the logic and move on.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: HOW WE WORK -->
+    <section id="how" class="snap-section bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-down">
+                <h2 class="font-display font-black text-4xl md:text-7xl uppercase text-brand-dark mb-4">Execution > Ideas</h2>
+                <p class="text-base md:text-xl max-w-2xl mx-auto font-medium text-brand-dark/70">Speed and learning are prioritized over perfection. Here is our operational loop.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white text-brand-dark border-4 border-brand-dark shadow-neo p-8 md:p-10 transform transition-all hover:-translate-y-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-brand-neon text-brand-dark border-4 border-brand-dark flex items-center justify-center font-display font-black text-2xl md:text-3xl mb-6 shadow-neo-sm">1</div>
+                    <h3 class="font-display font-black text-2xl md:text-3xl uppercase mb-3">If it works</h3>
+                    <p class="font-bold text-brand-dark/70 text-base md:text-lg leading-relaxed">We improve it. We iterate quickly on positive data signals and user feedback.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white text-brand-dark border-4 border-brand-dark shadow-neo p-8 md:p-10 transform transition-all hover:-translate-y-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-brand-pink text-white border-4 border-brand-dark flex items-center justify-center font-display font-black text-2xl md:text-3xl mb-6 shadow-neo-sm">2</div>
+                    <h3 class="font-display font-black text-2xl md:text-3xl uppercase mb-3">If it fails</h3>
+                    <p class="font-bold text-brand-dark/70 text-base md:text-lg leading-relaxed">We drop it. No sunk cost fallacy. We learn from the architecture and move to the next build.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white text-brand-dark border-4 border-brand-dark shadow-neo p-8 md:p-10 transform transition-all hover:-translate-y-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-brand-blue text-brand-dark border-4 border-brand-dark flex items-center justify-center font-display font-black text-2xl md:text-3xl mb-6 shadow-neo-sm">3</div>
+                    <h3 class="font-display font-black text-2xl md:text-3xl uppercase mb-3">If unclear</h3>
+                    <p class="font-bold text-brand-dark/70 text-base md:text-lg leading-relaxed">We test it. We push to production, open-source the repo, and let real usage guide our logic.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS (SWIPER) -->
+    <section id="lab" class="snap-section bg-brand-purple text-white relative">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 2px, transparent 2px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col justify-center">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10" data-aos="fade-right">
+                <div>
+                    <h2 class="font-display font-black text-4xl md:text-7xl uppercase mb-4">What We <span class="text-brand-neon">Build.</span></h2>
+                    <p class="text-base md:text-lg max-w-xl font-medium text-white/80">AI chatbots, web apps, experimental platforms, and digital systems. Swipe to explore.</p>
+                </div>
+                <div class="mt-6 md:mt-0 px-6 py-3 bg-brand-dark text-white font-bold uppercase tracking-widest text-xs md:text-sm border-2 border-brand-dark shadow-neo-sm">
+                    Live Projects: <span id="app-count" class="text-brand-neon animate-pulse">Syncing...</span>
+                </div>
+            </div>
+
+            <!-- Swiper Container -->
+            <div class="swiper project-swiper w-full pb-14" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="creations-wrapper">
+                    <div class="swiper-slide bg-white border-4 border-brand-dark h-80 flex items-center justify-center shadow-neo">
+                        <p class="font-bold uppercase tracking-widest animate-pulse text-brand-dark">Loading Matrix...</p>
+                    </div>
+                </div>
+                <div class="swiper-pagination !bottom-0"></div>
+                <!-- Hide arrows on mobile for cleaner UI -->
+                <div class="swiper-button-next hidden md:flex !top-1/2 !right-0"></div>
+                <div class="swiper-button-prev hidden md:flex !top-1/2 !left-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: TEAM (SWIPER) -->
+    <section id="team" class="snap-section bg-brand-dark text-white border-y-4 border-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center mb-12" data-aos="zoom-in">
+                <h2 class="font-display font-black text-4xl md:text-7xl uppercase mb-6 text-brand-blue">The Collective</h2>
+                <div class="inline-flex gap-3 flex-wrap justify-center font-bold uppercase text-xs md:text-sm tracking-widest text-brand-dark bg-brand-neon border-4 border-brand-dark shadow-neo-sm px-4 md:px-6 py-3">
+                    <span>Work is voluntary</span> • 
+                    <span>Responsibility Expected</span> • 
+                    <span class="text-brand-pink">Impact > Presence</span>
+                </div>
+            </div>
+
+            <div class="swiper team-swiper w-full pb-14" data-aos="fade-up" data-aos-delay="200">
+                <div class="swiper-wrapper" id="team-wrapper">
+                     <div class="swiper-slide bg-[#1E293B] border-4 border-brand-dark h-72 animate-pulse"></div>
+                </div>
+                <div class="swiper-pagination !bottom-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: PHILOSOPHY (SPLIT SCREEN) -->
+    <section id="philosophy" class="snap-section p-0 flex flex-col md:flex-row w-full items-stretch">
+        <div class="w-full md:w-1/2 p-10 md:p-24 bg-brand-neon flex flex-col justify-center border-b-4 md:border-b-0 md:border-r-4 border-brand-dark relative overflow-hidden flex-1" data-aos="fade-right">
+            <i data-lucide="target" class="w-12 h-12 md:w-16 md:h-16 mb-8 stroke-[3] text-brand-dark"></i>
+            <h2 class="font-display font-black text-3xl md:text-4xl lg:text-6xl uppercase mb-6 text-brand-dark leading-none">What Makes Us Different</h2>
+            <ul class="space-y-4 md:space-y-6 font-bold text-lg md:text-xl text-brand-dark">
+                <li class="flex items-start gap-4"><i data-lucide="unlock" class="text-brand-dark mt-1 stroke-[4]"></i> Open source. Almost free.</li>
+                <li class="flex items-start gap-4"><i data-lucide="x" class="text-brand-pink mt-1 stroke-[4]"></i> No overthinking without execution.</li>
+                <li class="flex items-start gap-4"><i data-lucide="check" class="text-brand-blue mt-1 stroke-[4]"></i> Focus on function. Avoid hype.</li>
+            </ul>
+        </div>
+        <div class="w-full md:w-1/2 p-10 md:p-24 bg-brand-dark text-white flex flex-col justify-center relative overflow-hidden flex-1" data-aos="fade-left">
+            <i data-lucide="users" class="w-12 h-12 md:w-16 md:h-16 mb-8 stroke-[3] text-brand-pink"></i>
+            <h2 class="font-display font-black text-3xl md:text-4xl lg:text-6xl uppercase mb-6 leading-none">Who This Is For</h2>
+            <p class="text-base md:text-xl font-bold leading-relaxed text-white/90">
+                Developers who want to build real products. Early adopters and execution-focused builders who value clean utility over corporate fluff. If you love practical AI and open-source, you belong here.
+            </p>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CONTACT & FOOTER -->
+    <section id="contact" class="snap-section bg-brand-light flex-col justify-between py-0 pt-24 min-h-[100dvh]">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center flex-grow w-full py-10">
+            <div data-aos="fade-up-right">
+                <h2 class="font-display font-black text-5xl md:text-8xl uppercase mb-6 leading-none text-brand-dark">Let's <br><span class="text-brand-blue drop-shadow-md">Talk.</span></h2>
+                <p class="text-base md:text-xl font-bold mb-10 max-w-md text-brand-dark/70">
+                    Interested in what we are building? Have an idea, or want to contribute to our open-source repos? Send a signal.
+                </p>
+                <div class="flex flex-col gap-4 md:gap-6 font-black text-lg md:text-xl">
+                    <a href="mailto:mail.hybox@gmail.com" class="inline-flex items-center gap-4 hover:text-brand-pink transition-colors w-fit">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-brand-dark text-white border-2 border-brand-dark flex items-center justify-center shadow-neo-sm hover:shadow-none hover:translate-y-1 transition-all"><i data-lucide="mail"></i></div>
+                        mail.hybox@gmail.com
+                    </a>
+                    <a href="https://github.com/hyboxteam" target="_blank" class="inline-flex items-center gap-4 hover:text-brand-neon transition-colors w-fit">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-brand-dark text-white border-2 border-brand-dark flex items-center justify-center shadow-neo-sm hover:shadow-none hover:translate-y-1 transition-all"><i data-lucide="github"></i></div>
+                        github.com/hyboxteam
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-white border-4 border-brand-dark p-6 md:p-10 shadow-neo" data-aos="fade-up-left" data-aos-delay="200">
+                <form id="contactForm" class="flex flex-col gap-5 md:gap-6" @submit.prevent="submitContactForm">
+                    <div>
+                        <label class="font-bold uppercase tracking-widest text-xs md:text-sm block mb-2 text-brand-dark">Your Name</label>
+                        <input type="text" id="name" required class="w-full border-2 md:border-4 border-brand-dark bg-brand-light p-3 md:p-4 font-bold outline-none focus:border-brand-pink focus:bg-white transition-colors">
+                    </div>
+                    <div>
+                        <label class="font-bold uppercase tracking-widest text-xs md:text-sm block mb-2 text-brand-dark">Email Address</label>
+                        <input type="email" id="email" required class="w-full border-2 md:border-4 border-brand-dark bg-brand-light p-3 md:p-4 font-bold outline-none focus:border-brand-pink focus:bg-white transition-colors">
+                    </div>
+                    <div>
+                        <label class="font-bold uppercase tracking-widest text-xs md:text-sm block mb-2 text-brand-dark">Message</label>
+                        <textarea id="message" required class="w-full h-24 border-2 md:border-4 border-brand-dark bg-brand-light p-3 md:p-4 font-bold outline-none focus:border-brand-pink focus:bg-white transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-brand-dark text-white font-display font-black text-lg md:text-xl uppercase py-4 border-2 md:border-4 border-brand-dark shadow-neo-sm hover:translate-y-1 hover:shadow-none hover:bg-brand-neon hover:text-brand-dark transition-all flex justify-center items-center gap-2">
+                        <span x-text="btnText">Send Message</span> <i data-lucide="send" class="w-5 h-5 md:w-6 md:h-6 stroke-[3]"></i>
+                    </button>
+                    <p x-show="formSuccess" x-transition class="text-brand-dark font-black uppercase text-center mt-2 text-xs md:text-sm bg-brand-neon border-2 border-brand-dark py-2" style="display: none;">Message Sent Successfully.</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-brand-dark text-white py-8 border-t-4 border-brand-neon w-full mt-auto">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <div>
+                    <h2 class="font-display font-black text-2xl md:text-3xl uppercase flex items-center justify-center md:justify-start gap-2">
+                        <i data-lucide="blocks" class="w-6 h-6 md:w-8 md:h-8 text-brand-pink stroke-[3]"></i> HyBox
+                    </h2>
+                    <p class="font-bold text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">Independent Builder Team</p>
+                </div>
+                <div class="font-display font-bold text-sm md:text-lg uppercase text-brand-neon flex items-center gap-4 justify-center">
+                    Build useful things. 
+                    <a href="https://github.com/hyboxteam" target="_blank" class="hover:text-brand-blue transition-colors"><i data-lucide="github" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                </div>
+                <div class="font-bold text-[10px] md:text-xs uppercase tracking-widest opacity-60">
+                    &copy; 2026 HyBox. Open Source.
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <!-- ALPINE MODAL (Projects) -->
+    <div x-show="modalOpen" style="display: none;" class="fixed inset-0 z-[100] bg-brand-dark/95 backdrop-blur-md flex items-center justify-center p-4">
+        <div x-show="modalOpen" 
+             x-transition:enter="transition ease-out duration-300 transform" 
+             x-transition:enter-start="opacity-0 scale-90 translate-y-8" 
+             x-transition:enter-end="opacity-100 scale-100 translate-y-0" 
+             x-transition:leave="transition ease-in duration-200 transform" 
+             x-transition:leave-start="opacity-100 scale-100 translate-y-0" 
+             x-transition:leave-end="opacity-0 scale-90 translate-y-8" 
+             @click.away="modalOpen = false" 
+             class="bg-brand-light border-4 border-brand-dark shadow-[8px_8px_0px_0px_#FF00A0] md:shadow-[16px_16px_0px_0px_#FF00A0] max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-6 md:p-12">
+            
+            <button @click="modalOpen = false" class="absolute top-4 right-4 bg-white text-brand-dark p-2 border-2 md:border-4 border-brand-dark hover:bg-brand-neon transition-colors shadow-neo-sm hover:shadow-none hover:translate-y-1 z-10">
+                <i data-lucide="x" class="w-5 h-5 md:w-6 md:h-6 stroke-[3]"></i>
+            </button>
+
+            <div class="flex flex-col md:flex-row gap-6 md:gap-10 items-start mt-6 md:mt-4">
+                <div class="w-full md:w-2/5 aspect-square border-4 border-brand-dark bg-cover bg-center shadow-neo img-blur-wrapper loaded">
+                    <img :src="activeProject.logo" alt="Project Logo" class="no-save object-cover w-full h-full">
+                </div>
+                <div class="w-full md:w-3/5">
+                    <span x-text="activeProject.type" class="inline-block bg-brand-neon text-brand-dark border-2 border-brand-dark font-black text-[10px] md:text-xs uppercase px-2 md:px-3 py-1 mb-4"></span>
+                    <h2 x-text="activeProject.title" class="font-display font-black text-3xl md:text-5xl uppercase mb-3 text-brand-dark leading-none"></h2>
+                    <p x-text="activeProject.desc" class="font-bold text-sm md:text-lg mb-6 text-brand-dark/80 whitespace-pre-wrap leading-relaxed"></p>
+                    <a :href="activeProject.link" target="_blank" class="inline-flex items-center gap-2 bg-brand-dark text-white border-2 md:border-4 border-brand-dark font-display font-black text-sm md:text-lg px-6 md:px-8 py-3 md:py-4 uppercase shadow-neo hover:-translate-y-1 hover:shadow-neo-sm hover:bg-brand-blue hover:text-brand-dark transition-all">
+                        View Live Project <i data-lucide="external-link" class="w-5 h-5 md:w-6 md:h-6 stroke-[3]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APPLICATION LOGIC -->
+    <script>
+        // Alpine Component Data
+        function appData() {
+            return {
+                mobileMenuOpen: false,
+                modalOpen: false,
+                formSuccess: false,
+                btnText: 'Send Message',
+                activeProject: { title: '', desc: '', type: '', link: '', logo: '' },
+                
+                openProject(project) {
+                    this.activeProject = project;
+                    this.modalOpen = true;
+                    document.body.style.overflow = 'hidden';
+                },
+                
+                init() {
+                    this.$watch('modalOpen', value => {
+                        if(!value) document.body.style.overflow = 'auto';
+                    });
+                },
+
+                async submitContactForm() {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+
+                    this.btnText = "Sending...";
+                    const apiUrl = 'https://backend-pico.onrender.com/aero/run/self-email-api?pk=v1-Z0FBQUFBQnBnUHhjZTVGZHVHd0E0alZybnpsbkpTaHpzd05nRmJWbFd4VGJaWWNsTG1SZzdrRzVFWjc4THFUVXRQT05wUElhdnYxd0lzcjVSckxPNnBua3lQQlotd0FfRFE9PQ==';
+
+                    try {
+                        const res = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ 
+                                subject: `HyBox Open Source Contact: ${name}`, 
+                                body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` 
+                            })
+                        });
+                        const result = await res.json();
+                        if (result.status === 'success') {
+                            this.formSuccess = true;
+                            document.getElementById('contactForm').reset();
+                            this.btnText = "Success!";
+                            setTimeout(() => {
+                                this.formSuccess = false;
+                                this.btnText = "Send Message";
+                            }, 4000);
+                        }
+                    } catch (err) {
+                        alert('Failed to send. Please use direct email or GitHub.');
+                        this.btnText = "Send Message";
+                    }
+                }
+            }
+        }
+
+        // Initialize libraries after Alpine setup
+        document.addEventListener('alpine:init', () => {
+            lucide.createIcons();
+
+            AOS.init({ duration: 800, once: true, mirror: false, offset: 50 });
+
+            gsap.registerPlugin();
+            // Mouse tracking only active on desktop to save mobile performance
+            if (window.innerWidth > 768) {
+                document.addEventListener("mousemove", (e) => {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 40;
+                    const y = (e.clientY / window.innerHeight - 0.5) * 40;
+                    
+                    gsap.to(".gsap-cube", { rotationY: x, rotationX: -y, duration: 1.5, ease: "power2.out" });
+                    gsap.to(".gsap-blob", { x: x * 2, y: y * 2, duration: 2, ease: "power2.out" });
+                });
+            }
+
+            // SUPABASE DATA FETCHING
+            const SB_URL = 'https://buelbnurnlrisrokmxir.supabase.co';
+            const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk';
+            const sb = supabase.createClient(SB_URL, SB_KEY);
+
+            async function fetchProjects() {
+                const wrapper = document.getElementById('creations-wrapper');
+                try {
+                    const { data, error } = await sb.from('creations').select('*').order('created_at', { ascending: false });
+                    if (error) throw error;
+                    if (data) {
+                        wrapper.innerHTML = '';
+                        document.getElementById('app-count').innerText = data.length;
+                        document.getElementById('app-count').classList.remove('animate-pulse');
+
+                        data.forEach(item => {
+                            const slide = document.createElement('div');
+                            slide.className = 'swiper-slide bg-white border-4 border-brand-dark p-6 flex flex-col justify-between shadow-neo cursor-pointer transform transition-transform hover:-translate-y-2 group h-auto';
+                            
+                            // Safe Alpine Data Dispatch (Fixes parsing errors)
+                            slide.addEventListener('click', () => {
+                                window.dispatchEvent(new CustomEvent('open-modal', {
+                                    detail: {
+                                        title: item.title,
+                                        desc: item.long_desc || item.short_desc,
+                                        type: item.type,
+                                        link: item.download_url,
+                                        logo: item.logo_url
+                                    }
+                                }));
+                            });
+                            
+                            slide.innerHTML = `
+                                <div>
+                                    <div class="w-full h-48 md:h-56 border-4 border-brand-dark mb-5 img-blur-wrapper">
+                                        <img src="${item.logo_url}" onload="this.parentElement.classList.add('loaded')" class="no-save object-cover w-full h-full" alt="${item.title}">
+                                    </div>
+                                    <span class="text-[10px] md:text-xs font-black uppercase tracking-widest text-brand-dark bg-brand-neon border-2 border-brand-dark px-2 py-1">${item.type}</span>
+                                    <h3 class="font-display font-black text-2xl md:text-3xl uppercase mt-4 mb-2 text-brand-dark group-hover:text-brand-pink transition-colors line-clamp-2">${item.title}</h3>
+                                    <p class="font-bold text-brand-dark/70 text-sm md:text-base leading-relaxed line-clamp-3">${item.short_desc}</p>
+                                </div>
+                                <div class="mt-6 md:mt-8 border-t-4 border-brand-dark pt-4 flex justify-between items-center text-brand-dark">
+                                    <span class="font-black uppercase text-xs md:text-sm tracking-widest group-hover:text-brand-blue transition-colors">Launch Logic</span>
+                                    <i data-lucide="arrow-up-right" class="w-5 h-5 md:w-6 md:h-6 stroke-[3] group-hover:text-brand-blue transition-colors"></i>
+                                </div>
+                            `;
+                            wrapper.appendChild(slide);
+                        });
+                        
+                        new Swiper('.project-swiper', {
+                            slidesPerView: 1, spaceBetween: 20, grabCursor: true,
+                            pagination: { el: '.swiper-pagination', clickable: true },
+                            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                            breakpoints: { 640: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
+                        });
+                        lucide.createIcons();
+                    }
+                } catch (err) {
+                    wrapper.innerHTML = `<div class="swiper-slide bg-white border-4 border-brand-dark p-10 font-black text-brand-pink uppercase">Failed to sync repo data.</div>`;
+                }
+            }
+
+            async function fetchTeam() {
+                const wrapper = document.getElementById('team-wrapper');
+                try {
+                    const { data, error } = await sb.from('team_members').select('*').order('display_order', { ascending: true });
+                    if (error) throw error;
+                    if (data) {
+                        wrapper.innerHTML = '';
+                        const humanTeam = data.filter(member => member.name.toUpperCase() !== 'ZAVIA');
+
+                        humanTeam.forEach(member => {
+                            const fullImgUrl = `https://hybox.netlify.app/${member.img_url}`;
+                            const slide = document.createElement('div');
+                            slide.className = 'swiper-slide bg-white border-4 border-brand-dark p-6 md:p-8 flex flex-col items-center text-center shadow-neo h-auto group';
+                            
+                            slide.innerHTML = `
+                                <div class="w-32 h-32 md:w-40 md:h-40 mb-6 relative">
+                                    <div class="absolute inset-0 bg-brand-neon blur-xl opacity-0 group-hover:opacity-50 transition-opacity z-0"></div>
+                                    <div class="img-blur-wrapper w-full h-full rounded-full border-4 border-brand-dark relative z-10 overflow-hidden shadow-neo-sm">
+                                        <img src="${fullImgUrl}" onload="this.parentElement.classList.add('loaded')" class="no-save object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500" alt="${member.name}">
+                                    </div>
+                                </div>
+                                <h3 class="font-display font-black text-xl md:text-2xl uppercase text-brand-dark tracking-wide line-clamp-1">${member.name}</h3>
+                                <p class="font-bold text-[10px] md:text-xs uppercase tracking-widest text-brand-blue mt-2 border-2 border-brand-dark px-3 py-1 bg-brand-dark text-white">${member.role}</p>
+                            `;
+                            wrapper.appendChild(slide);
+                        });
+
+                        new Swiper('.team-swiper', {
+                            slidesPerView: 1, spaceBetween: 20, grabCursor: true,
+                            pagination: { el: '.swiper-pagination', clickable: true },
+                            breakpoints: { 640: { slidesPerView: 2, spaceBetween: 30 }, 1024: { slidesPerView: 4, spaceBetween: 30 } }
+                        });
+                    }
+                } catch (err) {
+                    console.error("Team Sync Error");
+                }
+            }
+
+            fetchProjects();
+            fetchTeam();
+        });
+    </script>
 </body>
 </html>

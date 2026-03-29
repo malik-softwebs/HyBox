@@ -2,55 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Calc OS — AI-Powered Material 3 Calculator for Android</title>
   
-  <!-- SEO & GEO Meta Tags (Generative Engine Optimization) -->
-  <meta name="description" content="Calc OS: Advanced Material 3 calculator with AI Math Assistant, 15+ converters, scientific & programmer modes, live currency, and full Material You theming. Download APK for Android.">
-  <meta name="keywords" content="calculator, material you, material design 3, android calculator, ai math assistant, unit converter, scientific calculator, programmer calculator, currency converter, bmi calculator, katex, math solver">
+  <!-- SEO & GEO Meta Tags -->
+  <meta name="description" content="Calc OS: Advanced Material 3 calculator with AI Math Assistant, 15+ converters, scientific & programmer modes, live currency, and full Material You theming.">
+  <meta name="keywords" content="calculator, material you, material design 3, android calculator, ai math assistant, unit converter, scientific calculator, currency converter">
   <meta name="author" content="HyBox Studio">
   <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
-  <meta name="bingbot" content="index, follow">
-  <meta name="geo.region" content="PK" />
-  <meta name="geo.placename" content="Global" />
-  <meta name="geo.position" content="30.3753;69.3451" />
-  <meta name="ICBM" content="30.3753, 69.3451" />
-  <meta name="language" content="English">
-  <meta name="revisit-after" content="7 days">
-  <link rel="canonical" href="https://hyboxteam.github.io/Calc-OS/">
   
   <!-- Open Graph / Social Media -->
-  <meta property="og:title" content="Calc OS — Material 3 Calculator Suite | AI Math Assistant">
-  <meta property="og:description" content="Scientific, programmer, 15+ converters, AI Assistant with KaTeX, and full Material You personalization. The ultimate Android calculator.">
+  <meta property="og:title" content="Calc OS — Material 3 Calculator Suite">
+  <meta property="og:description" content="Scientific, programmer, 15+ converters, AI Assistant with KaTeX, and full Material You personalization.">
   <meta property="og:image" content="https://i.ibb.co/vvZDPxPD/untitled-1774790566315-1.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Calc OS - Material 3 Calculator with AI and Converters">
   <meta property="og:url" content="https://hyboxteam.github.io/Calc-OS/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Calc OS">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Calc OS — Material 3 Calculator for Android">
-  <meta name="twitter:description" content="AI-powered calculator with converters, scientific mode, and Material You design.">
-  <meta name="twitter:image" content="https://i.ibb.co/vvZDPxPD/untitled-1774790566315-1.png">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236750A4'%3E%3Cpath d='M4 6h16v2H4V6zm2-4h12v2H6V2zm16 4H2v16h20V6zM4 8h16v10H4V8z'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/jpeg" href="https://i.ibb.co/9mCLg4St/1000179885.jpg">
   
-  <!-- Stylesheets: Tailwind + Custom MD3 -->
+  <!-- Stylesheets & Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide + Boxicons (fallback + priority) -->
-  <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- AOS Animation Library -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- KaTeX for preview -->
+  
+  <!-- KaTeX for AI Math Preview -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
   <style>
     /* Material 3 Design System */
     :root {
@@ -58,176 +39,195 @@
       --md-on-primary: #FFFFFF;
       --md-primary-container: #EADDFF;
       --md-on-primary-container: #21005D;
-      --md-secondary: #625B71;
-      --md-secondary-container: #E8DEF8;
       --md-surface: #FFFBFE;
       --md-on-surface: #1C1B1F;
       --md-surface-variant: #E7E0EC;
       --md-on-surface-variant: #49454F;
-      --md-outline: #79747E;
       --md-outline-variant: #CAC4D0;
       --md-background: #FFFBFE;
-      --shadow-md3-3: 0px 1px 3px 0px rgba(0,0,0,0.30), 0px 4px 8px 3px rgba(0,0,0,0.15);
+      --md-star: #FFB400;
+      --shadow-md3: 0px 4px 8px 3px rgba(0,0,0,0.15);
     }
+    
     .dark {
       --md-primary: #D0BCFF;
       --md-on-primary: #381E72;
       --md-primary-container: #4F378B;
       --md-on-primary-container: #EADDFF;
-      --md-secondary: #CCC2DC;
-      --md-secondary-container: #4A4458;
       --md-surface: #1C1B1F;
       --md-on-surface: #E6E1E5;
       --md-surface-variant: #49454F;
       --md-on-surface-variant: #CAC4D0;
-      --md-outline: #938F99;
       --md-outline-variant: #49454F;
-      --md-background: #1C1B1F;
+      --md-background: #141218;
     }
+
     body {
       background-color: var(--md-background);
       color: var(--md-on-surface);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
-    /* Custom Animations & Glassmorphism */
+
+    /* Glass Cards */
     .card-glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(var(--md-surface), 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--md-outline-variant);
     }
-    .dark .card-glass {
-      background: rgba(0, 0, 0, 0.25);
-    }
+
+    /* Buttons */
     .btn-primary {
       background: var(--md-primary);
       color: var(--md-on-primary);
       border-radius: 9999px;
-      padding: 0.75rem 1.8rem;
+      padding: 0.8rem 2rem;
       font-weight: 600;
-      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      box-shadow: var(--shadow-md3-3);
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      filter: brightness(1.05);
-      box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px -6px var(--md-primary);
+      filter: brightness(1.1);
     }
-    .hover-scale {
-      transition: transform 0.2s ease, box-shadow 0.2s;
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-secondary {
+      background: var(--md-surface-variant);
+      color: var(--md-on-surface-variant);
+      border-radius: 9999px;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .hover-scale:hover {
-      transform: translateY(-5px) scale(1.02);
+    .btn-secondary:hover { background: var(--md-outline-variant); }
+
+    /* Micro-interactions */
+    .hover-scale { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .hover-scale:hover { transform: translateY(-4px); box-shadow: var(--shadow-md3); }
+    
+    /* Ripple Effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      background-color: rgba(255, 255, 255, 0.3);
     }
-    /* Horizontal scroll for screenshots */
+    .dark .ripple { background-color: rgba(255, 255, 255, 0.2); }
+    @keyframes ripple {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* Store Screenshots Scroll */
     .screenshot-scroll {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      gap: 1.5rem;
-      padding-bottom: 1rem;
-      scrollbar-width: thin;
+      gap: 1rem;
+      padding: 1rem 0 2rem 0;
+      scrollbar-width: none; /* Firefox */
     }
+    .screenshot-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+    
     .screenshot-scroll img {
-      scroll-snap-align: start;
+      scroll-snap-align: center;
       flex: 0 0 auto;
-      width: 240px;
-      border-radius: 32px;
-      box-shadow: var(--shadow-md3-3);
-      border: 2px solid var(--md-outline-variant);
-      transition: transform 0.2s;
-    }
-    .screenshot-scroll img:hover {
-      transform: scale(1.02);
+      width: 220px;
+      border-radius: 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 1px solid var(--md-outline-variant);
+      transition: transform 0.3s ease;
     }
     @media (min-width: 768px) {
-      .screenshot-scroll img { width: 280px; }
+      .screenshot-scroll { gap: 1.5rem; justify-content: flex-start; }
+      .screenshot-scroll img { width: 260px; scroll-snap-align: start; }
+      .screenshot-scroll img:hover { transform: scale(1.03) translateY(-5px); }
     }
-    /* Cookie consent banner */
-    .cookie-banner {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: var(--md-surface);
-      color: var(--md-on-surface);
-      border-radius: 28px;
-      padding: 1rem 1.5rem;
-      box-shadow: var(--shadow-md3-3);
-      z-index: 999;
-      border: 1px solid var(--md-outline-variant);
-      backdrop-filter: blur(16px);
-      background-color: rgba(var(--md-surface), 0.9);
-      transition: transform 0.3s;
-    }
-    .dark .cookie-banner { background-color: rgba(28,27,31,0.95); }
-    /* Ripple effect */
-    .ripple-btn {
-      position: relative;
-      overflow: hidden;
-    }
-    /* Smooth scroll */
-    html { scroll-behavior: smooth; }
+
+    /* Stats Divider */
+    .stat-divider { width: 1px; height: 32px; background-color: var(--md-outline-variant); }
   </style>
 </head>
-<body>
-
-<!-- Cookie Consent Banner -->
-<div id="cookieConsent" class="cookie-banner flex flex-col sm:flex-row items-center justify-between gap-4">
-  <div class="text-sm">🍪 We use cookies and local storage to remember your theme preferences and stats. No tracking, no personal data.</div>
-  <div class="flex gap-3">
-    <button id="acceptCookies" class="px-5 py-2 rounded-full bg-primary text-onPrimary text-sm font-medium">Accept</button>
-    <button id="declineCookies" class="px-5 py-2 rounded-full border border-outline text-sm">Decline</button>
-  </div>
-</div>
+<body class="antialiased selection:bg-primary-container selection:text-onPrimary-container">
 
 <!-- Navigation -->
-<header class="sticky top-0 z-50 backdrop-blur-xl border-b border-outlineVariant" style="background-color: rgba(var(--md-background),0.7);">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex justify-between items-center">
-    <div class="flex items-center gap-2" data-aos="fade-right">
-      <i class='bx bxs-calculator text-3xl' style="color: var(--md-primary);"></i>
-      <span class="text-2xl font-bold tracking-tight">Calc OS</span>
+<header class="sticky top-0 z-50 backdrop-blur-xl border-b border-outlineVariant transition-colors duration-300" style="background-color: rgba(var(--md-background),0.8);">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <img src="https://i.ibb.co/9mCLg4St/1000179885.jpg" alt="Calc OS Icon" class="w-10 h-10 rounded-xl shadow-sm border border-outlineVariant">
+      <span class="text-xl font-bold tracking-tight hidden sm:block">Calc OS</span>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="#features" class="hidden md:block text-sm font-medium hover:text-primary transition">Features</a>
-      <a href="#download" class="hidden md:block text-sm font-medium hover:text-primary transition">Download</a>
-      <a href="https://github.com/hyboxteam/Calc-OS" target="_blank" class="flex items-center gap-1 text-sm hover:text-primary transition">
-        <i class='bx bxl-github text-xl'></i> <span class="hidden md:inline">GitHub</span>
+    <div class="flex items-center gap-2 sm:gap-4">
+      <a href="https://github.com/hyboxteam/Calc-OS" target="_blank" class="p-2 rounded-full hover:bg-surfaceVariant text-onSurface transition">
+        <i class='bx bxl-github text-2xl'></i>
       </a>
-      <button id="themeToggle" class="p-2 rounded-full bg-surfaceVariant text-onSurfaceVariant transition-all">
-        <i class='bx bx-moon' id="themeIcon"></i>
+      <button id="themeToggle" class="p-2 rounded-full hover:bg-surfaceVariant text-onSurface transition">
+        <i class='bx bx-moon text-2xl' id="themeIcon"></i>
       </button>
+      <a href="https://github.com/hyboxteam/Calc-OS/releases/latest" target="_blank" class="btn-primary text-sm px-4 py-2 hidden sm:flex">
+        Install
+      </a>
     </div>
   </div>
 </header>
 
-<main>
-  <!-- Hero Section -->
-  <section class="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24">
-    <div class="flex flex-col lg:flex-row gap-12 items-center">
-      <div class="flex-1 space-y-6" data-aos="fade-up" data-aos-duration="800">
-        <div class="inline-flex px-4 py-1.5 rounded-full text-sm font-medium bg-primary-container text-onPrimary-container">✨ AI-Powered · Material 3</div>
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight">Calculator <span class="text-primary">reimagined</span><br>for Android</h1>
-        <p class="text-lg opacity-80 max-w-xl">Scientific, programmer, 15+ converters, AI Math Assistant with KaTeX, and deep Material You personalization. One APK to rule them all.</p>
-        <div class="flex flex-wrap gap-4 pt-3">
-          <a href="#download" class="btn-primary flex items-center gap-2"><i class='bx bxl-android text-xl'></i> Download APK</a>
-          <a href="https://github.com/hyboxteam/Calc-OS" target="_blank" class="px-6 py-3 rounded-full border border-outline flex items-center gap-2 hover:bg-surfaceVariant transition"><i class='bx bxl-github text-xl'></i> Star on GitHub</a>
+<main class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+  
+  <!-- App Store Hero Section -->
+  <section class="flex flex-col md:flex-row gap-6 md:gap-10 items-start md:items-center mt-4" data-aos="fade-up">
+    <img src="https://i.ibb.co/9mCLg4St/1000179885.jpg" alt="Calc OS" class="w-32 h-32 md:w-48 md:h-48 rounded-[28px] md:rounded-[40px] shadow-lg border border-outlineVariant object-cover">
+    
+    <div class="flex-1 w-full">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Calc OS</h1>
+      <p class="text-lg md:text-xl font-medium mt-1" style="color: var(--md-primary);">HyBox Studio</p>
+      <p class="text-sm opacity-70 mt-1">Free · Open Source · No Ads</p>
+      
+      <!-- Stats Row -->
+      <div class="flex items-center gap-6 mt-6 overflow-x-auto pb-2">
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="flex items-center gap-1 font-bold text-lg">
+            4.9 <i class='bx bxs-star text-sm' style="color: var(--md-star);"></i>
+          </div>
+          <span class="text-xs opacity-70">4 Reviews</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="flex flex-col items-center min-w-[60px]">
+          <span class="font-bold text-lg">17</span>
+          <span class="text-xs opacity-70">Downloads</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="flex flex-col items-center min-w-[60px]">
+          <div class="w-6 h-6 rounded-md bg-surfaceVariant border border-outlineVariant flex items-center justify-center font-bold text-xs mb-1">E</div>
+          <span class="text-xs opacity-70">Everyone</span>
         </div>
       </div>
-      <div class="flex-1 flex justify-center relative" data-aos="fade-left" data-aos-delay="200">
-        <div class="relative w-72 md:w-96 rounded-[3rem] shadow-2xl overflow-hidden border-8 border-surface">
-          <img src="https://i.ibb.co/sJk7GXLg/android-1-1.png" alt="Calc OS Hero" class="w-full object-cover">
-        </div>
-        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl -z-10"></div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 mt-6">
+        <a href="https://github.com/hyboxteam/Calc-OS/releases/latest" target="_blank" class="btn-primary w-full sm:w-auto text-lg py-3 px-8 shadow-md">
+          <i class='bx bxl-android text-2xl'></i> Download APK
+        </a>
+        <a href="mailto:mail.hybox@gmail.com" class="btn-secondary w-full sm:w-auto text-lg py-3 px-8 justify-center">
+          <i class='bx bx-envelope text-xl'></i> Feedback
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Horizontal scrolling screenshots section -->
-  <section class="max-w-7xl mx-auto px-6 md:px-8 py-12" data-aos="fade-up">
-    <h2 class="text-3xl font-bold text-center mb-3">Sleek Interface · Material You</h2>
-    <div class="gradient-border mx-auto mb-8"></div>
-    <div class="screenshot-scroll">
+  <!-- Screenshots Horizontal Scroll -->
+  <section class="mt-12 md:mt-16" data-aos="fade-up" data-aos-delay="100">
+    <div class="screenshot-scroll snap-x">
       <img src="https://i.ibb.co/sJk7GXLg/android-1-1.png" alt="Standard Calculator">
       <img src="https://i.ibb.co/svFRXZ1z/android-1-2.png" alt="Math Toolkit">
       <img src="https://i.ibb.co/ccfLxQ4H/android-1-3.png" alt="AI Assistant">
@@ -235,193 +235,246 @@
       <img src="https://i.ibb.co/XfbmcfcW/android-1-5.png" alt="Converters">
       <img src="https://i.ibb.co/pr1nZQVd/android-1-6.png" alt="Dictionary">
     </div>
-    <p class="text-center text-sm opacity-70 mt-4">← Swipe or scroll horizontally →</p>
   </section>
 
-  <!-- Features Grid -->
-  <section id="features" class="max-w-7xl mx-auto px-6 md:px-8 py-20">
-    <div class="text-center" data-aos="fade-up">
-      <div class="gradient-border mx-auto"></div>
-      <h2 class="text-4xl font-bold">Everything you need in a modern calculator</h2>
-      <p class="mt-3 opacity-75 max-w-2xl mx-auto">Scientific, programmer, live converters, AI tutor, and complete Material Design 3 customization.</p>
+  <!-- About this app -->
+  <section class="mt-12" data-aos="fade-up">
+    <div class="flex justify-between items-end mb-4">
+      <h2 class="text-2xl font-bold">About this app</h2>
+      <i class='bx bx-right-arrow-alt text-3xl opacity-50'></i>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="50">
-        <i class='bx bx-chip text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">Scientific & Programmer</h3>
-        <p class="mt-2 text-sm opacity-80">Trig, logs, exponent, HEX/DEC/OCT/BIN, bitwise ops, degree/radian mode.</p>
+    <p class="text-base leading-relaxed opacity-85 max-w-3xl">
+      The ultimate Material 3 calculator suite. Calc OS packs everything you need: a powerful Scientific & Programmer calculator, 15+ real-time converters (Currency, Crypto, Health, Financial), and an intelligent AI Math Assistant that formats answers in perfect LaTeX. Fully customizable with Material You dynamic theming.
+    </p>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+      <div class="card-glass p-5 rounded-3xl hover-scale">
+        <i class='bx bx-chip text-3xl mb-2' style="color: var(--md-primary);"></i>
+        <h3 class="font-bold text-lg">Pro Modes</h3>
+        <p class="text-sm opacity-75 mt-1">Scientific trig, logs, bitwise ops, and HEX/DEC/OCT/BIN swapping.</p>
       </div>
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="100">
-        <i class='bx bx-transfer-alt text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">15+ Unit Converters</h3>
-        <p class="mt-2 text-sm opacity-80">Live currency & crypto, length, weight, volume, data, speed, pressure, energy, force.</p>
+      <div class="card-glass p-5 rounded-3xl hover-scale">
+        <i class='bx bx-transfer-alt text-3xl mb-2' style="color: var(--md-primary);"></i>
+        <h3 class="font-bold text-lg">15+ Converters</h3>
+        <p class="text-sm opacity-75 mt-1">Live currency, length, data, speed, BMI, and loan amortization.</p>
       </div>
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="150">
-        <i class='bx bxs-bot text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">AI Math Assistant</h3>
-        <p class="mt-2 text-sm opacity-80">KaTeX + Markdown, remembers 20 exchanges, step-by-step explanations.</p>
-      </div>
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="200">
-        <i class='bx bxs-color text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">Material You Engine</h3>
-        <p class="mt-2 text-sm opacity-80">Dynamic color palette, dark/light theme, custom fonts, button shapes.</p>
-      </div>
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="250">
-        <i class='bx bx-book-open text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">Dictionary & World Time</h3>
-        <p class="mt-2 text-sm opacity-80">Free Dictionary API + WorldTimeAPI – definitions & global clocks instantly.</p>
-      </div>
-      <div class="card-glass p-6 rounded-3xl bg-surface border border-outlineVariant shadow-md hover-scale transition-all" data-aos="fade-up" data-aos-delay="300">
-        <i class='bx bx-line-chart text-4xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-4">Financial & Health Tools</h3>
-        <p class="mt-2 text-sm opacity-80">Loan amortization, BMI, date difference – all inside MD3.</p>
+      <div class="card-glass p-5 rounded-3xl hover-scale">
+        <i class='bx bxs-color text-3xl mb-2' style="color: var(--md-primary);"></i>
+        <h3 class="font-bold text-lg">Material You</h3>
+        <p class="text-sm opacity-75 mt-1">Deep personalization. Custom fonts, button shapes, and dynamic colors.</p>
       </div>
     </div>
   </section>
 
-  <!-- AI Preview with KaTeX (live rendered) -->
-  <section class="max-w-7xl mx-auto px-6 md:px-8 py-16" data-aos="zoom-in">
-    <div class="bg-primary-container/20 rounded-3xl p-6 md:p-10 border border-outlineVariant backdrop-blur-sm">
+  <!-- Interactive AI Math Preview -->
+  <section class="mt-16" data-aos="zoom-in">
+    <h2 class="text-2xl font-bold mb-6">AI Math Assistant Demo</h2>
+    <div class="rounded-[2rem] p-6 md:p-8 border border-outlineVariant shadow-sm" style="background: var(--md-surface-variant);">
       <div class="flex flex-col md:flex-row gap-8 items-center">
-        <div class="flex-1">
-          <i class='bx bx-brain text-5xl text-primary'></i>
-          <h3 class="text-3xl font-bold mt-3">AI Assistant with LaTeX</h3>
-          <p class="mt-2 opacity-80">Ask any math question. Get beautifully formatted equations using KaTeX. Try the demo below:</p>
-          <div class="mt-4 bg-surface rounded-xl p-4 katex-preview" id="mathDemo">
-            <p class="font-semibold">Quadratic formula:</p>
-            <div>$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$</div>
-            <p>Integral of \(x^2\): \(\int x^2 dx = \frac{x^3}{3} + C\)</p>
+        <div class="flex-1 w-full">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-onPrimary">
+              <i class='bx bxs-bot text-xl'></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg leading-tight">CalcBot Preview</h3>
+              <p class="text-xs opacity-70">Powered by KaTeX</p>
+            </div>
+          </div>
+          
+          <label class="text-sm font-semibold opacity-80 pl-1">Type an equation (LaTeX supported):</label>
+          <input type="text" id="mathInput" value="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" 
+                 class="w-full mt-2 p-4 rounded-2xl border border-outlineVariant outline-none transition-all focus:border-primary font-mono text-sm"
+                 style="background: var(--md-surface); color: var(--md-on-surface);">
+                 
+          <div class="mt-4 p-6 rounded-2xl min-h-[120px] flex items-center justify-center overflow-x-auto shadow-inner bg-surface text-onSurface" style="background: var(--md-surface);">
+            <div id="mathOutput" class="text-xl md:text-2xl transition-all duration-300"></div>
           </div>
         </div>
-        <div class="flex-1 text-center">
-          <i class='bx bx-math text-7xl text-primary opacity-70'></i>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- Download & APK Section -->
-  <section id="download" class="max-w-7xl mx-auto px-6 md:px-8 py-20" data-aos="flip-up">
-    <div class="rounded-3xl p-10 text-center" style="background: linear-gradient(125deg, var(--md-primary-container), var(--md-secondary-container));">
-      <i class='bx bxs-download text-5xl text-onPrimary-container'></i>
-      <h2 class="text-4xl font-bold mt-4 text-onPrimary-container">Ready to upgrade your calculator experience?</h2>
-      <p class="text-lg mt-2 opacity-90 max-w-2xl mx-auto">Download Calc OS v1.0 APK — Free, open-source, and fully offline capable.</p>
-      <div class="flex flex-wrap justify-center gap-5 mt-8">
-        <a href="https://github.com/hyboxteam/Calc-OS/releases/latest" target="_blank" class="btn-primary bg-black/20 backdrop-blur-sm text-onPrimary-container flex items-center gap-2"><i class='bx bxl-android'></i> Download APK (Latest)</a>
-        <a href="https://github.com/hyboxteam/Calc-OS" target="_blank" class="px-6 py-3 rounded-full bg-white/10 border border-white/40 text-onPrimary-container flex items-center gap-2 hover:bg-white/20 transition"><i class='bx bxl-github'></i> GitHub Repository</a>
+  <!-- Ratings & Reviews (Testimonials) -->
+  <section class="mt-16" data-aos="fade-up">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold">Ratings and reviews</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <!-- Review 1 -->
+      <div class="card-glass p-6 rounded-3xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Areeba&backgroundColor=EADDFF" alt="Areeba" class="w-12 h-12 rounded-full border border-outlineVariant">
+            <div>
+              <p class="font-bold text-sm">Areeba</p>
+              <p class="text-xs opacity-60">Engineering Student</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-1 mb-2">
+          <i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i>
+        </div>
+        <p class="text-sm opacity-85 leading-relaxed">"Finally, a calculator that doesn't look like it's from the 90s! The Material 3 design is so clean, and having a built-in AI assistant? Absolute life-saver for my physics assignments."</p>
       </div>
+
+      <!-- Review 2 -->
+      <div class="card-glass p-6 rounded-3xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Zain&backgroundColor=FFD8E4" alt="Zain" class="w-12 h-12 rounded-full border border-outlineVariant">
+            <div>
+              <p class="font-bold text-sm">Zain</p>
+              <p class="text-xs opacity-60">Software Dev</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-1 mb-2">
+          <i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i>
+        </div>
+        <p class="text-sm opacity-85 leading-relaxed">"Programmer mode is a blessing. Swapping between HEX, DEC, and BIN is seamless. Plus, the Currency and Crypto converter actually works! 10/10 would recommend."</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="card-glass p-6 rounded-3xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sana&backgroundColor=C2E7FF" alt="Sana" class="w-12 h-12 rounded-full border border-outlineVariant">
+            <div>
+              <p class="font-bold text-sm">Sana</p>
+              <p class="text-xs opacity-60">Finance Manager</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-1 mb-2">
+          <i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star-half text-sm' style="color: var(--md-star);"></i>
+        </div>
+        <p class="text-sm opacity-85 leading-relaxed">"I use the Financial tool for my loan calculations and the Health BMI tracker every week. It’s not just a calculator; it’s like a mini OS in my browser. Love the dark mode!"</p>
+      </div>
+
+      <!-- Review 4 -->
+      <div class="card-glass p-6 rounded-3xl">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Hamza&backgroundColor=C4EED0" alt="Hamza" class="w-12 h-12 rounded-full border border-outlineVariant">
+            <div>
+              <p class="font-bold text-sm">Hamza</p>
+              <p class="text-xs opacity-60">High Schooler</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-1 mb-2">
+          <i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i><i class='bx bxs-star text-sm' style="color: var(--md-star);"></i>
+        </div>
+        <p class="text-sm opacity-85 leading-relaxed">"The UI ripple effects and the smoothness... uff! It feels so premium. Using the Dictionary tool while doing math is something I didn't know I needed."</p>
+      </div>
+      
     </div>
   </section>
 
-  <!-- Team & Credits -->
-  <section class="max-w-7xl mx-auto px-6 md:px-8 pb-20">
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="card-glass p-8 rounded-3xl text-center" data-aos="fade-right">
-        <i class='bx bxs-group text-5xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-3">Created by HyBox Studio</h3>
-        <p class="mt-2">Muhammad Awais & Sawera Ehsar — design & engineering.</p>
-        <div class="flex justify-center gap-6 mt-5">
-          <a href="https://m-awais.netlify.app" target="_blank" class="text-primary flex items-center gap-1"><i class='bx bx-link-external'></i> m-awais.netlify.app</a>
-          <a href="https://HyBox.netlify.app" target="_blank" class="text-primary flex items-center gap-1"><i class='bx bx-globe'></i> HyBox.netlify.app</a>
-        </div>
-      </div>
-      <div class="card-glass p-8 rounded-3xl text-center" data-aos="fade-left">
-        <i class='bx bx-code-alt text-5xl text-primary'></i>
-        <h3 class="text-2xl font-bold mt-3">Open Source & Free APIs</h3>
-        <p class="mt-2">Powered by Fawazahmed0 Currency API, WorldTimeAPI, Free Dictionary API, PicoApps LLM, KaTeX, Marked.js.</p>
-        <div class="flex justify-center gap-3 mt-4"><span class="px-3 py-1 rounded-full bg-surfaceVariant text-xs">MIT License</span><span class="px-3 py-1 rounded-full bg-surfaceVariant text-xs">Android 8+</span></div>
-      </div>
-    </div>
-  </section>
 </main>
 
-<footer class="border-t border-outlineVariant py-8 text-center text-sm opacity-75">
-  <p>© 2026 Calc OS — Material Design 3 · Made with precision & AI</p>
-  <div class="flex justify-center gap-5 mt-3">
-    <a href="https://github.com/hyboxteam/Calc-OS" class="hover:text-primary"><i class='bx bxl-github text-xl'></i></a>
-    <a href="https://m-awais.netlify.app" class="hover:text-primary">M Awais</a>
-    <a href="https://HyBox.netlify.app" class="hover:text-primary">HyBox Studio</a>
+<footer class="mt-12 border-t border-outlineVariant py-10 text-center text-sm opacity-70">
+  <img src="https://i.ibb.co/9mCLg4St/1000179885.jpg" class="w-10 h-10 rounded-lg mx-auto mb-4 grayscale opacity-50">
+  <p>© 2026 Calc OS · Developed honestly by <a href="https://HyBox.netlify.app" target="_blank" class="font-bold hover:underline">HyBox Studio</a></p>
+  <div class="flex justify-center gap-6 mt-4">
+    <a href="https://github.com/hyboxteam/Calc-OS" class="hover:text-primary transition"><i class='bx bxl-github text-xl'></i></a>
+    <a href="mailto:mail.hybox@gmail.com" class="hover:text-primary transition"><i class='bx bx-envelope text-xl'></i></a>
   </div>
 </footer>
 
 <script>
-  // Cookie Consent Logic
-  const cookieBanner = document.getElementById('cookieConsent');
-  if (localStorage.getItem('cookieConsent') === 'accepted') {
-    cookieBanner.style.display = 'none';
-  } else if (localStorage.getItem('cookieConsent') === 'declined') {
-    cookieBanner.style.display = 'none';
-    localStorage.removeItem('calcos_web_theme');
-    localStorage.removeItem('calcos_stats');
-  }
-  document.getElementById('acceptCookies')?.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    cookieBanner.style.display = 'none';
-    // enable analytics only after consent (not collecting anyway but consistent)
-  });
-  document.getElementById('declineCookies')?.addEventListener('click', () => {
-    localStorage.setItem('cookieConsent', 'declined');
-    localStorage.clear();
-    cookieBanner.style.display = 'none';
-    location.reload();
-  });
-
-  // Theme toggle with Boxicons & Lucide fallback (but we use Boxicons)
+  // Theme Toggle Logic
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const themeIcon = document.getElementById('themeIcon');
   let isDark = localStorage.getItem('calcos_web_theme') === 'dark';
+  
   function setTheme(dark) {
     if (dark) {
       root.classList.add('dark');
-      themeIcon.className = 'bx bx-sun';
+      themeIcon.className = 'bx bx-sun text-2xl';
       localStorage.setItem('calcos_web_theme', 'dark');
     } else {
       root.classList.remove('dark');
-      themeIcon.className = 'bx bx-moon';
+      themeIcon.className = 'bx bx-moon text-2xl';
       localStorage.setItem('calcos_web_theme', 'light');
     }
   }
+
+  // Init Theme
   if (localStorage.getItem('calcos_web_theme') === 'dark' || (!localStorage.getItem('calcos_web_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     setTheme(true);
   } else {
     setTheme(false);
   }
+
   themeToggle.addEventListener('click', () => {
     isDark = !isDark;
     setTheme(isDark);
   });
 
-  // KaTeX rendering for preview
-  if (typeof renderMathInElement !== 'undefined') {
-    renderMathInElement(document.getElementById('mathDemo'), {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '\\[', right: '\\]', display: true},
-        {left: '$', right: '$', display: false},
-        {left: '\\(', right: '\\)', display: false}
-      ], throwOnError: false
-    });
-  } else {
-    setTimeout(() => {
-      if (typeof renderMathInElement !== 'undefined') renderMathInElement(document.getElementById('mathDemo'), {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}], throwOnError: false});
-    }, 300);
-  }
-
   // AOS init
-  AOS.init({ duration: 800, once: true, offset: 100 });
+  AOS.init({ duration: 600, once: true, offset: 50 });
 
-  // Ensure boxicons are visible and apply any manual fix for GitHub icon
-  document.querySelectorAll('i').forEach(el => {
-    if (el.className.includes('bxl-github')) el.style.fontSize = '1.3rem';
+  // Ripple Effect Logic for buttons
+  document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+    button.addEventListener('mousedown', function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      // Dynamic size based on button
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.transform = `translate(-50%, -50%) scale(0)`;
+      
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
   });
-  
-  // Preload OG image for better performance
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = 'https://i.ibb.co/vvZDPxPD/untitled-1774790566315-1.png';
-  document.head.appendChild(link);
+
+  // Interactive AI Math Preview Logic
+  window.addEventListener('load', () => {
+    const input = document.getElementById('mathInput');
+    const output = document.getElementById('mathOutput');
+
+    function renderMath() {
+      if (typeof katex !== 'undefined') {
+        try {
+          // Render the math using KaTeX
+          katex.render(input.value, output, {
+            throwOnError: false,
+            displayMode: true
+          });
+          output.style.opacity = 1;
+        } catch (e) {
+          console.error("KaTeX error:", e);
+        }
+      } else {
+        // Fallback or retry if KaTeX hasn't loaded yet
+        setTimeout(renderMath, 200);
+      }
+    }
+
+    // Initial render
+    renderMath();
+
+    // Listen to user input to update live
+    input.addEventListener('input', () => {
+      // Add a tiny micro-interaction fade
+      output.style.opacity = 0.5;
+      setTimeout(renderMath, 150);
+    });
+  });
 </script>
 </body>
 </html>

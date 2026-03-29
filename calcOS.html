@@ -267,7 +267,34 @@
     </div>
   </section>
 
+            <!-- Interactive AI Math Preview -->
+  <section class="mt-16" data-aos="zoom-in">
+    <h2 class="text-2xl font-bold mb-6">AI Math Assistant Demo</h2>
+    <div class="rounded-[2rem] p-6 md:p-8 border border-outlineVariant shadow-sm" style="background: var(--md-surface-variant);">
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <div class="flex-1 w-full">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-onPrimary">
+              <i class='bx bxs-bot text-xl'></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg leading-tight">CalcBot Preview</h3>
+              <p class="text-xs opacity-70">Powered by KaTeX</p>
+            </div>
+          </div>
           
+          <label class="text-sm font-semibold opacity-80 pl-1">Type an equation (LaTeX supported):</label>
+          <input type="text" id="mathInput" value="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" 
+                 class="w-full mt-2 p-4 rounded-2xl border border-outlineVariant outline-none transition-all focus:border-primary font-mono text-sm"
+                 style="background: var(--md-surface); color: var(--md-on-surface);">
+                 
+          <div class="mt-4 p-6 rounded-2xl min-h-[120px] flex items-center justify-center overflow-x-auto shadow-inner bg-surface text-onSurface" style="background: var(--md-surface);">
+            <div id="mathOutput" class="text-xl md:text-2xl transition-all duration-300"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
         
 
   <!-- Ratings & Reviews (Testimonials) -->

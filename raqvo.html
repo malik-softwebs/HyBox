@@ -1,577 +1,717 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raqvo | Move faster than the market</title>
+    <title>Raqvo | Move faster than the market.</title>
+    <meta name="description" content="Raqvo is a high-speed POS software where shopkeepers and business owners can easily keep all their accounts. Purchase once, no monthly fees.">
     
-    <!-- SEO & Open Graph Tags -->
-    <meta name="description" content="Raqvo is a high-speed POS decoupling engine where shopkeepers can effortlessly manage inventory, pricing, and business intelligence. Move faster than the market.">
-    
-    <!-- Fonts: Space Grotesk (Heading) & Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- BoxIcons CDN -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
-    <!-- Lucide Icons Library -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#7C3AED',
-                        success: '#00F59B',
-                        warning: '#F97316',
-                        darkBg: '#0F172A',
-                        darkSurface: '#1E293B',
-                        lightBg: '#F1F5F9',
-                        lightSurface: '#FFFFFF'
-                    },
-                    fontFamily: {
-                        heading:['Space Grotesk', 'sans-serif'],
-                        body:['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        /* Overrides */
+        /* 1. CSS VARIABLES & THEME SETUP */
+        :root {
+            /* Light Theme Default */
+            --bg-color: #F1F5F9;
+            --surface-color: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --brand-primary: #7C3AED;
+            --brand-secondary: #5B21B6;
+            --success: #00F59B;
+            --warning: #F97316;
+            --border-color: #E2E8F0;
+            --blob-1: rgba(124, 58, 237, 0.3);
+            --blob-2: rgba(0, 245, 155, 0.3);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0F172A;
+            --surface-color: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --brand-primary: #7C3AED;
+            --brand-secondary: #A78BFA;
+            --success: #00F59B;
+            --warning: #F97316;
+            --border-color: #334155;
+            --blob-1: rgba(124, 58, 237, 0.2);
+            --blob-2: rgba(0, 245, 155, 0.15);
+            --nav-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        /* 2. RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-        h1, h2, h3, h4, h5, h6, .font-heading {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #7C3AED;
-            border-radius: 10px;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .dark .glass {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Animated Blobs */
+        h1 { font-size: 4rem; line-height: 1.1; font-style: italic; }
+        h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--brand-primary); }
+        h3 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 3. NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+        }
+
+        .logo-container svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--brand-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* 4. HERO SECTION WITH ANIMATED BLOBS */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .blob-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
         .blob {
             position: absolute;
             filter: blur(80px);
+            animation: move-blobs 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--blob-1);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: var(--blob-2);
+            border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes move-blobs {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(10%, 20%) scale(1.1) rotate(180deg); }
+            100% { transform: translate(-10%, -10%) scale(0.9) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero .subtext {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--brand-primary);
+            color: #fff;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        /* 5. SECTIONS BASE */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .surface-card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        /* 6. HOW WE WORK (STEPS) */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--brand-primary);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--border-color);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            line-height: 1;
             z-index: 0;
-            opacity: 0.5;
-            animation: float 12s infinite alternate ease-in-out;
-            border-radius: 50%;
-        }
-        .blob-1 { width: 350px; height: 350px; background: #7C3AED; top: -5%; left: -5%; }
-        .blob-2 { width: 250px; height: 250px; background: #00F59B; bottom: -5%; right: -5%; animation-delay: -4s; }
-        .blob-3 { width: 200px; height: 200px; background: #F97316; top: 50%; left: 50%; animation-delay: -8s; opacity: 0.2; }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -50px) scale(1.1); }
-            100% { transform: translate(-40px, 40px) scale(0.9); }
         }
 
-        @media (hover: none) {
-            .no-mobile-hover:hover {
-                transform: none !important;
-                box-shadow: none !important;
+        .step-card h3, .step-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 7. PHILOSOPHY & DIFFERENCE */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .feature-list i {
+            color: var(--success);
+            font-size: 1.5rem;
+            margin-top: 2px;
+        }
+
+        /* 8. TEAM SECTION */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--brand-primary);
+            background: var(--border-color);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info p {
+            font-size: 0.85rem;
+            color: var(--brand-primary);
+            font-weight: 900;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* 9. FOOTER & CONTACT */
+        footer {
+            background: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-color);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        /* 10. RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            .split-layout { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 1px solid var(--border-color);
             }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            h1 { font-size: 2.5rem; }
+            .step-card { padding: 1.5rem; }
+            section { padding: 4rem 0; }
+        }
+
+        /* Scroll Animations Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-lightBg text-gray-900 dark:bg-darkBg dark:text-gray-100 transition-colors duration-500 overflow-x-hidden">
+<body>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-3">
-                    <svg width="40" height="40" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="500" height="500" fill="transparent"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M120 115 H320 L360 155 V255 L320 295 L380 385 H320 L260 295 H180 V385 H120 V235 L180 175 H120 V115 Z M180 175 H280 L300 195 V215 L280 235 H180 V175 Z" fill="#7C3AED"/>
-                    </svg>
-                    <span class="font-heading font-extrabold text-2xl tracking-tight uppercase">Raqvo</span>
-                </div>
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo-container">
+                <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="
+                    M120 115 H320 L360 155 V255 L320 295 L380 385 H320 L260 295 H180 V385 H120 V235 L180 175 H120 V115 Z 
+                    M180 175 H280 L300 195 V215 L280 235 H180 V175 Z" fill="var(--brand-primary)"/>
+                </svg>
+                RAQVO
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#why-us">Why We</a></li>
+                <li><a href="#philosophy">Philosophy</a></li>
+                <li><a href="#contributors">Contributors</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex space-x-8 items-center">
-                    <a href="#home" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">Home</a>
-                    <a href="#about" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">About</a>
-                    <a href="#how-we-work" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">How It Works</a>
-                    <a href="#why-we" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">Why Us</a>
-                    <a href="#philosophy" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">Philosophy</a>
-                    <a href="#contributors" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">Team</a>
-                    <a href="#contact" class="text-sm font-bold hover:text-brand transition-colors duration-300 uppercase tracking-wide">Contact</a>
-                    
-                    <!-- Theme Toggle -->
-                    <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800 transition-colors hover:scale-110">
-                        <i data-lucide="moon" id="moonIcon" class="w-5 h-5 hidden dark:block text-yellow-400"></i>
-                        <i data-lucide="sun" id="sunIcon" class="w-5 h-5 block dark:hidden text-gray-800"></i>
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="lg:hidden flex items-center gap-4">
-                    <button id="mobileThemeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800">
-                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block text-yellow-400 mobileMoonIcon"></i>
-                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden text-gray-800 mobileSunIcon"></i>
-                    </button>
-                    <button id="mobileMenuBtn" class="text-gray-900 dark:text-white">
-                        <i data-lucide="menu" class="w-8 h-8"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-lightSurface dark:bg-darkSurface border-t border-gray-200 dark:border-gray-800 absolute w-full shadow-2xl">
-            <div class="px-4 pt-2 pb-6 flex flex-col space-y-4 text-center">
-                <a href="#home" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">Home</a>
-                <a href="#about" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">About</a>
-                <a href="#how-we-work" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">How It Works</a>
-                <a href="#why-we" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">Why Us</a>
-                <a href="#philosophy" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">Philosophy</a>
-                <a href="#contributors" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">Team</a>
-                <a href="#contact" class="mobile-link text-base font-extrabold uppercase tracking-wide py-2 hover:text-brand">Contact</a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+                    <i class='bx bx-moon'></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class='bx bx-menu'></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header id="home" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-24 px-4">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-
-        <div class="relative z-10 max-w-5xl mx-auto text-center w-full" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full border-2 border-brand/40 bg-brand/10 text-brand font-bold text-xs sm:text-sm tracking-widest uppercase shadow-lg">
-                <i class='bx bxs-flask text-lg'></i> Currently in Development — May 2026
-            </div>
-            <h1 class="text-5xl sm:text-6xl lg:text-8xl font-heading font-black leading-[1.1] mb-8 text-gray-900 dark:text-white drop-shadow-sm">
-                MOVE FASTER THAN <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand via-purple-500 to-success">THE MARKET.</span>
-            </h1>
-            <p class="text-lg sm:text-2xl font-semibold text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
-                Powered by the High-Speed Decoupling Engine to sync prices across your entire store in milliseconds.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm sm:text-base font-bold text-gray-600 dark:text-gray-400">
-                <span class="flex items-center gap-2"><i class='bx bx-x-circle text-brand text-xl'></i> No Subscriptions</span>
-                <span class="hidden sm:block text-gray-300 dark:text-gray-700">|</span>
-                <span class="flex items-center gap-2"><i class='bx bx-shield-quarter text-success text-xl'></i> Complete Privacy</span>
-                <span class="hidden sm:block text-gray-300 dark:text-gray-700">|</span>
-                <span class="flex items-center gap-2"><i class='bx bx-purchase-tag-alt text-warning text-xl'></i> One-Time Purchase</span>
-            </div>
+    <section id="home" class="hero">
+        <div class="blob-container">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
         </div>
-    </header>
+        <div class="container hero-content reveal">
+            <span class="tag">Currently in Development</span>
+            <h1>MOVE FASTER THAN<br>THE MARKET.</h1>
+            <p class="subtext">Powered by the High-Speed Decoupling Engine to sync prices across your entire store in milliseconds.</p>
+            <p>Raqvo is a software where shopkeepers and business owners can easily keep all their accounts. There is no need to buy expensive software or pay money every month. Your account is yours, no one can see yours. Inventory management, barcode and QR scanning, and many more features. Purchase Raqvo just once and earn and enjoy your profits comfortably for the rest of your life.</p>
+        </div>
+    </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-16 md:py-28 bg-lightSurface dark:bg-darkSurface transition-colors duration-500 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="text-sm font-black text-brand tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <i data-lucide="cpu" class="w-5 h-5"></i> About Raqvo
-                    </h2>
-                    <h3 class="text-4xl sm:text-5xl font-heading font-extrabold mb-6 text-gray-900 dark:text-white leading-tight">The Muscle Behind The Operations</h3>
-                    <p class="text-gray-700 dark:text-gray-300 font-medium text-lg leading-relaxed mb-6">
-                        As an AI-first product lab, <a href="https://hybox.netlify.app" target="_blank" class="text-brand font-bold underline hover:text-purple-500">HyBox</a> is the "Mind" where ideas are architected, while <strong>Raqvo</strong> is the "Muscle"—a practical, high-performance engine built to empower retailers and developers with zero-budget constraints.
-                    </p>
-                    <p class="text-gray-700 dark:text-gray-300 font-medium text-lg leading-relaxed">
-                        There is no need to buy expensive software or pay monthly fees. Your account is yours. Purchase Raqvo just once and earn your profits comfortably for the rest of your life.
-                    </p>
-                </div>
-                
-                <div class="relative rounded-3xl overflow-hidden glass p-8 sm:p-10 shadow-2xl" data-aos="fade-left">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand/20 to-success/10 z-0"></div>
-                    <div class="relative z-10 space-y-8">
-                        <div class="flex items-center gap-5">
-                            <div class="w-14 h-14 rounded-xl bg-brand/20 flex items-center justify-center text-brand shadow-inner">
-                                <i class='bx bx-package text-3xl'></i>
-                            </div>
-                            <h4 class="font-heading font-extrabold text-xl sm:text-2xl">Inventory Management</h4>
-                        </div>
-                        <div class="flex items-center gap-5">
-                            <div class="w-14 h-14 rounded-xl bg-success/20 flex items-center justify-center text-success shadow-inner">
-                                <i class='bx bx-barcode-reader text-3xl'></i>
-                            </div>
-                            <h4 class="font-heading font-extrabold text-xl sm:text-2xl">Barcode & QR Scanning</h4>
-                        </div>
-                        <div class="flex items-center gap-5">
-                            <div class="w-14 h-14 rounded-xl bg-warning/20 flex items-center justify-center text-warning shadow-inner">
-                                <i class='bx bx-sync text-3xl'></i>
-                            </div>
-                            <h4 class="font-heading font-extrabold text-xl sm:text-2xl">Instant Auto-Sync</h4>
-                        </div>
-                    </div>
-                </div>
+    <section id="about" class="container reveal">
+        <div class="surface-card">
+            <h2>The Brain & The Muscle</h2>
+            <p style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">As an AI-first product lab, <a href="https://hybox.netlify.app" target="_blank" style="color: var(--brand-primary); text-decoration: underline;">HyBox</a> is the "Mind" where ideas are architected, while Raqvo is the "Muscle"—a practical, high-performance engine built to empower retailers and developers with zero-budget constraints.</p>
+            <p>We are building an ecosystem designed strictly for efficiency. No bloated dashboards, no recurring SaaS subscriptions, just raw execution to empower the local shopkeeper.</p>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="container reveal">
+        <div class="section-header">
+            <h2>How We Work</h2>
+            <p>Data-Label Decoupling ke asool par chalta engine</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-number">01</span>
+                <h3>Static Label Generation</h3>
+                <p>Sab se pehle, shopkeeper har product ke liye aik unique barcode generate karta hai. <strong>Unique ID:</strong> Yeh barcode sirf aik Product ID (SKU) store karta hai, qeemat nahi. <strong>One-Time Print:</strong> Aap ko sticker sirf aik dafa print kar ke lagana parta hai.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">02</span>
+                <h3>The Cloud Brain</h3>
+                <p>Jab shopkeeper system mein kisi item ki detail daltay hain, toh qeemat database mein store ho jati hai. <strong>Dynamic Control:</strong> Market mein qeemat barhti hai, toh sirf dashboard se qeemat tabdeel karni parti hai. <strong>Real-time Update:</strong> System foran nayi qeemat dikhane lagta hai.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">03</span>
+                <h3>High-Speed Interaction</h3>
+                <p>Jab customer counter par ata hai: <strong>Instant Scan:</strong> Barcode reader sticker ko scan karta hai. <strong>Assembly-Level Fetching:</strong> Raqvo engine foran database se latest price uthata hai. <strong>Bidirectional Action:</strong> Bill generate hota hai aur stock update ho jata hai.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-number">04</span>
+                <h3>Smart Monitoring</h3>
+                <p>Background tasks: <strong>Expiry Watchman:</strong> Stock ki dates check karta hai aur expiry alerts bhejta hai. <strong>Business Intelligence:</strong> Har sale ke sath, real-time mein total revenue aur munafa (profit) dikhata rehta hai.</p>
             </div>
         </div>
     </section>
 
-    <!-- HOW WE WORK -->
-    <section id="how-we-work" class="py-16 md:py-28 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto mb-16" data-aos="fade-up">
-                <h2 class="text-sm font-black text-brand tracking-widest uppercase mb-4 flex justify-center items-center gap-2">
-                    <i data-lucide="settings-2" class="w-5 h-5"></i> The Process
-                </h2>
-                <h3 class="text-4xl sm:text-5xl font-heading font-black mb-6 text-gray-900 dark:text-white uppercase">Data-Label Decoupling Engine</h3>
-                <p class="text-gray-700 dark:text-gray-300 font-medium text-lg">
-                    Raqvo ka kaam karne ka tareeqa aam POS systems se bilkul mukhtalif aur behtar hai. Yeh <strong>"Data-Label Decoupling"</strong> ke asool par chalta hai, jis ka matlab hai ke item par laga hua sticker aur system mein mojood qeemat aik dusre se azad hain.
-                </p>
+    <section id="why-us" class="container reveal">
+        <div class="split-layout">
+            <div>
+                <h2>What Makes Us Different</h2>
+                <p>Raqvo stands out from traditional POS systems by replacing rigid hardware-dependent workflows with a high-performance, flexible digital engine. Standard systems require re-printing every item when prices change. Raqvo introduces Data-Label Decoupling.</p>
+                <p>Built by HyBox, it prioritizes execution over complex software. Engineered in Vanilla JS to ensure an "Assembly-level" feel, providing direct instantaneous hardware interaction without the lag found in heavy frameworks.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                <!-- Step 1 -->
-                <div class="bg-lightSurface dark:bg-darkSurface p-8 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-800 transition-transform duration-300 lg:hover:-translate-y-3 no-mobile-hover relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-                    <i class='bx bx-printer absolute -right-4 -bottom-4 text-[120px] text-gray-100 dark:text-gray-800/50 z-0'></i>
-                    <div class="relative z-10">
-                        <div class="text-6xl font-heading font-black text-brand mb-4">01</div>
-                        <h4 class="text-2xl font-extrabold mb-3 text-gray-900 dark:text-white">Static Label Generation</h4>
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">Sab se pehle, shopkeeper har product ke liye aik unique barcode generate karta hai.</p>
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-brand mt-0.5'></i> <span>Unique ID stored, not price.</span></li>
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-brand mt-0.5'></i> <span>One-Time Print setup.</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Step 2 -->
-                <div class="bg-lightSurface dark:bg-darkSurface p-8 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-800 transition-transform duration-300 lg:hover:-translate-y-3 no-mobile-hover relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-                    <i class='bx bx-cloud absolute -right-4 -bottom-4 text-[120px] text-gray-100 dark:text-gray-800/50 z-0'></i>
-                    <div class="relative z-10">
-                        <div class="text-6xl font-heading font-black text-success mb-4">02</div>
-                        <h4 class="text-2xl font-extrabold mb-3 text-gray-900 dark:text-white">The Cloud Brain</h4>
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">Qeemat (price) dukan ke digital database mein store ho jati hai.</p>
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-success mt-0.5'></i> <span>Dynamic price control.</span></li>
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-success mt-0.5'></i> <span>Real-time store updates.</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Step 3 -->
-                <div class="bg-lightSurface dark:bg-darkSurface p-8 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-800 transition-transform duration-300 lg:hover:-translate-y-3 no-mobile-hover relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-                    <i class='bx bx-bolt-circle absolute -right-4 -bottom-4 text-[120px] text-gray-100 dark:text-gray-800/50 z-0'></i>
-                    <div class="relative z-10">
-                        <div class="text-6xl font-heading font-black text-warning mb-4">03</div>
-                        <h4 class="text-2xl font-extrabold mb-3 text-gray-900 dark:text-white">High-Speed Interaction</h4>
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">Jab customer item counter par lata hai, transaction execute hoti hai.</p>
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-warning mt-0.5'></i> <span>Instant sticker scan.</span></li>
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-warning mt-0.5'></i> <span>Assembly-Level fetching.</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Step 4 -->
-                <div class="bg-lightSurface dark:bg-darkSurface p-8 rounded-3xl shadow-xl border-2 border-gray-100 dark:border-gray-800 transition-transform duration-300 lg:hover:-translate-y-3 no-mobile-hover relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
-                    <i class='bx bx-line-chart absolute -right-4 -bottom-4 text-[120px] text-gray-100 dark:text-gray-800/50 z-0'></i>
-                    <div class="relative z-10">
-                        <div class="text-6xl font-heading font-black text-brand mb-4">04</div>
-                        <h4 class="text-2xl font-extrabold mb-3 text-gray-900 dark:text-white">Smart Monitoring</h4>
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">System background mein intelligence aur alerts manage karta hai.</p>
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-brand mt-0.5'></i> <span>Expiry Watchman alerts.</span></li>
-                            <li class="flex items-start gap-2"><i class='bx bx-check-circle text-brand mt-0.5'></i> <span>Real-time revenue tracking.</span></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="surface-card">
+                <h3>Core Advantages</h3>
+                <ul class="feature-list">
+                    <li><i class='bx bx-check-circle'></i> Data-Label Decoupling Engine</li>
+                    <li><i class='bx bx-check-circle'></i> Zero Monthly Subscriptions (One-time purchase)</li>
+                    <li><i class='bx bx-check-circle'></i> Vanilla JS Assembly-Level Performance</li>
+                    <li><i class='bx bx-check-circle'></i> Comprehensive Business Intelligence Hub</li>
+                    <li><i class='bx bx-check-circle'></i> Automated Expiry Alerts</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- WHY WE (WHAT MAKES US DIFFERENT) -->
-    <section id="why-we" class="py-16 md:py-28 bg-[#11052C] text-white relative overflow-hidden z-10">
-        <!-- Decorative Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
+    <section id="philosophy" class="container reveal">
+        <div class="surface-card" style="text-align: center;">
+            <h2>Team Philosophy</h2>
+            <p style="max-width: 800px; margin: 0 auto;">The philosophy of Raqvo is deeply rooted in the core values of the HyBox product lab: <em>speed, execution, and absolute clarity</em>. We believe that in a rapidly shifting economic landscape, the ability to pivot and update is the ultimate competitive advantage. This is why Raqvo is built on the principle of <strong>"Move Faster Than Market,"</strong> prioritizing real-time agility over manual processes. At Raqvo, we value Function Over Hype and Execution Over Ideas.</p>
         </div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-5" data-aos="fade-right">
-                    <h2 class="text-sm font-black text-success tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <i data-lucide="zap" class="w-5 h-5"></i> Why Us
-                    </h2>
-                    <h3 class="text-5xl lg:text-6xl font-heading font-black mb-6 uppercase leading-none">Industrial Grade.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-success">Assembly Feel.</span></h3>
-                </div>
-                <div class="lg:col-span-7 space-y-6 text-gray-300 font-medium text-lg leading-relaxed" data-aos="fade-left">
-                    <p>
-                        Raqvo stands out from traditional point-of-sale systems by replacing rigid hardware-dependent workflows with a high-performance, flexible digital engine. Standard systems require manual labor—re-printing and re-stickering items when prices change. Raqvo's <strong class="text-white">Data-Label Decoupling</strong> architecture allows retailers to "Move Faster Than Market," updating an entire store’s pricing in milliseconds with a single digital change.
-                    </p>
-                    <p>
-                        Built by the HyBox product lab, Raqvo prioritizes execution and speed over bloated software. Engineered using <strong class="text-white">Vanilla JS</strong> for an "Assembly-level" feel, it provides instantaneous hardware interaction with barcode scanners and thermal printers without the lag of heavy frameworks. Every second at the counter counts.
-                    </p>
-                    <p>
-                        It functions as a comprehensive Business Intelligence hub integrating real-time inventory tracking, automated expiry alerts, and detailed profit-and-loss analytics. We removed the "hardware tax" and monthly subscription barriers to empower independent shopkeepers with professional-grade automation.
-                    </p>
-                </div>
+    <section id="direction" class="container reveal">
+        <div class="split-layout">
+            <div>
+                <h2>Long-Term Direction</h2>
+                <p>Raqvo ki long-term direction aik aise ecosystem ki tameer hai jahan retail automation sirf baray stores tak mahdood na rahe. Hum Raqvo ko mukammal retail operating system banana chahte hain.</p>
+                <ul class="feature-list">
+                    <li><i class='bx bx-globe'></i> <strong>Global Scalability:</strong> Pakistan se shuruat, international scale.</li>
+                    <li><i class='bx bx-brain'></i> <strong>AI-Driven Inventory:</strong> Predict karna ke aage kya mangwana hai.</li>
+                    <li><i class='bx bx-laptop'></i> <strong>Hardware-Agnostic:</strong> Kisi bhi purane laptop par chalao.</li>
+                    <li><i class='bx bx-network-chart'></i> <strong>Decentralized Network:</strong> Dukan-daron ka digital sync network.</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Who This Is For</h2>
+                <ul class="feature-list">
+                    <li><i class='bx bxs-user-badge'></i> <strong>Independent Shopkeepers:</strong> Small to medium scale retailers tired of complex POS.</li>
+                    <li><i class='bx bx-trending-up'></i> <strong>High-Inflation Markets:</strong> Update prices instantly without re-stickering.</li>
+                    <li><i class='bx bx-code-alt'></i> <strong>Zero-Budget Developers:</strong> Blueprint for Vanilla JS hardware integration.</li>
+                    <li><i class='bx bx-time-five'></i> <strong>Efficiency-Focused Retailers:</strong> Minimize waste, maximize profit.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- PHILOSOPHY & DIRECTION -->
-    <section id="philosophy" class="py-16 md:py-28 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-                <!-- Philosophy -->
-                <div data-aos="fade-up">
-                    <h2 class="text-sm font-black text-brand tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <i data-lucide="compass" class="w-5 h-5"></i> Team Philosophy
-                    </h2>
-                    <h3 class="text-4xl sm:text-5xl font-heading font-black mb-6 uppercase text-gray-900 dark:text-white">Execution Over Ideas</h3>
-                    <div class="text-gray-700 dark:text-gray-300 font-medium text-lg leading-relaxed space-y-6">
-                        <p>
-                            Deeply rooted in the core values of the HyBox product lab: <strong class="text-gray-900 dark:text-white">speed, execution, and absolute clarity.</strong> In a rapidly shifting economic landscape, the ability to pivot and update is the ultimate competitive advantage.
-                        </p>
-                        <p>
-                            We value <em class="text-brand font-bold">Function Over Hype</em>. Our engineering philosophy favors "low-level" performance, utilizing Vanilla JS to create a lean, high-speed engine that talks directly to hardware. Every feature is a practical tool for growth. Our goal is to democratize professional-grade automation.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Direction -->
-                <div data-aos="fade-up" data-aos-delay="200" class="glass p-8 sm:p-10 rounded-3xl border-l-8 border-l-success shadow-xl">
-                    <h2 class="text-sm font-black text-success tracking-widest uppercase mb-4 flex items-center gap-2">
-                        <i data-lucide="target" class="w-5 h-5"></i> Long-Term Direction
-                    </h2>
-                    <h3 class="text-3xl sm:text-4xl font-heading font-black mb-8 uppercase text-gray-900 dark:text-white">Decentralized Retail Network</h3>
-                    <ul class="space-y-6 text-gray-700 dark:text-gray-300 font-semibold">
-                        <li class="flex gap-4">
-                            <i class='bx bx-globe text-2xl text-success'></i>
-                            <span><strong class="text-gray-900 dark:text-white block mb-1">Global Scalability with Local Roots:</strong> Shuruat Pakistan ki local market se, lekin architecture globally scale hone ke liye tayyar.</span>
-                        </li>
-                        <li class="flex gap-4">
-                            <i class='bx bx-brain text-2xl text-success'></i>
-                            <span><strong class="text-gray-900 dark:text-white block mb-1">AI-Driven Predictive Inventory:</strong> Future mein AI layers jo predict karengi ke aage kya mangwana chahiye.</span>
-                        </li>
-                        <li class="flex gap-4">
-                            <i class='bx bx-laptop text-2xl text-success'></i>
-                            <span><strong class="text-gray-900 dark:text-white block mb-1">Hardware-Agnostic Ecosystem:</strong> Kisi bhi purane laptop ya saste tablet ko powerful engine mein tabdeel karein.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <section id="contributors" class="container reveal">
+        <div class="section-header">
+            <h2>The Brains Behind The Muscle</h2>
+            <p>HyBox Product Lab Core Team - Expected Release May 1, 2026</p>
         </div>
+        <div class="team-grid" id="teamContainer">
+            </div>
     </section>
 
-    <!-- WHO THIS IS FOR -->
-    <section class="py-16 md:py-28 bg-lightSurface dark:bg-darkSurface relative z-10 border-t border-b border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                <h2 class="text-4xl sm:text-5xl font-heading font-black mb-6 text-gray-900 dark:text-white uppercase">Who Is This For?</h2>
-                <p class="text-gray-700 dark:text-gray-300 font-medium text-lg">Raqvo is specifically designed for a niche yet vital segment of the retail and development landscape:</p>
+    <footer id="contact">
+        <div class="container reveal">
+            <div class="footer-content">
+                <h2>Ready to move faster?</h2>
+                <p>Currently in development. Get in touch with the HyBox team.</p>
+                <a href="mailto:mail.hybox@gmail.com" class="contact-box">
+                    <i class='bx bx-envelope'></i> mail.hybox@gmail.com
+                </a>
+                <a href="https://github.com/hyboxteam" target="_blank" class="contact-box" style="margin-top: 10px;">
+                    <i class='bx bxl-github'></i> @hyboxteam
+                </a>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card -->
-                <div class="p-8 rounded-2xl bg-lightBg dark:bg-darkBg border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow" data-aos="zoom-in" data-aos-delay="0">
-                    <i class='bx bx-store-alt text-4xl text-warning mb-4'></i>
-                    <h4 class="font-extrabold text-xl mb-3 text-gray-900 dark:text-white">Independent Shopkeepers</h4>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Small to medium-scale retailers who need professional-grade automation without the high costs and complexity.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 rounded-2xl bg-lightBg dark:bg-darkBg border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow" data-aos="zoom-in" data-aos-delay="100">
-                    <i class='bx bx-trending-up text-4xl text-warning mb-4'></i>
-                    <h4 class="font-extrabold text-xl mb-3 text-gray-900 dark:text-white">High-Inflation Markets</h4>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Businesses that need to update prices instantly across inventory without the manual labor of re-stickering.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 rounded-2xl bg-lightBg dark:bg-darkBg border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow" data-aos="zoom-in" data-aos-delay="200">
-                    <i class='bx bx-code-block text-4xl text-warning mb-4'></i>
-                    <h4 class="font-extrabold text-xl mb-3 text-gray-900 dark:text-white">Zero-Budget Developers</h4>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">A blueprint for developers implementing high-performance solutions using lean technologies like Vanilla JS.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 rounded-2xl bg-lightBg dark:bg-darkBg border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow md:col-start-1 lg:col-start-2" data-aos="zoom-in" data-aos-delay="300">
-                    <i class='bx bx-time-five text-4xl text-warning mb-4'></i>
-                    <h4 class="font-extrabold text-xl mb-3 text-gray-900 dark:text-white">Efficiency-Focused Retailers</h4>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">For those prioritizing speed, real-time Business Intelligence, and automated alerts to maximize profit.</p>
-                </div>
-                <!-- Card -->
-                <div class="p-8 rounded-2xl bg-lightBg dark:bg-darkBg border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-lg transition-shadow" data-aos="zoom-in" data-aos-delay="400">
-                    <i class='bx bx-rocket text-4xl text-warning mb-4'></i>
-                    <h4 class="font-extrabold text-xl mb-3 text-gray-900 dark:text-white">HyBox Early Adopters</h4>
-                    <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Builders and users who align with the philosophy: "Build fast, test in real conditions, improve based on results".</p>
-                </div>
+            <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
+                <svg width="30" height="30" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="
+                    M120 115 H320 L360 155 V255 L320 295 L380 385 H320 L260 295 H180 V385 H120 V235 L180 175 H120 V115 Z 
+                    M180 175 H280 L300 195 V215 L280 235 H180 V175 Z" fill="var(--brand-primary)"/>
+                </svg>
+                HyBox
             </div>
-        </div>
-    </section>
-
-    <!-- CONTRIBUTORS -->
-    <section id="contributors" class="py-16 md:py-28 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                <h2 class="text-sm font-black text-brand tracking-widest uppercase mb-4 flex justify-center items-center gap-2">
-                    <i data-lucide="users" class="w-5 h-5"></i> The Team
-                </h2>
-                <h3 class="text-4xl sm:text-5xl font-heading font-black mb-6 text-gray-900 dark:text-white uppercase">Built by HyBox</h3>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Team Member 1 -->
-                <div class="group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative w-full aspect-square mb-6 rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-lg border-4 border-transparent lg:group-hover:border-brand transition-all duration-300">
-                        <img src="img/6.webp" alt="Muhammad Awais" onerror="this.onerror=null; this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-5xl font-heading font-black text-gray-400 bg-gray-200 dark:bg-gray-800\'>MA</div>'" class="object-cover w-full h-full transition-transform duration-500 lg:group-hover:scale-110 no-mobile-hover">
-                    </div>
-                    <h4 class="text-xl font-extrabold uppercase text-gray-900 dark:text-white text-center">Muhammad Awais</h4>
-                    <p class="text-brand text-sm font-bold tracking-widest uppercase text-center mt-1">Founder / Engineer</p>
-                </div>
-                <!-- Team Member 2 -->
-                <div class="group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative w-full aspect-square mb-6 rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-lg border-4 border-transparent lg:group-hover:border-success transition-all duration-300">
-                        <img src="img/4.webp" alt="Sawera Ehsar" onerror="this.onerror=null; this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-5xl font-heading font-black text-gray-400 bg-gray-200 dark:bg-gray-800\'>SE</div>'" class="object-cover w-full h-full transition-transform duration-500 lg:group-hover:scale-110 no-mobile-hover">
-                    </div>
-                    <h4 class="text-xl font-extrabold uppercase text-gray-900 dark:text-white text-center">Sawera Ehsar</h4>
-                    <p class="text-success text-sm font-bold tracking-widest uppercase text-center mt-1">Team Lead / Frontend</p>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative w-full aspect-square mb-6 rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-lg border-4 border-transparent lg:group-hover:border-warning transition-all duration-300">
-                        <img src="img/17.webp" alt="Usman Izhar" onerror="this.onerror=null; this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-5xl font-heading font-black text-gray-400 bg-gray-200 dark:bg-gray-800\'>UI</div>'" class="object-cover w-full h-full transition-transform duration-500 lg:group-hover:scale-110 no-mobile-hover">
-                    </div>
-                    <h4 class="text-xl font-extrabold uppercase text-gray-900 dark:text-white text-center">Usman Izhar</h4>
-                    <p class="text-warning text-sm font-bold tracking-widest uppercase text-center mt-1">Tools & Infrastructure</p>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="relative w-full aspect-square mb-6 rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-lg border-4 border-transparent lg:group-hover:border-brand transition-all duration-300">
-                        <img src="img/18.webp" alt="Muhammad Abdullah" onerror="this.onerror=null; this.outerHTML='<div class=\'w-full h-full flex items-center justify-center text-5xl font-heading font-black text-gray-400 bg-gray-200 dark:bg-gray-800\'>MA</div>'" class="object-cover w-full h-full transition-transform duration-500 lg:group-hover:scale-110 no-mobile-hover">
-                    </div>
-                    <h4 class="text-xl font-extrabold uppercase text-gray-900 dark:text-white text-center">Muhammad Abdullah</h4>
-                    <p class="text-brand text-sm font-bold tracking-widest uppercase text-center mt-1">Ideator</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT & FOOTER -->
-    <footer id="contact" class="bg-gray-50 dark:bg-[#0A0F1A] pt-16 md:pt-28 pb-10 relative z-10 border-t border-gray-200 dark:border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="text-4xl sm:text-5xl font-heading font-black mb-4 uppercase text-gray-900 dark:text-white">Ready to move faster?</h2>
-                    <p class="text-gray-600 dark:text-gray-400 font-medium text-lg mb-8 max-w-md">Connect with our team to learn more about the High-Speed Decoupling Engine.</p>
-                    
-                    <a href="mailto:mail.hybox@gmail.com" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand hover:bg-purple-600 text-white font-black text-lg rounded-full transition-colors duration-300 shadow-xl shadow-brand/30">
-                        <i data-lucide="mail" class="w-6 h-6"></i> mail.hybox@gmail.com
-                    </a>
-
-                    <!-- GitHub Card -->
-                    <div class="mt-12 bg-white dark:bg-darkSurface p-6 rounded-3xl border border-gray-200 dark:border-gray-800 shadow-lg flex items-center gap-6 w-full max-w-md transition-transform hover:-translate-y-1">
-                        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" class="w-16 h-16 rounded-full dark:invert" alt="GitHub Logo">
-                        <div>
-                            <h4 class="font-extrabold text-lg text-gray-900 dark:text-white mb-1 uppercase">Open Source</h4>
-                            <a href="https://github.com/hyboxteam" target="_blank" class="text-brand font-black text-xl hover:underline flex items-center gap-1">
-                                @hyboxteam <i data-lucide="external-link" class="w-4 h-4"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center lg:justify-end" data-aos="fade-left">
-                    <div class="opacity-10 dark:opacity-20 pointer-events-none w-full max-w-[300px] lg:max-w-[400px]">
-                        <svg width="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="500" height="500" fill="transparent"/>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M120 115 H320 L360 155 V255 L320 295 L380 385 H320 L260 295 H180 V385 H120 V235 L180 175 H120 V115 Z M180 175 H280 L300 195 V215 L280 235 H180 V175 Z" fill="#000000" class="dark:fill-white"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-                <p class="text-gray-600 dark:text-gray-400 font-medium text-sm">
-                    © 2026 <a href="https://hybox.netlify.app" target="_blank" class="text-gray-900 dark:text-white font-bold hover:text-brand transition-colors">HyBox</a>. All rights reserved.
-                </p>
-                <p class="text-gray-500 font-heading font-bold text-sm tracking-widest uppercase">
-                    Move faster than Market.
-                </p>
-            </div>
+            <p class="copyright">© 2026 HyBox. Move faster than Market.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* 1. THEME SWITCHER LOGIC */
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlTag = document.documentElement;
+            const themeIcon = themeToggle.querySelector('i');
 
-        // Initialize AOS animations
-        AOS.init({
-            once: true,
-            offset: 30,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
-
-        // Theme Toggle Logic
-        const themeToggleBtn = document.getElementById('themeToggle');
-        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-        const htmlElement = document.documentElement;
-        
-        function toggleTheme() {
-            htmlElement.classList.toggle('dark');
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.theme = 'dark';
-            } else {
-                localStorage.theme = 'light';
-            }
-        }
-
-        // Apply saved theme
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-
-        themeToggleBtn.addEventListener('click', toggleTheme);
-        mobileThemeToggle.addEventListener('click', toggleTheme);
-
-        // Mobile Menu Logic
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+            // Set default from OS or stick to light
+            let currentTheme = 'light'; 
+            
+            themeToggle.addEventListener('click', () => {
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlTag.setAttribute('data-theme', currentTheme);
+                
+                if(currentTheme === 'dark') {
+                    themeIcon.classList.remove('bx-moon');
+                    themeIcon.classList.add('bx-sun');
+                } else {
+                    themeIcon.classList.remove('bx-sun');
+                    themeIcon.classList.add('bx-moon');
+                }
             });
+
+            /* 2. MOBILE MENU LOGIC */
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            /* Close menu on link click */
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if(window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            /* 3. SCROLL REVEAL ANIMATION (Intersection Observer) */
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(reveal => revealOnScroll.observe(reveal));
+
+            /* 4. DYNAMIC TEAM RENDER (JSON Parsing & Injection) */
+            const teamJSON = [
+                {"id":"6a1e8513-af59-473d-b4a7-43eac3050775","name":"SAWERA EHSAR","role":"TEAM LEAD / FRONTEND DEVELOPER","img_url":"img/4.webp","display_order":2},
+                {"id":"7dc8be02-4903-44d2-a7f0-ce61f13b5d0d","name":"MUHAMMAD ABDULLAH","role":"IDEATOR","img_url":"img/18.webp","display_order":4},
+                {"id":"c669c153-42a3-4451-bd83-3c16f31ec88b","name":"USMAN IZHAR","role":"TOOLS & INFRASTRUCTURE","img_url":"img/17.webp","display_order":3},
+                {"id":"fccb38bf-bd0a-4a17-a3c5-b405637db256","name":"MUHAMMAD AWAIS","role":"FOUNDER / ENGINEER","img_url":"img/6.webp","display_order":1}
+            ];
+
+            // Sort team based on display_order
+            teamJSON.sort((a, b) => a.display_order - b.display_order);
+
+            const teamContainer = document.getElementById('teamContainer');
+            
+            teamJSON.forEach(member => {
+                const card = document.createElement('div');
+                card.className = 'team-member';
+                
+                // Constructing HTML for card. Using onerror fallback if img/ path is missing
+                card.innerHTML = `
+                    <img src="${member.img_url}" alt="${member.name}" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=7C3AED&color=fff&size=300';">
+                    <div class="team-info">
+                        <h4>${member.name}</h4>
+                        <p>${member.role}</p>
+                    </div>
+                `;
+                teamContainer.appendChild(card);
+            });
+
+            /* 5. LUCIDE ICONS INIT (Just in case) */
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
     </script>
 </body>

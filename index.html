@@ -1,439 +1,700 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-[#F8FAFC] overflow-x-hidden w-full antialiased">
+<html lang="en" class="scroll-smooth bg-[#fdfbff] overflow-x-hidden w-full">
+
 <head>
-    <script src="https://vucdash.netlify.app/tracker.js" data-site-id="4c336944-fb7d-4bdd-8e1a-f61db537b439" defer></script>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M5RT7T9Q');</script>
+    <script src="https://vucdash.netlify.app/tracker.js" data-site-id="4c336944-fb7d-4bdd-8e1a-f61db537b439"
+        defer></script>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M5RT7T9Q');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1SP832NR7"></script>
-    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-Q1SP832NR7'); </script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d01e5c-e885-4d77-8acb-2f3ec53970a0" type="text/javascript" async></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-Q1SP832NR7');
+    </script>
+
+    <!-- COOKIEBOT CONSENT MANAGEMENT -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="75d01e5c-e885-4d77-8acb-2f3ec53970a0"
+        type="text/javascript" async></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0463ca">
 
-    <title>HyBox — AI Tools for Everyone</title>
-    <meta name="title" content="HyBox — Helpful AI Applications">
-    <meta name="description" content="HyBox is a team building easy-to-use, open-source AI tools for everyday tasks.">
-    <link rel="icon" type="image/png" href="icon/favicon.png">
-    <link rel="apple-touch-icon" href="icon/apple-touch-icon.png">
+    <!-- SEO MASTER TAGS -->
+    <title>HyBox — Independent Builder Team</title>
+    <meta name="title" content="HyBox — High-Performance AI Apps">
+    <meta name="description"
+        content="HyBox is an independent, open-source AI-first builder team. Execution over ideas.">
+    <link rel="canonical" href="https://hybox.netlify.app/">
+    <link rel="icon" type="image/svg+xml" href="/icon/favicon.ico">
 
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+    <!-- LIBRARIES -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+    <!-- TAILWIND CONFIG -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { 
-                        sans: ['Inter', 'sans-serif'], 
-                        display: ['Plus Jakarta Sans', 'sans-serif'] 
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
                     colors: {
-                        brand: {
-                            deep: '#0463ca',   /* Core Navy/Deep Blue */
-                            base: '#0487e2',   /* Primary Blue */
-                            cyan: '#09b1ec',   /* Bright Cyan */
-                            soft: '#65c2f5',   /* Soft Sky Blue */
-                            pale: '#b0d6f5'    /* Background/Pill Pale Blue */
-                        },
-                        surface: {
-                            light: '#F8FAFC',
-                            card: '#FFFFFF'
+                        m3: {
+                            primary: '#0463ca',
+                            onPrimary: '#ffffff',
+                            primaryContainer: '#b0d6f5',
+                            onPrimaryContainer: '#001d36',
+                            secondary: '#0487e2',
+                            onSecondary: '#ffffff',
+                            secondaryContainer: '#65c2f5',
+                            onSecondaryContainer: '#001e30',
+                            tertiary: '#09b1ec',
+                            onTertiary: '#ffffff',
+                            tertiaryContainer: '#c4e7ff',
+                            onTertiaryContainer: '#001e2e',
+                            surface: '#fdfbff',
+                            onSurface: '#1a1c1e',
+                            surfaceVariant: '#e2e2e5',
+                            onSurfaceVariant: '#44474e',
+                            outline: '#74777f',
                         }
                     },
-                    fontSize: {
-                        'fluid-display': 'clamp(3.5rem, 8vw, 8rem)',
-                        'fluid-h2': 'clamp(2.5rem, 5vw, 4.5rem)',
-                    },
                     boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(4, 99, 202, 0.08)',
-                        'float': '0 20px 40px -10px rgba(4, 135, 226, 0.15)',
+                        'm3-1': '0px 1px 2px 0px rgba(0,0,0,0.3), 0px 1px 3px 1px rgba(0,0,0,0.15)',
+                        'm3-2': '0px 1px 2px 0px rgba(0,0,0,0.3), 0px 2px 6px 2px rgba(0,0,0,0.15)',
+                        'm3-3': '0px 4px 8px 3px rgba(0,0,0,0.15), 0px 1px 3px 0px rgba(0,0,0,0.3)',
                     }
                 }
             }
         }
     </script>
 
+    <!-- CUSTOM STYLES & MATERIAL 3 EXPRESSIVE -->
     <style>
-        /* BASE & SCROLL */
-        body { background-color: #F8FAFC; color: #0F172A; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #b0d6f5; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0487e2; }
+        body {
+            overflow-x: hidden;
+            width: 100vw;
+            background-color: #fdfbff;
+            color: #1a1c1e;
+        }
 
-        /* IMAGE PROTECTION SYSTEM */
-        .secure-img-wrapper { 
-            position: relative; overflow: hidden; 
-            /* Disable user interactions on wrapper */
-            -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+        .full-section {
+            min-height: 100dvh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 6rem;
+            padding-bottom: 4rem;
         }
-        .secure-img-wrapper img {
-            /* Disable interactions on image, force wrapper to handle hover */
-            pointer-events: none; -webkit-user-drag: none; 
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .group:hover .secure-img-wrapper img { transform: scale(1.05); }
 
-        /* ADVANCED MORPHING LOADER (Triangle -> Square -> Sunburst -> Circle) */
-        .morph-loader {
-            width: 72px; height: 72px;
-            background: linear-gradient(135deg, #0463ca, #09b1ec);
-            animation: morphing 3s ease-in-out infinite, spinning 4s linear infinite;
-            box-shadow: 0 10px 30px rgba(4, 99, 202, 0.3);
-        }
-        @keyframes morphing {
-            0% { border-radius: 0%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); } /* Triangle */
-            25% { border-radius: 16px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); } /* Squircle */
-            50% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); } /* Sunburst/Blob */
-            75% { border-radius: 50%; clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); } /* Circle */
-            100% { border-radius: 0%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); } /* Triangle */
-        }
-        @keyframes spinning { 100% { transform: rotate(360deg); } }
-
-        /* EDITORIAL UI COMPONENTS */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(4, 99, 202, 0.05);
-        }
-        
-        .pill-btn {
+        /* Material 3 Micro-Interactions */
+        .m3-btn {
             border-radius: 9999px;
-            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .pill-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(4, 135, 226, 0.4); }
-        .pill-btn:active { transform: translateY(1px); }
-
-        .bento-card {
-            background: #FFFFFF;
-            border-radius: 32px;
-            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s;
-        }
-        .bento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(4, 99, 202, 0.1);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 600;
         }
 
-        /* SWIPER CUSTOMIZATION */
-        .swiper { padding: 2rem 1rem !important; margin: -1rem; width: 100%; overflow: hidden; }
-        .swiper-pagination-bullet { background: #b0d6f5; opacity: 1; width: 12px; height: 12px; transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .swiper-pagination-bullet-active { width: 36px; border-radius: 6px; background: #0487e2; }
-
-        /* INPUTS */
-        input, textarea {
-            background: #F8FAFC; border: 2px solid #b0d6f5; border-radius: 20px; transition: all 0.3s;
+        .m3-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            border-radius: inherit;
         }
-        input:focus, textarea:focus {
-            outline: none; background: #FFFFFF; border-color: #0487e2; box-shadow: 0 0 0 4px rgba(4, 135, 226, 0.15);
+
+        .m3-btn:hover::after {
+            opacity: 0.08;
+        }
+
+        .m3-btn:active::after {
+            opacity: 0.12;
+        }
+
+        .m3-btn:hover {
+            box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .m3-btn:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+
+        .m3-card {
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+            background: #ffffff;
+            box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            border: 1px solid #e2e2e5;
+        }
+
+        .m3-card:hover {
+            box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+        }
+
+        /* Tonal Surface classes */
+        .surface-container-highest {
+            background-color: #e2e2e5;
+        }
+
+        .surface-container-high {
+            background-color: #e8e8eb;
+        }
+
+        .surface-container {
+            background-color: #f3f3f6;
+        }
+
+        /* GSAP Blobs */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -2;
+            opacity: 0.25;
+            border-radius: 50%;
+            transition: all 1s ease;
+            mix-blend-mode: multiply;
+        }
+
+        /* Swiper Fixes */
+        .swiper {
+            padding: 2rem 1rem !important;
+            margin: -2rem -1rem;
+            width: 100%;
+            overflow: visible;
+        }
+
+        .swiper-pagination-bullet {
+            background: #0463ca;
+            opacity: 0.2;
+            width: 8px;
+            height: 8px;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Input Animations */
+        .m3-input {
+            border-radius: 16px;
+            background-color: #f3f3f6;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            border: 1px solid #74777f;
+            padding: 1rem 1.25rem;
+            width: 100%;
+            color: #1a1c1e;
+        }
+
+        .m3-input:focus {
+            background-color: #ffffff;
+            border-color: #0463ca;
+            border-width: 2px;
+            padding: calc(1rem - 1px) calc(1.25rem - 1px);
+            /* Prevent layout shift */
+            box-shadow: 0 0 0 4px rgba(4, 99, 202, 0.15);
+            outline: none;
+        }
+
+        /* Fluid Typography */
+        .fluid-title {
+            font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .fluid-subtitle {
+            font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+            line-height: 1.5;
+        }
+
+        /* Bento Grid */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            grid-auto-flow: dense;
+        }
+
+        @media (min-width: 768px) {
+            .bento-wide {
+                grid-column: span 2;
+            }
+
+            .bento-tall {
+                grid-row: span 2;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fdfbff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #e2e2e5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0463ca;
         }
     </style>
 </head>
 
-<body x-data="appData()" @open-modal.window="openProject($event.detail)" oncontextmenu="return false;">
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5RT7T9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
-    <div x-show="loading" x-transition.opacity.duration.600ms class="fixed inset-0 z-[100] bg-surface-light flex flex-col items-center justify-center">
-        <div class="morph-loader mb-8"></div>
-        <p class="font-display font-bold text-brand-deep tracking-widest uppercase text-sm">Initializing Logic</p>
-    </div>
+<body x-data="appData()" @open-modal.window="openProject($event.detail)"
+    class="font-sans antialiased text-m3-onSurface w-full overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5RT7T9Q" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
 
-    <div class="fixed top-6 left-0 w-full z-50 px-4 md:px-8 pointer-events-none">
-        <nav class="max-w-6xl mx-auto glass-panel rounded-full h-20 flex items-center justify-between px-6 pointer-events-auto">
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 bg-brand-pale rounded-full flex items-center justify-center text-brand-deep group-hover:bg-brand-deep group-hover:text-white transition-colors duration-300">
-                    <i data-lucide="blocks" class="w-5 h-5"></i>
-                </div>
-                <span class="font-display font-extrabold text-xl tracking-tight text-brand-deep">HyBox</span>
+    <!-- Image Protection -->
+    <script> document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); }); </script>
+
+    <!-- NAVIGATION -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-m3-surface/80 backdrop-blur-lg border-b border-m3-surfaceVariant transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center w-full">
+            <a href="#home"
+                class="font-display font-bold text-2xl tracking-tight text-m3-primary flex items-center gap-2 transition-colors z-50 hover:opacity-80">
+                <i data-lucide="blocks" class="w-7 h-7"></i> HyBox
             </a>
-            
-            <div class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
-                <a href="#about" class="hover:text-brand-base transition-colors">Philosophy</a>
-                <a href="#projects" class="hover:text-brand-base transition-colors">Lab Output</a>
-                <a href="#team" class="hover:text-brand-base transition-colors">Collective</a>
-            </div>
 
-            <div class="flex items-center gap-3">
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden p-3 bg-brand-pale text-brand-deep rounded-full">
-                    <i x-show="!mobileMenuOpen" data-lucide="menu" class="w-5 h-5"></i>
-                    <i x-show="mobileMenuOpen" data-lucide="x" class="w-5 h-5" style="display: none;"></i>
-                </button>
-                <a href="#contact" class="hidden md:flex pill-btn bg-brand-deep text-white px-8 py-3 font-bold text-sm items-center gap-2">
-                    Open Channel <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-8 font-medium text-m3-onSurfaceVariant">
+                <a href="#about" class="hover:text-m3-primary transition-colors">Who We Are</a>
+                <a href="#how" class="hover:text-m3-primary transition-colors">Approach</a>
+                <a href="#lab" class="hover:text-m3-primary transition-colors">Projects</a>
+                <a href="#team" class="hover:text-m3-primary transition-colors">Team</a>
+                <a href="https://github.com/hyboxteam" target="_blank"
+                    class="hover:text-m3-primary transition-colors text-xl">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="#contact" class="m3-btn bg-m3-primary text-m3-onPrimary px-6 py-2.5">
+                    Get in Touch
                 </a>
             </div>
-        </nav>
-        
-        <div x-show="mobileMenuOpen" x-transition style="display: none;" class="mt-4 glass-panel rounded-3xl p-6 flex flex-col gap-4 pointer-events-auto shadow-float lg:hidden">
-            <a href="#about" @click="mobileMenuOpen = false" class="text-brand-deep font-bold text-lg p-3 bg-brand-pale/50 rounded-2xl">Philosophy</a>
-            <a href="#projects" @click="mobileMenuOpen = false" class="text-brand-deep font-bold text-lg p-3 bg-brand-pale/50 rounded-2xl">Lab Output</a>
-            <a href="#team" @click="mobileMenuOpen = false" class="text-brand-deep font-bold text-lg p-3 bg-brand-pale/50 rounded-2xl">Collective</a>
-            <a href="#contact" @click="mobileMenuOpen = false" class="bg-brand-base text-white p-4 rounded-2xl text-center font-bold mt-2">Open Channel</a>
+
+            <!-- Mobile Menu Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen"
+                class="lg:hidden p-2 text-m3-onSurface bg-m3-surfaceVariant rounded-full z-50 relative hover:bg-m3-primaryContainer transition-colors">
+                <i x-show="!mobileMenuOpen" data-lucide="menu" class="w-6 h-6"></i>
+                <i x-show="mobileMenuOpen" data-lucide="x" class="w-6 h-6" style="display: none;"></i>
+            </button>
         </div>
-    </div>
 
-    <section id="home" class="min-h-[100dvh] flex flex-col justify-center pt-32 pb-20 px-6 relative overflow-hidden">
-        <div class="absolute top-[15%] left-[5%] w-96 h-96 bg-brand-pale rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
-        <div class="absolute bottom-[10%] right-[5%] w-[30rem] h-[30rem] bg-brand-soft rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
+        <!-- Mobile Dropdown -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-4" style="display: none;"
+            class="bg-m3-surface border-b border-m3-surfaceVariant px-6 py-8 font-medium flex flex-col gap-6 lg:hidden absolute top-[100%] left-0 w-full text-lg shadow-m3-2 z-40">
+            <a href="#about" @click="mobileMenuOpen = false" class="hover:text-m3-primary flex items-center gap-3"><i
+                    data-lucide="users" class="w-5 h-5 text-m3-primary"></i> Who We Are</a>
+            <a href="#how" @click="mobileMenuOpen = false" class="hover:text-m3-primary flex items-center gap-3"><i
+                    data-lucide="compass" class="w-5 h-5 text-m3-primary"></i> Approach</a>
+            <a href="#lab" @click="mobileMenuOpen = false" class="hover:text-m3-primary flex items-center gap-3"><i
+                    data-lucide="grid" class="w-5 h-5 text-m3-primary"></i> Projects</a>
+            <a href="#team" @click="mobileMenuOpen = false" class="hover:text-m3-primary flex items-center gap-3"><i
+                    data-lucide="smile" class="w-5 h-5 text-m3-primary"></i> Team</a>
+            <a href="https://github.com/hyboxteam" target="_blank"
+                class="hover:text-m3-primary flex items-center gap-3"><i
+                    class="fa-brands fa-github text-m3-primary text-xl"></i> GitHub</a>
+            <a href="#contact" @click="mobileMenuOpen = false"
+                class="m3-btn bg-m3-primaryContainer text-m3-onPrimaryContainer p-4 text-center mt-4 w-full">Get in
+                Touch</a>
+        </div>
+    </nav>
 
-        <div class="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center">
-            <div class="inline-flex items-center gap-3 bg-white border border-brand-pale text-brand-deep px-6 py-3 rounded-full text-sm font-bold shadow-sm mb-10">
-                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-base opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-brand-base"></span></span>
-                Open-Source Logic Systems
+    <!-- SECTION 1: HERO -->
+    <section id="home" class="full-section surface-container-highest">
+        <!-- Abstract Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="blob w-[40vw] h-[40vw] bg-[#b0d6f5] top-[-10%] left-[-10%] gsap-blob"></div>
+            <div class="blob w-[30vw] h-[30vw] bg-[#65c2f5] bottom-[-10%] right-[-5%] gsap-blob"
+                style="animation-delay: -2s;"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center w-full z-10" data-aos="fade-up" data-aos-duration="1000">
+            <div
+                class="inline-flex items-center gap-2 bg-m3-surface text-m3-primary px-4 py-1.5 rounded-full mb-8 text-sm font-medium shadow-sm border border-m3-surfaceVariant">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Open Source. Almost Completely Free.</span>
             </div>
-            
-            <h1 class="font-display font-extrabold text-fluid-display text-slate-900 leading-[0.9] tracking-tighter mb-8">
-                Execution <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-deep via-brand-base to-brand-cyan">Over Ideation.</span>
+
+            <h1 class="fluid-title font-display font-bold text-m3-onSurface mb-6">
+                An <span class="text-m3-primary relative inline-block">AI-First<svg
+                        class="absolute w-full h-3 -bottom-1 left-0 text-m3-primaryContainer" viewBox="0 0 100 10"
+                        preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none" />
+                    </svg></span><br>
+                Builder Team.
             </h1>
-            
-            <p class="text-lg md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium mb-12">
-                We are an independent engineering collective. We abandon hype cycles to build, test, and deploy functional tools. If it works, we open-source it.
+
+            <p class="fluid-subtitle font-normal max-w-2xl mx-auto mb-10 text-m3-onSurfaceVariant">
+                We build practical, open-source digital products and tools focused on real-world use. Execution over
+                ideas.
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-center gap-5">
-                <a href="#projects" class="pill-btn w-full sm:w-auto bg-brand-deep text-white px-10 py-5 font-bold text-lg flex items-center justify-center gap-3">
-                    Inspect Repositories <i data-lucide="terminal" class="w-5 h-5"></i>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full">
+                <a href="#lab"
+                    class="m3-btn bg-m3-primary text-m3-onPrimary px-8 py-4 text-lg w-full sm:w-auto shadow-m3-1 hover:shadow-m3-2">
+                    Explore Projects <i data-lucide="arrow-right" class="w-5 h-5 ml-1"></i>
                 </a>
-                <a href="https://github.com/hyboxteam" target="_blank" class="pill-btn w-full sm:w-auto bg-white border-2 border-brand-pale text-brand-deep px-10 py-5 font-bold text-lg flex items-center justify-center gap-3 hover:bg-brand-pale/30">
-                    <i data-lucide="github" class="w-5 h-5"></i> GitHub Protocol
+                <a href="https://github.com/hyboxteam" target="_blank"
+                    class="m3-btn bg-m3-secondaryContainer text-m3-onSecondaryContainer px-8 py-4 text-lg w-full sm:w-auto shadow-sm">
+                    <i class="fa-brands fa-github text-xl mr-2"></i> GitHub
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16 md:w-2/3">
-                <h2 class="font-display font-extrabold text-fluid-h2 text-slate-900 leading-tight mb-6">Build to solve. <br>Not to satisfy trends.</h2>
+    <!-- SECTION 2: ABOUT / BENTO GRID -->
+    <section id="about" class="py-24 bg-m3-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-display font-bold text-4xl md:text-5xl text-m3-onSurface mb-4">Execution > Ideas</h2>
+                <p class="text-lg text-m3-onSurfaceVariant max-w-2xl mx-auto">Speed and learning are prioritized over
+                    perfection. Here is our operational loop.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <div class="bento-card md:col-span-8 p-10 md:p-16 bg-brand-deep text-white relative overflow-hidden group">
-                    <div class="absolute -right-10 -top-10 w-64 h-64 bg-brand-base rounded-full opacity-50 blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 backdrop-blur-md border border-white/20">
-                        <i data-lucide="git-merge" class="w-8 h-8 text-white"></i>
+            <div class="bento-grid">
+                <!-- Bento 1 -->
+                <div class="m3-card p-8 surface-container-high bento-wide flex flex-col justify-center"
+                    data-aos="zoom-in" data-aos-delay="100">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-m3-primaryContainer text-m3-primary flex items-center justify-center mb-6">
+                        <i data-lucide="zap" class="w-7 h-7"></i>
                     </div>
-                    <h3 class="font-display font-extrabold text-3xl md:text-4xl mb-6">The Lab Mindset</h3>
-                    <p class="text-white/80 text-lg md:text-xl leading-relaxed font-medium max-w-2xl">
-                        HyBox operates strictly as a proving ground. We develop tools rapidly, inject them into real-world scenarios, and observe the data. Successful architectures are scaled and shared. Failed logic is dismantled.
-                    </p>
+                    <h3 class="font-display font-bold text-2xl text-m3-onSurface mb-3">If it works, we scale it.</h3>
+                    <p class="text-m3-onSurfaceVariant leading-relaxed">We improve it. We iterate quickly on positive
+                        data signals and user feedback to maximize utility.</p>
                 </div>
 
-                <div class="bento-card md:col-span-4 p-10 bg-brand-pale flex flex-col justify-center relative overflow-hidden group">
-                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center mb-6 shadow-sm text-brand-base">
-                        <i data-lucide="zap" class="w-6 h-6"></i>
+                <!-- Bento 2 -->
+                <div class="m3-card p-8 bg-m3-tertiaryContainer text-m3-onTertiaryContainer flex flex-col justify-center"
+                    data-aos="zoom-in" data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 rounded-full bg-[#fdfbff] text-m3-tertiary flex items-center justify-center mb-5 shadow-sm">
+                        <i data-lucide="x-circle" class="w-6 h-6"></i>
                     </div>
-                    <h3 class="font-display font-extrabold text-2xl text-brand-deep mb-4">Velocity Rules</h3>
-                    <p class="text-brand-deep/70 text-base leading-relaxed font-semibold">
-                        We reject endless wireframing. The only valid metric for digital utility is actual deployment. We build, ship, and iterate.
-                    </p>
+                    <h3 class="font-display font-bold text-xl mb-2">If it fails</h3>
+                    <p class="opacity-90">We drop it. No sunk cost fallacy. We learn from the architecture and move to
+                        the next build.</p>
+                </div>
+
+                <!-- Bento 3 -->
+                <div class="m3-card p-8 bg-m3-surface border border-m3-outline/20 flex flex-col justify-center"
+                    data-aos="zoom-in" data-aos-delay="300">
+                    <div
+                        class="w-12 h-12 rounded-full bg-m3-secondaryContainer text-m3-onSecondaryContainer flex items-center justify-center mb-5">
+                        <i data-lucide="help-circle" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-m3-onSurface mb-2">If unclear</h3>
+                    <p class="text-m3-onSurfaceVariant">We test it. We push to production, open-source the repo, and let
+                        real usage guide our logic.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24 px-6 relative">
-        <div class="absolute inset-0 bg-brand-deep/5 transform -skew-y-2 origin-top-left -z-10"></div>
-        
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+    <!-- SECTION 3: PROJECTS -->
+    <section id="lab" class="py-24 surface-container-highest relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12" data-aos="fade-right">
                 <div>
-                    <h2 class="font-display font-extrabold text-fluid-h2 text-slate-900 mb-4">Deployed Logic</h2>
-                    <p class="text-slate-600 text-xl font-medium">Tools, wrappers, and autonomous systems.</p>
+                    <h2 class="font-display font-bold text-4xl md:text-5xl text-m3-onSurface mb-4">What We Build</h2>
+                    <p class="text-lg text-m3-onSurfaceVariant max-w-xl">AI chatbots, web apps, experimental platforms,
+                        and digital systems. Swipe to explore.</p>
                 </div>
-                <div class="mt-6 md:mt-0 bg-white border border-brand-pale px-6 py-3 rounded-full shadow-sm flex items-center gap-3">
-                    <span class="text-sm font-bold text-slate-500 uppercase tracking-widest">Active Nodes:</span>
-                    <span id="app-count" class="font-black text-xl text-brand-base">...</span>
+                <div
+                    class="mt-4 md:mt-0 px-5 py-2 bg-m3-primaryContainer text-m3-onPrimaryContainer rounded-full font-medium text-sm shadow-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-m3-primary animate-pulse"></span> Live Projects: <span
+                        id="app-count" class="font-bold">...</span>
                 </div>
             </div>
 
-            <div class="swiper project-swiper">
+            <!-- Swiper -->
+            <div class="swiper project-swiper w-full" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper" id="creations-wrapper">
-                    <div class="swiper-slide bento-card border border-slate-100 p-8 h-80 flex flex-col items-center justify-center">
-                        <div class="w-12 h-12 border-4 border-brand-pale border-t-brand-base rounded-full animate-spin mb-4"></div>
-                        <p class="font-bold text-slate-400">Syncing Datastore...</p>
+                    <!-- Skeleton -->
+                    <div class="swiper-slide m3-card p-6 h-80 flex flex-col items-center justify-center">
+                        <i data-lucide="loader-2" class="w-10 h-10 animate-spin text-m3-primary mb-4"></i>
+                        <p class="font-medium text-m3-onSurfaceVariant">Syncing Data...</p>
                     </div>
                 </div>
-                <div class="swiper-pagination mt-10"></div>
+                <div class="swiper-pagination mt-6 relative"></div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="font-display font-extrabold text-fluid-h2 text-slate-900 mb-6">The Collective</h2>
-            <div class="inline-flex gap-3 flex-wrap justify-center font-bold uppercase text-xs tracking-widest text-brand-deep bg-brand-pale/50 px-6 py-3 rounded-full mb-16">
-                <span>Autonomy</span> &bull; 
-                <span>Accountability</span> &bull; 
-                <span class="text-brand-base">Execution</span>
+    <!-- SECTION 4: TEAM -->
+    <section id="team" class="py-24 bg-m3-surface relative overflow-hidden">
+        <!-- Abstract gradient -->
+        <div
+            class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-m3-primaryContainer/30 to-transparent pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="font-display font-bold text-4xl md:text-5xl text-m3-onSurface mb-6">The Collective</h2>
+                <div
+                    class="inline-flex gap-4 flex-wrap justify-center font-medium text-sm text-m3-onSurfaceVariant bg-m3-surface border border-m3-surfaceVariant rounded-full px-6 py-3 shadow-sm">
+                    <span class="flex items-center gap-2"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-m3-primary"></i> Work is voluntary</span>
+                    <span class="hidden sm:inline text-m3-outline">•</span>
+                    <span class="flex items-center gap-2"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-m3-primary"></i> Responsibility Expected</span>
+                </div>
             </div>
 
-            <div class="swiper team-swiper">
+            <div class="swiper team-swiper w-full" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper" id="team-wrapper">
-                     <div class="swiper-slide bento-card bg-slate-50 h-72 animate-pulse"></div>
+                    <!-- Skeleton -->
+                    <div class="swiper-slide m3-card h-72 animate-pulse bg-m3-surfaceVariant"></div>
                 </div>
+                <div class="swiper-pagination mt-6 relative"></div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 px-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-brand-pale/40 to-white -z-10"></div>
-        <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-brand-cyan/20 rounded-full blur-3xl -z-10"></div>
-
-        <div class="max-w-4xl mx-auto bento-card p-8 md:p-16 shadow-float border border-white">
-            <div class="text-center mb-12">
-                <div class="w-20 h-20 bg-brand-deep text-white rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-glass transform rotate-3">
-                    <i data-lucide="radio" class="w-10 h-10"></i>
+    <!-- SECTION 5: CONTACT -->
+    <section id="contact" class="py-24 surface-container-highest">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 md:gap-16 items-center w-full">
+            <div data-aos="fade-right">
+                <h2 class="font-display font-bold text-5xl md:text-6xl text-m3-onSurface mb-6">Let's Talk.</h2>
+                <p class="text-lg mb-10 max-w-md text-m3-onSurfaceVariant leading-relaxed">
+                    Interested in what we are building? Have an idea, or want to contribute to our open-source repos?
+                    Send a signal.
+                </p>
+                <div class="flex flex-col gap-6">
+                    <a href="mailto:mail.hybox@gmail.com"
+                        class="flex items-center gap-4 text-m3-onSurface hover:text-m3-primary transition-colors group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-m3-primaryContainer text-m3-primary flex items-center justify-center group-hover:scale-105 transition-transform">
+                            <i data-lucide="mail" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-medium text-lg">mail.hybox@gmail.com</span>
+                    </a>
+                    <a href="https://github.com/hyboxteam" target="_blank"
+                        class="flex items-center gap-4 text-m3-onSurface hover:text-m3-primary transition-colors group">
+                        <div
+                            class="w-12 h-12 rounded-full bg-m3-surface text-m3-onSurface border border-m3-surfaceVariant flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </div>
+                        <span class="font-medium text-lg">github.com/hyboxteam</span>
+                    </a>
                 </div>
-                <h2 class="font-display font-extrabold text-4xl md:text-5xl text-slate-900 mb-4">Transmit Signal</h2>
-                <p class="text-slate-600 text-lg font-medium">Propose an integration, report a bug, or collaborate.</p>
             </div>
 
-            <form id="contactForm" class="flex flex-col gap-6" @submit.prevent="submitContactForm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="m3-card p-8 md:p-10" data-aos="fade-left" data-aos-delay="200">
+                <form id="contactForm" class="flex flex-col gap-5" @submit.prevent="submitContactForm">
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-widest text-slate-500 block mb-3 pl-2">Designation</label>
-                        <input type="text" id="name" required class="w-full px-6 py-4 text-slate-900 font-medium">
+                        <label class="block mb-2 text-sm font-medium text-m3-onSurfaceVariant">Your Name</label>
+                        <input type="text" id="name" required class="m3-input">
                     </div>
                     <div>
-                        <label class="text-xs font-bold uppercase tracking-widest text-slate-500 block mb-3 pl-2">Relay Address</label>
-                        <input type="email" id="email" required class="w-full px-6 py-4 text-slate-900 font-medium">
+                        <label class="block mb-2 text-sm font-medium text-m3-onSurfaceVariant">Email Address</label>
+                        <input type="email" id="email" required class="m3-input">
                     </div>
-                </div>
-                <div>
-                    <label class="text-xs font-bold uppercase tracking-widest text-slate-500 block mb-3 pl-2">Payload Data</label>
-                    <textarea id="message" required class="w-full h-40 px-6 py-4 text-slate-900 font-medium"></textarea>
-                </div>
-                <button type="submit" id="submit-btn" class="pill-btn w-full bg-brand-deep text-white font-bold text-lg py-5 mt-4 flex justify-center items-center gap-3">
-                    <span x-text="btnText">Initiate Transfer</span> <i data-lucide="send" class="w-5 h-5"></i>
-                </button>
-                <div x-show="formSuccess" x-transition style="display: none;" class="bg-brand-pale text-brand-deep font-bold rounded-2xl p-4 text-center mt-2 border border-brand-soft">
-                    Signal Confirmed. Awaiting processing.
-                </div>
-            </form>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-m3-onSurfaceVariant">Message</label>
+                        <textarea id="message" required class="m3-input h-32 resize-none"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn"
+                        class="m3-btn bg-m3-primary text-m3-onPrimary py-4 mt-2 text-lg">
+                        <span x-text="btnText">Send Message</span> <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                    <p x-show="formSuccess" x-transition
+                        class="text-m3-primary font-medium text-center mt-3 text-sm bg-m3-primaryContainer rounded-xl py-3"
+                        style="display: none;">Message Sent Successfully!</p>
+                </form>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-brand-deep text-white py-12 px-6 rounded-t-[3rem] mt-10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-3 font-display font-extrabold text-2xl">
-                <div class="w-10 h-10 bg-white text-brand-deep rounded-xl flex items-center justify-center">
-                    <i data-lucide="blocks" class="w-6 h-6"></i>
-                </div>
-                HyBox
+    <!-- FOOTER -->
+    <footer class="bg-m3-surface text-m3-onSurface border-t border-m3-surfaceVariant py-12">
+        <div
+            class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <h2
+                    class="font-display font-bold text-2xl flex items-center justify-center md:justify-start gap-2 text-m3-primary">
+                    <i data-lucide="blocks" class="w-6 h-6"></i> HyBox
+                </h2>
+                <p class="text-sm text-m3-onSurfaceVariant mt-2">Independent Builder Team</p>
             </div>
-            <div class="flex gap-6 text-brand-pale font-medium">
-                <a href="https://github.com/hyboxteam" target="_blank" class="hover:text-white transition-colors flex items-center gap-2 pill-btn bg-white/10 px-6 py-3">
-                    <i data-lucide="github" class="w-5 h-5"></i> Source
-                </a>
-                <a href="mailto:mail.hybox@gmail.com" class="hover:text-white transition-colors flex items-center gap-2 pill-btn bg-white/10 px-6 py-3">
-                    <i data-lucide="mail" class="w-5 h-5"></i> Comms
+            <div class="font-medium text-m3-onSurface flex items-center gap-4 justify-center">
+                Build useful things.
+                <a href="https://github.com/hyboxteam" target="_blank"
+                    class="text-m3-onSurfaceVariant hover:text-m3-primary transition-colors text-xl">
+                    <i class="fa-brands fa-github"></i>
                 </a>
             </div>
-            <div class="text-white/50 text-sm font-semibold uppercase tracking-widest">
-                &copy; 2026 Architected Logic.
+            <div class="text-sm text-m3-onSurfaceVariant">
+                &copy; 2026 HyBox. Open Source.
             </div>
         </div>
     </footer>
 
-    <div x-show="modalOpen" style="display: none;" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
-        <div x-show="modalOpen" x-transition.opacity class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" @click="modalOpen = false"></div>
-        
-        <div x-show="modalOpen" 
-             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95 translate-y-8" x-transition:enter-end="opacity-100 scale-100 translate-y-0" 
-             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-95 translate-y-8" 
-             class="bento-card max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-8 md:p-12 z-10 flex flex-col md:flex-row gap-10">
-            
-            <button @click="modalOpen = false" class="absolute top-6 right-6 text-slate-400 hover:text-brand-deep bg-slate-100 p-3 rounded-full transition-colors z-20">
+    <!-- ALPINE MODAL (Projects) -->
+    <div x-show="modalOpen" style="display: none;"
+        class="fixed inset-0 z-[100] bg-m3-onSurface/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+        <div x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform"
+            x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+            x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200 transform"
+            x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="opacity-0 scale-95 translate-y-4" @click.away="modalOpen = false"
+            class="bg-m3-surface rounded-[32px] shadow-m3-3 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative p-6 md:p-10">
+
+            <button @click="modalOpen = false"
+                class="absolute top-4 right-4 bg-m3-surfaceVariant text-m3-onSurfaceVariant hover:bg-m3-primaryContainer hover:text-m3-primary p-2 rounded-full transition-colors z-10">
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
 
-            <div class="w-full md:w-2/5 aspect-square rounded-[2rem] bg-brand-pale/30 border-2 border-brand-pale shrink-0 secure-img-wrapper flex items-center justify-center p-8">
-                <img :src="activeProject.logo" alt="Logo" class="object-contain w-full h-full drop-shadow-2xl" oncontextmenu="return false;" draggable="false">
-            </div>
-            
-            <div class="w-full md:w-3/5 flex flex-col justify-center">
-                <span x-text="activeProject.type" class="inline-block bg-brand-deep text-white rounded-full text-xs font-bold uppercase tracking-widest px-4 py-2 mb-6 w-fit shadow-md"></span>
-                <h2 x-text="activeProject.title" class="font-display font-extrabold text-4xl md:text-5xl mb-6 text-slate-900 leading-tight"></h2>
-                <p x-text="activeProject.desc" class="text-base md:text-lg mb-10 text-slate-600 leading-relaxed font-medium"></p>
-                <a :href="activeProject.link" target="_blank" class="pill-btn inline-flex items-center gap-3 bg-brand-base text-white font-bold text-lg px-8 py-4 w-fit shadow-float">
-                    Access Deployment <i data-lucide="external-link" class="w-5 h-5"></i>
-                </a>
+            <div class="flex flex-col md:flex-row gap-8 items-start mt-6 md:mt-0">
+                <div
+                    class="w-full md:w-5/12 aspect-square rounded-[24px] overflow-hidden bg-m3-surfaceVariant shadow-sm">
+                    <img :src="activeProject.logo" alt="Project Logo" class="object-cover w-full h-full">
+                </div>
+                <div class="w-full md:w-7/12">
+                    <span x-text="activeProject.type"
+                        class="inline-block bg-m3-secondaryContainer text-m3-onSecondaryContainer font-medium text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-4"></span>
+                    <h2 x-text="activeProject.title"
+                        class="font-display font-bold text-3xl md:text-4xl mb-4 text-m3-onSurface leading-tight"></h2>
+                    <p x-text="activeProject.desc"
+                        class="text-m3-onSurfaceVariant mb-8 whitespace-pre-wrap leading-relaxed"></p>
+                    <a :href="activeProject.link" target="_blank"
+                        class="m3-btn bg-m3-primary text-m3-onPrimary px-8 py-3 w-full sm:w-auto">
+                        Live Project <i data-lucide="external-link" class="w-5 h-5 ml-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- MAIN APPLICATION LOGIC -->
     <script>
+        // Alpine Component Data
         function appData() {
             return {
-                loading: true,
-                mobileMenuOpen: false, 
-                modalOpen: false, 
-                formSuccess: false, 
-                btnText: 'Initiate Transfer',
+                mobileMenuOpen: false,
+                modalOpen: false,
+                formSuccess: false,
+                btnText: 'Send Message',
                 activeProject: { title: '', desc: '', type: '', link: '', logo: '' },
-                
-                openProject(project) { 
-                    this.activeProject = project; 
-                    this.modalOpen = true; 
-                    document.body.style.overflow = 'hidden'; 
+
+                openProject(project) {
+                    this.activeProject = project;
+                    this.modalOpen = true;
+                    document.body.style.overflow = 'hidden';
                 },
-                
-                init() { 
-                    setTimeout(() => { this.loading = false; }, 1200);
-                    this.$watch('modalOpen', value => { 
-                        if(!value) document.body.style.overflow = 'auto'; 
-                    }); 
+
+                init() {
+                    this.$watch('modalOpen', value => {
+                        if (!value) document.body.style.overflow = 'auto';
+                    });
                 },
-                
+
                 async submitContactForm() {
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
                     const message = document.getElementById('message').value;
-                    this.btnText = "Processing...";
+
+                    this.btnText = "Transmitting...";
                     const apiUrl = 'https://backend-pico.onrender.com/aero/run/self-email-api?pk=v1-Z0FBQUFBQnBnUHhjZTVGZHVHd0E0alZybnpsbkpTaHpzd05nRmJWbFd4VGJaWWNsTG1SZzdrRzVFWjc4THFUVXRQT05wUElhdnYxd0lzcjVSckxPNnBua3lQQlotd0FfRFE9PQ==';
-                    
+
                     try {
-                        const res = await fetch(apiUrl, { 
-                            method: 'POST', 
-                            headers: { 'Content-Type': 'application/json' }, 
-                            body: JSON.stringify({ 
-                                subject: `HyBox Incoming: ${name}`, 
-                                body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` 
-                            }) 
+                        const res = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                subject: `HyBox Open Source Contact: ${name}`,
+                                body: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
+                            })
                         });
                         const result = await res.json();
                         if (result.status === 'success') {
-                            this.formSuccess = true; 
-                            document.getElementById('contactForm').reset(); 
-                            this.btnText = "Transmitted";
-                            setTimeout(() => { 
-                                this.formSuccess = false; 
-                                this.btnText = "Initiate Transfer"; 
+                            this.formSuccess = true;
+                            document.getElementById('contactForm').reset();
+                            this.btnText = "Success!";
+                            setTimeout(() => {
+                                this.formSuccess = false;
+                                this.btnText = "Send Message";
                             }, 4000);
                         }
-                    } catch (err) { 
-                        alert('Transmission Error. Utilize direct mail.'); 
-                        this.btnText = "Initiate Transfer"; 
+                    } catch (err) {
+                        alert('Failed to send. Please use direct email or GitHub.');
+                        this.btnText = "Send Message";
                     }
                 }
             }
         }
 
+        // Initialize libraries after Alpine setup
         document.addEventListener('alpine:init', () => {
             lucide.createIcons();
 
-            // SUPABASE DATABSE INITIALIZATION
+            AOS.init({ duration: 800, once: true, mirror: false, offset: 50 });
+
+            // GSAP BACKGROUND BLOBS
+            if (window.innerWidth > 768) {
+                document.addEventListener("mousemove", (e) => {
+                    const mouseX = e.clientX;
+                    const mouseY = e.clientY;
+                    const px = (mouseX / window.innerWidth - 0.5) * 60;
+                    const py = (mouseY / window.innerHeight - 0.5) * 60;
+                    gsap.to(".gsap-blob", { x: px, y: py, duration: 3, ease: "power2.out" });
+                });
+            }
+
+            // SUPABASE DATA FETCHING
             const SB_URL = 'https://buelbnurnlrisrokmxir.supabase.co';
             const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1ZWxibnVybmxyaXNyb2tteGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAzOTg4NTUsImV4cCI6MjA4NTk3NDg1NX0.WdXiIMmRJtFQPdWEp_oIg9-LV2KJdJWPO3V9KWZUXOk';
             const sb = supabase.createClient(SB_URL, SB_KEY);
@@ -446,44 +707,52 @@
                     if (data) {
                         wrapper.innerHTML = '';
                         document.getElementById('app-count').innerText = data.length;
+                        document.getElementById('app-count').classList.remove('animate-pulse');
 
                         data.forEach(item => {
                             const slide = document.createElement('div');
-                            // High-end bento card for Swiper
-                            slide.className = 'swiper-slide bento-card border border-slate-100 p-8 cursor-pointer group flex flex-col justify-between h-auto';
+                            slide.className = 'swiper-slide m3-card p-6 flex flex-col justify-between cursor-pointer group h-auto';
+
                             slide.addEventListener('click', () => {
-                                window.dispatchEvent(new CustomEvent('open-modal', { 
-                                    detail: { title: item.title, desc: item.long_desc || item.short_desc, type: item.type, link: item.download_url, logo: item.logo_url } 
+                                window.dispatchEvent(new CustomEvent('open-modal', {
+                                    detail: {
+                                        title: item.title,
+                                        desc: item.long_desc || item.short_desc,
+                                        type: item.type,
+                                        link: item.download_url,
+                                        logo: item.logo_url
+                                    }
                                 }));
                             });
-                            
+
                             slide.innerHTML = `
                                 <div>
-                                    <div class="w-20 h-20 bg-brand-pale/30 rounded-[1.5rem] mb-8 flex items-center justify-center border border-brand-pale secure-img-wrapper p-3">
-                                        <img src="${item.logo_url}" class="object-contain w-full h-full drop-shadow-md" alt="${item.title}" oncontextmenu="return false;" draggable="false">
+                                    <div class="w-full h-48 rounded-2xl overflow-hidden mb-5 bg-m3-surfaceVariant relative">
+                                        <div class="absolute inset-0 bg-m3-primary/10 group-hover:bg-transparent transition-colors z-10"></div>
+                                        <img src="${item.logo_url}" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500" alt="${item.title}">
                                     </div>
-                                    <span class="text-[10px] font-bold text-brand-deep uppercase tracking-widest border border-brand-pale bg-brand-pale/20 px-3 py-1.5 rounded-full mb-5 inline-block">${item.type}</span>
-                                    <h3 class="font-display font-extrabold text-2xl mb-3 text-slate-900 group-hover:text-brand-base transition-colors line-clamp-2">${item.title}</h3>
-                                    <p class="text-sm text-slate-600 leading-relaxed font-medium line-clamp-3">${item.short_desc}</p>
+                                    <span class="inline-block bg-m3-primaryContainer text-m3-onPrimaryContainer font-medium text-xs px-3 py-1 rounded-full mb-3">${item.type}</span>
+                                    <h3 class="font-display font-bold text-2xl mb-2 text-m3-onSurface group-hover:text-m3-primary transition-colors line-clamp-2">${item.title}</h3>
+                                    <p class="text-m3-onSurfaceVariant text-sm leading-relaxed line-clamp-3">${item.short_desc}</p>
                                 </div>
-                                <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center text-brand-base font-bold">
-                                    <span>Extract Logic</span>
-                                    <div class="w-8 h-8 bg-brand-pale rounded-full flex items-center justify-center group-hover:bg-brand-deep group-hover:text-white transition-colors">
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </div>
+                                <div class="mt-6 pt-4 border-t border-m3-surfaceVariant flex justify-between items-center text-m3-onSurfaceVariant group-hover:text-m3-primary transition-colors">
+                                    <span class="font-medium text-sm">Launch Logic</span>
+                                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                                 </div>
                             `;
                             wrapper.appendChild(slide);
                         });
-                        
+
                         new Swiper('.project-swiper', {
                             slidesPerView: 1, spaceBetween: 24, grabCursor: true,
                             pagination: { el: '.swiper-pagination', clickable: true },
-                            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+                            breakpoints: { 768: { slidesPerView: 2, spaceBetween: 32 }, 1024: { slidesPerView: 3, spaceBetween: 32 } }
                         });
                         lucide.createIcons();
                     }
-                } catch (err) { wrapper.innerHTML = `<div class="swiper-slide bento-card p-8 border border-red-100 text-red-500 font-bold">Datastore sync failed.</div>`; }
+                } catch (err) {
+                    wrapper.innerHTML = `<div class="swiper-slide m3-card p-8 text-center text-red-600 font-medium">Failed to sync repo data.</div>`;
+                }
             }
 
             async function fetchTeam() {
@@ -494,41 +763,37 @@
                     if (data) {
                         wrapper.innerHTML = '';
                         const humanTeam = data.filter(member => member.name.toUpperCase() !== 'ZAVIA');
-                        
-                        // Alternating border radii array for the "Humancloud" staggered squircle look
-                        const shapes = [
-                            'border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;',
-                            'border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;',
-                            'border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%;',
-                            'border-radius: 30% 70% 50% 50% / 50% 50% 70% 30%;'
-                        ];
 
-                        humanTeam.forEach((member, index) => {
+                        humanTeam.forEach(member => {
                             const slide = document.createElement('div');
-                            const shapeStyle = shapes[index % shapes.length];
-                            
-                            slide.className = 'swiper-slide flex flex-col items-center text-center group';
+                            slide.className = 'swiper-slide m3-card p-8 flex flex-col items-center text-center h-auto group';
+
                             slide.innerHTML = `
-                                <div class="w-40 h-40 mb-6 bg-brand-pale/50 border-4 border-brand-pale p-1 secure-img-wrapper shadow-sm transition-all duration-500 group-hover:shadow-float group-hover:border-brand-soft" style="${shapeStyle}">
-                                    <img src="${member.img_url}" class="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500" style="${shapeStyle}" alt="${member.name}" oncontextmenu="return false;" draggable="false">
+                                <div class="w-32 h-32 mb-6 relative">
+                                    <div class="absolute inset-0 bg-m3-primaryContainer rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                                    <img src="${member.img_url}" class="w-full h-full object-cover rounded-full relative z-10 border-4 border-m3-surface shadow-sm" alt="${member.name}">
                                 </div>
-                                <h3 class="font-display font-extrabold text-2xl text-slate-900">${member.name}</h3>
-                                <p class="text-xs font-bold uppercase tracking-widest text-brand-base mt-2">${member.role}</p>
+                                <h3 class="font-display font-bold text-2xl text-m3-onSurface mb-1">${member.name}</h3>
+                                <p class="font-medium text-sm text-m3-primary">${member.role}</p>
                             `;
                             wrapper.appendChild(slide);
                         });
-                        
-                        new Swiper('.team-swiper', { 
-                            slidesPerView: 1, spaceBetween: 24, grabCursor: true, 
-                            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 }, 1280: { slidesPerView: 4 } } 
+
+                        new Swiper('.team-swiper', {
+                            slidesPerView: 1, spaceBetween: 24, grabCursor: true,
+                            pagination: { el: '.swiper-pagination', clickable: true },
+                            breakpoints: { 640: { slidesPerView: 2, spaceBetween: 32 }, 1024: { slidesPerView: 3, spaceBetween: 32 } }
                         });
                     }
-                } catch (err) { console.error("Team Data Unavailable."); }
+                } catch (err) {
+                    console.error("Team Sync Error");
+                }
             }
 
-            fetchProjects(); 
+            fetchProjects();
             fetchTeam();
         });
     </script>
 </body>
+
 </html>
